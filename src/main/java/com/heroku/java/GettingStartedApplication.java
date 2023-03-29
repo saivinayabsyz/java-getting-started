@@ -41,7 +41,7 @@ public class GettingStartedApplication {
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.CREATED)
     public void createHotel(@RequestBody AuthParams hotel,
-                                 HttpServletRequest request, HttpServletResponse response) {
+                                 HttpServletResponse response) {
       try{
         System.out.print("Hello!");  
         response.getWriter().write(hotel.accessToken);  
