@@ -25,6 +25,21 @@ public class GettingStartedApplication {
     public String index() {
         return "index";
     }
+    @RequestMapping(value = "/triggerxmlgeneration",
+            method = RequestMethod.POST,
+            consumes = {"application/json", "application/xml"},
+            produces = {"application/json", "application/xml"})
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createHotel(@RequestBody AuthParams hotel,
+                                 HttpServletRequest request, HttpServletResponse response) {
+      try{
+        System.out.print("Hello!");  
+        response.getWriter().write(hotel.accessToken);  
+      }
+      catch(IOException e) {
+  e.printStackTrace();
+}
+    }
 
     @GetMapping("/database")
     String database(Map<String, Object> model) {
