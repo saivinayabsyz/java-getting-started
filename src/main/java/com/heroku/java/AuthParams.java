@@ -1,4 +1,4 @@
-package com.example;
+package com.heroku.java;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
