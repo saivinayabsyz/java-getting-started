@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 
 
@@ -40,11 +39,10 @@ public class GettingStartedApplication {
             consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.CREATED)
-    public void createHotel(@RequestBody AuthParams hotel,
-                                 HttpServletResponse response) {
+    public void createHotel(@RequestBody AuthParams hotel) {
       try{
         System.out.print("Hello!");  
-        response.getWriter().write(hotel.accessToken);  
+      //  response.getWriter().write(hotel.accessToken);  
       }
       catch(IOException e) {
   e.printStackTrace();
