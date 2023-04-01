@@ -50,13 +50,13 @@ public class GettingStartedApplication {
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.CREATED)
     public void createHotel(@RequestBody AuthParams hotel) {
-    
+        fetchMetadata(hotel.accessToken,hotel.orgURL);
         System.out.print("Hello!");  
       //  response.getWriter().write(hotel.accessToken);  
      
     }
      
-    public void fetchMetadata(String sessionId){
+    public void fetchMetadata(String sessionId, String endpoint){
   //  ConnectorConfig partnerConfig = new ConnectorConfig();
     ConnectorConfig metadataConfig = new ConnectorConfig();
     
@@ -73,7 +73,7 @@ public class GettingStartedApplication {
     //only metadata service endpoint has to be set according to the org
     //metaurl = metaurl.replace("Soap/u", "Soap/m");
    // System.out.println(metaurl);
-    metadataConfig.setServiceEndpoint("test");
+    metadataConfig.setServiceEndpoint(endpoint);
     
     
     // shove the partner's session id into the metadata configuration then connect
