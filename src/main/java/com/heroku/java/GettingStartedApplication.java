@@ -64,7 +64,7 @@ public class GettingStartedApplication {
   //  partnerConfig.setUsername(USERNAME);
    // partnerConfig.setPassword(PASSWORD);
 
-    @SuppressWarnings("unused")
+   // @SuppressWarnings("unused")
   //  PartnerConnection partnerConnection = com.sforce.soap.partner.Connector.newConnection(partnerConfig);
     
    // String metaurl = partnerConfig.getServiceEndpoint();
