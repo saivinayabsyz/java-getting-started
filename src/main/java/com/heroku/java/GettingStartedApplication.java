@@ -125,10 +125,8 @@ public class GettingStartedApplication {
      public static void showMetaDataComponents(FileProperties[] lmr){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
-	    	if(isToday(n.getLastModifiedDate().getTime())){
-	    		System.out.println(n.getType() +" : " + n.getFullName());    		          		    		
-	    	}    		        
-	      }
+	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate());    		          		    		
+	    	}
 	  }	  
   }
     @GetMapping("/database")
