@@ -78,9 +78,10 @@ public class GettingStartedApplication {
     
     // shove the partner's session id into the metadata configuration then connect
     metadataConfig.setSessionId(sessionId);
-    MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
+   
     
     try {
+	     MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
     	 try {
     		List<String> metadataComponents = new ArrayList<String>();
 	    	metadataComponents.add("CustomObject");	    	
