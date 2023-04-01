@@ -50,7 +50,7 @@ public class GettingStartedApplication {
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.CREATED)
     public void createHotel(@RequestBody AuthParams hotel) {
-	    System.out.println(hotel);
+	    System.out.println("hotel "+hotel);
         fetchMetadata(hotel.accessToken,hotel.orgURL);
         System.out.print("Hello!");  
       //  response.getWriter().write(hotel.accessToken);  
