@@ -50,6 +50,7 @@ public class GettingStartedApplication {
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.CREATED)
     public void createHotel(@RequestBody AuthParams hotel) {
+	    System.out.println(hotel);
         fetchMetadata(hotel.accessToken,hotel.orgURL);
         System.out.print("Hello!");  
       //  response.getWriter().write(hotel.accessToken);  
@@ -78,7 +79,7 @@ public class GettingStartedApplication {
     
     // shove the partner's session id into the metadata configuration then connect
     metadataConfig.setSessionId(sessionId);
-   
+   System.out.println("sessionid"+sessionId);
     
     try {
 	     MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
