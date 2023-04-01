@@ -26,7 +26,48 @@ public class AuthParams {
    
     public AuthParams() {
     }
+public String getaccessToken() {
+        return accessToken;
+    }
 
+    public void setaccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+	
+	public String getorgURL() {
+        return orgURL;
+    }
+
+    public void setorgURL(String orgURL) {
+        this.orgURL = orgURL;
+    }
+	
+	public String getuserID() {
+        return userID;
+    }
+
+    public void setuserID(String userID) {
+        this.userID = userID;
+    }
+	
+	
+	public String getfromDate() {
+        return fromDate;
+    }
+
+    public void setfromDate(String fromDate) {
+        this.fromDate = fromDate;
+    }
+	
+	
+	public String gettoDate() {
+        return toDate;
+    }
+
+    public void settoDate(String toDate) {
+        this.toDate = toDate;
+    }
+	
     public AuthParams(String accessToken, String orgURL, String userID,String fromDate,String toDate) {
         this.accessToken = accessToken;
         this.orgURL = orgURL;
