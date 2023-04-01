@@ -55,7 +55,82 @@ public class GettingStartedApplication {
       //  response.getWriter().write(hotel.accessToken);  
      
     }
+     
+    public void fetchMetadata(String sessionId){
+  //  ConnectorConfig partnerConfig = new ConnectorConfig();
+    ConnectorConfig metadataConfig = new ConnectorConfig();
+    
+    
+  //  partnerConfig.setUsername(USERNAME);
+   // partnerConfig.setPassword(PASSWORD);
 
+    @SuppressWarnings("unused")
+  //  PartnerConnection partnerConnection = com.sforce.soap.partner.Connector.newConnection(partnerConfig);
+    
+   // String metaurl = partnerConfig.getServiceEndpoint();
+
+    //The metadata service endpoint is baked in the wsdl file, but same metadata wsdl file can be used for differnent orgs,
+    //only metadata service endpoint has to be set according to the org
+    //metaurl = metaurl.replace("Soap/u", "Soap/m");
+   // System.out.println(metaurl);
+    metadataConfig.setServiceEndpoint("test");
+    
+    
+    // shove the partner's session id into the metadata configuration then connect
+    metadataConfig.setSessionId(sessionId);
+    MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
+    
+    try {
+    	 try {
+    		List<String> metadataComponents = new ArrayList<String>();
+	    	metadataComponents.add("CustomObject");	    	
+	    	metadataComponents.add("ApexClass");
+	    	metadataComponents.add("ApexPage");	    		    	
+	    	
+    		List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();    		 
+    		for (String string : metadataComponents) {
+    			 ListMetadataQuery query = new ListMetadataQuery();
+        		 query.setType(string);
+        		 lmqList.add(query);        		 
+			}    		     		    		    
+    		 
+    		 double asOfVersion = 27.0;
+    		 // Assuming that the SOAP binding has already been established.    		    
+    		 FileProperties[] lmr = metadataConnection.listMetadata(
+    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+    		 showMetaDataComponents(lmr);
+    		 metadataComponents.clear();
+    		 metadataComponents.add("ApexComponent");
+    		 metadataComponents.add("FieldSet");
+    		 metadataComponents.add("ApexTrigger");
+    		 
+    		 lmqList.clear();
+    		 for (String string : metadataComponents) {
+    			 ListMetadataQuery query = new ListMetadataQuery();
+        		 query.setType(string);
+        		 lmqList.add(query);        		 
+			 }
+    		 lmr = metadataConnection.listMetadata(
+    	    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+    	     	showMetaDataComponents(lmr);
+    		} catch (ConnectionException ce) {
+    		 	ce.printStackTrace();
+    	 	}
+    		  
+    }
+    catch (Exception ex) {
+        System.out.println("\n Error: \n" +ex.getMessage());
+    }  
+    }
+     public static void showMetaDataComponents(FileProperties[] lmr){
+	  if (lmr != null) {
+	      for (FileProperties n : lmr) {
+	    	if(isToday(n.getLastModifiedDate().getTime())){
+	    		System.out.println(n.getType() +" : " + n.getFullName());    		          		    		
+	    	}    		        
+	      }
+	  }	  
+  }
     @GetMapping("/database")
     String database(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
