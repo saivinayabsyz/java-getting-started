@@ -52,7 +52,7 @@ public class GettingStartedApplication {
     public void createHotel(@RequestBody AuthParams hotel) {
 	    System.out.print("Hello!");  
 	    System.out.println("Hello, logs!");
-	    System.out.println("hotel "+hotel);
+	    System.out.println("hotel "+hotel+hotel.orgURL);
         //fetchMetadata(hotel.accessToken,hotel.orgURL);
         System.out.print("Hello!");  
       //  response.getWriter().write(hotel.accessToken);  
