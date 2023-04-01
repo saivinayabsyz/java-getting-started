@@ -14,6 +14,16 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Calendar;
+import java.util.List;
+
+import com.sforce.soap.metadata.*;
+import com.sforce.soap.partner.PartnerConnection;
+import com.sforce.soap.partner.sobject.SObject;
+import com.sforce.ws.ConnectionException;
+import com.sforce.ws.ConnectorConfig;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
