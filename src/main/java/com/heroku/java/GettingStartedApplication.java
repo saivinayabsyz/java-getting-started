@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
+import java.time.Instant;
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -49,17 +50,20 @@ public class GettingStartedApplication {
             consumes = {"application/json", "application/xml"},
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.CREATED)
-    public void createHotel(@RequestBody AuthParams hotel) {
+    public void createHotel(@RequestBody AuthParams metadataparams) {
 	    System.out.print("Hello!");  
 	    System.out.println("Hello, logs!");
-	    System.out.println("hotel "+hotel+hotel.orgURL);
-        fetchMetadata(hotel.accessToken,hotel.orgURL);
+	    System.out.println("metadataparams "+metadataparams+metadataparams.orgURL);
+        fetchMetadata(metadataparams.accessToken,metadataparams.orgURL,metadataparams.userID,metadataparams.fromDate,metadataparams.toDate);
         System.out.print("Hello!");  
       //  response.getWriter().write(hotel.accessToken);  
      
     }
      
-    public void fetchMetadata(String sessionId, String endpoint){
+    public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate){
+	    Instant fromDateParsed = Instant.parse(fromDate);
+	    Instant toDateParsed = Instant.parse(toDate);
+ System.out.println(fromDate+"  "+toDateParsed); 
   //  ConnectorConfig partnerConfig = new ConnectorConfig();
     ConnectorConfig metadataConfig = new ConnectorConfig();
     
@@ -104,9 +108,7 @@ public class GettingStartedApplication {
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
     		 showMetaDataComponents(lmr);
     		 metadataComponents.clear();
-    		 metadataComponents.add("ApexComponent");
-    		 metadataComponents.add("FieldSet");
-    		 metadataComponents.add("ApexTrigger");
+    		 metadataComponents.add("CustomObject");
     		 
     		 lmqList.clear();
     		 for (String string : metadataComponents) {
@@ -116,7 +118,7 @@ public class GettingStartedApplication {
 			 }
     		 lmr = metadataConnection.listMetadata(
     	    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-    	     	showMetaDataComponents(lmr);
+    	     	showMetaDataComponents(lmr,userID,fromDateParsed,toDateParsed);
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
     	 	}
@@ -126,10 +128,11 @@ public class GettingStartedApplication {
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
-     public static void showMetaDataComponents(FileProperties[] lmr){
+     public static void showMetaDataComponents(FileProperties[] lmr,String userID, Instant fromDateParsed,Instant toDateParsed){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
-	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate());    		          		    		
+		      if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() &&n.getLastModifiedById <=toDateParsed && userID)
+	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate() >=));    		          		    		
 	    	}
 	  }	  
   }
