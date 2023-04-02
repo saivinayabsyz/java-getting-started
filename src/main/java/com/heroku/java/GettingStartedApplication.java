@@ -131,7 +131,7 @@ public class GettingStartedApplication {
      public static void showMetaDataComponents(FileProperties[] lmr,String userID, Instant fromDateParsed,Instant toDateParsed){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
-		      if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() &&n.getLastModifiedById <=toDateParsed && userID)
+		      if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed && n.getLastModifiedById== userID)
 	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate() >=));    		          		    		
 	    	}
 	  }	  
