@@ -120,7 +120,7 @@ public class GettingStartedApplication {
 		     
 		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed && n.getLastModifiedById()== userID)
 		      Date dj = n.getLastModifiedDate().getTime();
-		       if(dj.getYear() > 2023)
+		       if(dj.getYear() == 2023)
 	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj+fromDateParsed+toDateParsed +n.getLastModifiedDate().getTime());    		          		    		
 	    	}
 	  }	  
