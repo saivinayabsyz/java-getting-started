@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
-import java.time.Instant;
+
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -61,8 +61,7 @@ public class GettingStartedApplication {
     }
      
     public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate){
-	    Instant fromDateParsed = Instant.parse(fromDate);
-	    Instant toDateParsed = Instant.parse(toDate);
+	  
  System.out.println(fromDate+"  "+toDateParsed); 
   //  ConnectorConfig partnerConfig = new ConnectorConfig();
     ConnectorConfig metadataConfig = new ConnectorConfig();
@@ -114,7 +113,7 @@ public class GettingStartedApplication {
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
-     public static void showMetaDataComponents(FileProperties[] lmr,String userID, Instant fromDateParsed,Instant toDateParsed){
+     public static void showMetaDataComponents(FileProperties[] lmr,String userID, string fromYear,string fromDate,string fromMonth,String toDateYear,String toDateMonth,String toDate ){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		     
