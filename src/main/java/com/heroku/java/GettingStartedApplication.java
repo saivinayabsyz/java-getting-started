@@ -92,8 +92,6 @@ public class GettingStartedApplication {
     	 try {
     		List<String> metadataComponents = new ArrayList<String>();
 	    	metadataComponents.add("CustomObject");	    	
-	    	metadataComponents.add("ApexClass");
-	    	metadataComponents.add("ApexPage");	    		    	
 	    	
     		List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();    		 
     		for (String string : metadataComponents) {
@@ -106,19 +104,7 @@ public class GettingStartedApplication {
     		 // Assuming that the SOAP binding has already been established.    		    
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-    		 showMetaDataComponents(lmr);
-    		 metadataComponents.clear();
-    		 metadataComponents.add("CustomObject");
-    		 
-    		 lmqList.clear();
-    		 for (String string : metadataComponents) {
-    			 ListMetadataQuery query = new ListMetadataQuery();
-        		 query.setType(string);
-        		 lmqList.add(query);        		 
-			 }
-    		 lmr = metadataConnection.listMetadata(
-    	    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-    	     	showMetaDataComponents(lmr,userID,fromDateParsed,toDateParsed);
+    		showMetaDataComponents(lmr,userID,fromDateParsed,toDateParsed);
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
     	 	}
