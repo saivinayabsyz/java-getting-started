@@ -103,7 +103,8 @@ public class GettingStartedApplication {
     		 // Assuming that the SOAP binding has already been established.    		    
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-    		showMetaDataComponents(lmr,userID,fromDateParsed,toDateParsed);
+		String[] arrOfFromDate  = fromDate.split("-");
+    		showMetaDataComponents(lmr,userID,arrOfFromDate[0],arrOfFromDate[1],arrOfFromDate[2]);
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
     	 	}
