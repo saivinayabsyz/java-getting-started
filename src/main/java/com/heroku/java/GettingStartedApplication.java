@@ -118,7 +118,8 @@ public class GettingStartedApplication {
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed && n.getLastModifiedById()== userID)
-	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+fromDateParsed+toDateParsed );    		          		    		
+		      date dj = n.getLastModifiedDate().getTime();
+	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj+fromDateParsed+toDateParsed +n.getLastModifiedDate().getTime());    		          		    		
 	    	}
 	  }	  
   }
