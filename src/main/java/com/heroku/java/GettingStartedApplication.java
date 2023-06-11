@@ -129,7 +129,7 @@ public class GettingStartedApplication {
 			     //  System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
 		       }
 		      int yearValue = dj.getYear()+1900;
-		       System.out.println('yearValue '+yearValue);
+		       System.out.println("yearValue "+yearValue);
 		      if( Integer.parseInt(fromYear) >= yearValue && Integer.parseInt(fromDate) >= dj.getDay() && Integer.parseInt(fromMonth) >= dj.getMonth()
 			&& Integer.parseInt(toDateYear) <= yearValue && Integer.parseInt(toDate) <= dj.getDay() && Integer.parseInt(toDateMonth) <= dj.getMonth()){
 		       System.out.println("satisfied records "+n.getFullName());
