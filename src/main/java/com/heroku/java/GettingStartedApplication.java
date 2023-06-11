@@ -62,7 +62,7 @@ public class GettingStartedApplication {
      
     public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate){
 	  
- System.out.println(fromDate+"  "+toDateParsed); 
+ System.out.println(fromDate+"  "); 
   //  ConnectorConfig partnerConfig = new ConnectorConfig();
     ConnectorConfig metadataConfig = new ConnectorConfig();
     
@@ -104,7 +104,8 @@ public class GettingStartedApplication {
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 		String[] arrOfFromDate  = fromDate.split("-");
-    		showMetaDataComponents(lmr,userID,arrOfFromDate[0],arrOfFromDate[1],arrOfFromDate[2]);
+		 String[] arrOfToDate  = toDate.split("-");
+    		showMetaDataComponents(lmr,userID,arrOfFromDate[0],arrOfFromDate[1],arrOfFromDate[2],arrOfToDate[0],arrOfToDate[1],arrOfToDate[2]);
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
     	 	}
@@ -114,7 +115,7 @@ public class GettingStartedApplication {
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
-     public static void showMetaDataComponents(FileProperties[] lmr,String userID, string fromYear,string fromDate,string fromMonth,String toDateYear,String toDateMonth,String toDate ){
+     public static void showMetaDataComponents(FileProperties[] lmr,String userID, String fromYear,String fromDate,String fromMonth,String toDateYear,String toDate,String toDateMonth ){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		     
@@ -122,7 +123,7 @@ public class GettingStartedApplication {
 		      Date dj = n.getLastModifiedDate().getTime();
 		      System.out.println("dj.getYear()"+dj.getYear());
 		       if(dj.getYear()+1900 == 2023)
-	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj+fromDateParsed+toDateParsed +n.getLastModifiedDate().getTime());    		          		    		
+	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());    		          		    		
 	    	}
 	  }	  
   }
