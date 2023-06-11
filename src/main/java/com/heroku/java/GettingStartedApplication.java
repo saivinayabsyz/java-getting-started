@@ -121,10 +121,13 @@ public class GettingStartedApplication {
 		     
 		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed && n.getLastModifiedById()== userID)
 		      Date dj = n.getLastModifiedDate().getTime();
-		      System.out.println("dj.getYear()"+dj.getYear());
+		     
+		       if(dj.getYear()+1900 == 2023){
+		        System.out.println("dj.getYear()"+dj.getYear());
 		      System.out.println("dj.getMonth()"+dj.getMonth());
-		       if(dj.getYear()+1900 == 2023)
-	    		System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());    		          		    		
+			       System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
+		       }
+	    		 		          		    		
 	    	}
 	  }	  
   }
