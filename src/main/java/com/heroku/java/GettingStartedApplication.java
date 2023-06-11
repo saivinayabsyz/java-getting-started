@@ -123,10 +123,15 @@ public class GettingStartedApplication {
 		      Date dj = n.getLastModifiedDate().getTime();
 		     
 		       if(dj.getYear()+1900 == 2023){
-		        System.out.println("dj.getYear()"+dj.getYear());
+		        System.out.println("dj.getYear()"+dj.getYear()+1900);
 		      System.out.println("dj.getMonth()"+dj.getMonth());
-			       System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
+			        System.out.println("dj.getMonth()"+dj.getDay());
+			     //  System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
 		       }
+		      if( Integer.parseInt(fromYear) >= dj.getYear() && Integer.parseInt(fromDate) >= dj.getDay() && Integer.parseInt(fromMonth) >= dj.getMonth()
+			&& Integer.parseInt(toDateYear) <= dj.getYear() && Integer.parseInt(toDate) <= dj.getDay() && Integer.parseInt(toDateMonth) <= dj.getMonth()){
+		       System.out.println("satisfied records "+n.getFullName());
+		      }
 	    		 		          		    		
 	    	}
 	  }	  
