@@ -122,14 +122,15 @@ public class GettingStartedApplication {
 		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed && n.getLastModifiedById()== userID)
 		      Date dj = n.getLastModifiedDate().getTime();
 		     
-		       if(Integer.parseInt(dj.getYear())+1900 == 2023){
-		        System.out.println("dj.getYear()"+Integer.parseInt(dj.getYear())+1900);
+		       if(dj.getYear()+1900 == 2023){
+		        System.out.println("dj.getYear()"+dj.getYear()+Integer.parseInt(1900));
 		      System.out.println("dj.getMonth()"+dj.getMonth());
 			        System.out.println("dj.getMonth()"+dj.getDay());
 			     //  System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
 		       }
-		      if( Integer.parseInt(fromYear) >= dj.getYear() && Integer.parseInt(fromDate) >= dj.getDay() && Integer.parseInt(fromMonth) >= dj.getMonth()
-			&& Integer.parseInt(toDateYear) <= dj.getYear() && Integer.parseInt(toDate) <= dj.getDay() && Integer.parseInt(toDateMonth) <= dj.getMonth()){
+		      int yearValue = dj.getYear()+Integer.parseInt(1900);
+		      if( Integer.parseInt(fromYear) >= yearValue && Integer.parseInt(fromDate) >= dj.getDay() && Integer.parseInt(fromMonth) >= dj.getMonth()
+			&& Integer.parseInt(toDateYear) <= yearValue && Integer.parseInt(toDate) <= dj.getDay() && Integer.parseInt(toDateMonth) <= dj.getMonth()){
 		       System.out.println("satisfied records "+n.getFullName());
 		      }
 	    		 		          		    		
