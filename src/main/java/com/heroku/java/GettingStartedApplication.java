@@ -123,7 +123,7 @@ public class GettingStartedApplication {
 		     
 		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed )
 		      Date dj = n.getLastModifiedDate().getTime();
-		     
+		       System.out.println(n.getLastModifiedById()+" vv " userID);
 		      int yearValue = dj.getYear()+1900;
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -131,8 +131,8 @@ public class GettingStartedApplication {
 Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
-			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
-				 n.getLastModifiedById()== userID){
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) 
+				){
 				      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 			
 		       System.out.println("satisfied records "+n.getFullName());
