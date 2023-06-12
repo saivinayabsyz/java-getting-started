@@ -129,8 +129,8 @@ public class GettingStartedApplication {
 		 String[] arrOfToDate  = toDate.split("-");
 		  try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-	Date fromDateValue = formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[0]+"/"+arrOfFromDate[2]);
-Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[0]+"/"+arrOfToDate[2]);
+	Date fromDateValue = formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[2]+"/"+arrOfFromDate[0]);
+Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[0]);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		  }
@@ -158,7 +158,8 @@ Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[0]+"/"+arrOfTo
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
-			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue))
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 userID.equals(lastModifiedById)
 				){
 			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
