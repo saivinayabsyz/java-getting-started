@@ -139,7 +139,7 @@ Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
 				      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 			
 		       System.out.println("satisfied records "+n.getFullName()+lastModifiedById +"cc "+userID);
-				      if( lastModifiedById == userID)
+				      if( lastModifiedById.equals(userID))
 					      System.out.println("satisfied records userid"+n.getFullName());
 		      }
 
