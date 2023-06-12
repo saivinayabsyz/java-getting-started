@@ -33,11 +33,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.io.FileReader;
 import java.io.IOException;
+
+import org.apache.http.Header;
 @SpringBootApplication
 @Controller
 public class GettingStartedApplication {
     private final DataSource dataSource;
-
+    public String  packageXML;
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -107,7 +109,14 @@ public class GettingStartedApplication {
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 		String[] arrOfFromDate  = fromDate.split("-");
 		 String[] arrOfToDate  = toDate.split("-");
-    		showMetaDataComponents(lmr,userID,arrOfFromDate[0],arrOfFromDate[1],arrOfFromDate[2],arrOfToDate[0],arrOfToDate[1],arrOfToDate[2]);
+		  try{
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	Date fromDateValue = formatter.parse(fromDate+"/"+fromMonth+"/"+fromYear);
+Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
+		  }
+		 catch (ParseException e) {e.printStackTrace();}
+    		showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
     	 	}
@@ -117,7 +126,7 @@ public class GettingStartedApplication {
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
-     public static void showMetaDataComponents(FileProperties[] lmr,String userID, String fromYear,String fromDate,String fromMonth,String toDateYear,String toDate,String toDateMonth ){
+     public static void showMetaDataComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		     
@@ -125,23 +134,18 @@ public class GettingStartedApplication {
 		      Date dj = n.getLastModifiedDate().getTime();
 		       
 		      String lastModifiedById = n.getLastModifiedById();
-		      System.out.println(n.getLastModifiedById()+" vv "+ userID);
 		      int yearValue = dj.getYear()+1900;
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-	Date fromDateValue = formatter.parse(fromDate+"/"+fromMonth+"/"+fromYear);
-Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
-			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) 
-				
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				lastModifiedById.equals(userID)
 				){
-				      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
-			
-		       System.out.println("satisfied records "+n.getFullName()+lastModifiedById +"cc "+userID);
-				      if( lastModifiedById.equals(userID))
-					      System.out.println("satisfied records userid"+n.getFullName());
-		      }
+			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
+		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
+				      packageXML+="<members>"+n.getFullName()+"</members>";
+		  }
 
 }
 catch (ParseException e) {e.printStackTrace();}
@@ -151,6 +155,44 @@ catch (ParseException e) {e.printStackTrace();}
 	    	}
 	  }	  
   }
+	/* Method to insert package xml */
+public void insertPakageXML(String userID, String fromDate, String toDate, String access_token) {
+String uri =  "https://vinaypd2-dev-ed.my.salesforce.com/services/data/v56.0/sobjects/Package_XML__c/";
+try {
+Header oauthHeader = = new BasicHeader("Authorization", "OAuth " + access_token);
+JSONObject packageXMLRecord = new JSONObject();
+packageXMLRecord.put("xml_string__c", packageXML);
+packageXMLRecord.put("userid__c", userID);
+	packageXMLRecord.put("from_date__c", fromDate);
+	packageXMLRecord.put("to_date__c", toDate);
+DefaultHttpClient httpClient = new DefaultHttpClient();
+HttpPost httpPost = new HttpPost(uri);
+httpPost.addHeader(oauthHeader);
+StringEntity body = new StringEntity(packageXMLRecord.toString(1));
+body.setContentType("application/json");
+httpPost.setEntity(body);
+
+
+HttpResponse response = httpClient.execute(httpPost);
+
+
+int statusCode = response.getStatusLine().getStatusCode();
+if (statusCode == 201) {
+String response_string = EntityUtils.toString(response.getEntity());
+JSONObject json = new JSONObject(response_string);
+System.out.println("New Employee id from response: " + json.getString("id"));      
+} else {
+System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
+}
+} catch (JSONException e) {
+System.out.println("Issue creating JSON or processing results");
+e.printStackTrace();
+} catch (IOException ioe) {
+ioe.printStackTrace();
+} catch (NullPointerException npe) {
+npe.printStackTrace();
+}
+}
     @GetMapping("/database")
     String database(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
