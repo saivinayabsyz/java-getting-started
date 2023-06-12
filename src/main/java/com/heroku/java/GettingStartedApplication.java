@@ -133,12 +133,14 @@ public class GettingStartedApplication {
 Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
-			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
-				 lastModifiedById == userID
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) 
+				
 				){
 				      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 			
-		       System.out.println("satisfied records "+n.getFullName());
+		       System.out.println("satisfied records "+n.getFullName()+lastModifiedById +"cc "+userID);
+				      if( lastModifiedById == userID)
+					      System.out.println("satisfied records userid"+n.getFullName());
 		      }
 
 }
