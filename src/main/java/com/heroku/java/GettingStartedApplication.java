@@ -130,8 +130,8 @@ public class GettingStartedApplication {
 		       }
 		      int yearValue = dj.getYear()+1900;
 		       System.out.println("yearValue "+yearValue);
-		      if( Integer.parseInt(fromYear) >= yearValue && Integer.parseInt(fromDate) >= dj.getDay() && Integer.parseInt(fromMonth) >= dj.getMonth()
-			&& Integer.parseInt(toDateYear) <= yearValue && Integer.parseInt(toDate) <= dj.getDay() && Integer.parseInt(toDateMonth) <= dj.getMonth()){
+		      if(  yearValue >= Integer.parseInt(fromYear) &&  dj.getDay() >= Integer.parseInt(fromDate)  && dj.getMonth() >= Integer.parseInt(fromMonth)
+			&& yearValue <= Integer.parseInt(toDateYear) &&  dj.getDay() <= Integer.parseInt(toDate)  &&  dj.getMonth() <= Integer.parseInt(toDateMonth)){
 		       System.out.println("satisfied records "+n.getFullName());
 		      }
 	    		 		          		    		
