@@ -54,7 +54,7 @@ import org.apache.http.util.EntityUtils;
 @Controller
 public class GettingStartedApplication {
     private final DataSource dataSource;
-    public String  packageXML;
+    public static String  packageXML;
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -126,8 +126,8 @@ public class GettingStartedApplication {
 		 String[] arrOfToDate  = toDate.split("-");
 		  try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-	Date fromDateValue = formatter.parse(fromDate+"/"+fromMonth+"/"+fromYear);
-Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
+	Date fromDateValue = formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[0]+"/"+arrOfFromDate[2]);
+Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[0]+"/"+arrOfToDate[2]);
 		  }
 		 catch (ParseException e) {e.printStackTrace();}
     		showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
