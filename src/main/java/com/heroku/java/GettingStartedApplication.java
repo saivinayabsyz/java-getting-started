@@ -123,7 +123,7 @@ public class GettingStartedApplication {
 		     
 		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed )
 		      Date dj = n.getLastModifiedDate().getTime();
-		       System.out.println(n.getLastModifiedById()+" vv " userID);
+		       System.out.println(n.getLastModifiedById()+" vv "+ userID);
 		      int yearValue = dj.getYear()+1900;
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
