@@ -133,16 +133,17 @@ public class GettingStartedApplication {
 	Date fromDateValue = formatter.parse(fromDate+"/"+fromMonth+"/"+fromYear);
 Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
-
-}
-catch (ParseException e) {e.printStackTrace();}
-
-		       System.out.println("yearValue "+yearValue+" fromYear "+fromYear+" fromDate "+fromDate+"dj.getDay()"+dj.getDay()+"dj.getMonth() "+dj.getMonth()+"fromMonth "+fromMonth);
+			       System.out.println("yearValue "+yearValue+" fromYear "+fromYear+" fromDate "+fromDate+"dj.getDay()"+dj.getDay()+"dj.getMonth() "+dj.getMonth()+"fromMonth "+fromMonth);
 		      System.out.println("yearValue "+yearValue+"Integer.parseInt(toDateYear) "+Integer.parseInt(toDateYear)+"Integer.parseInt(toDate) "+Integer.parseInt(toDate)+" Integer.parseInt(toDateMonth)"+Integer.parseInt(toDateMonth));
 		      if(  (actualDate.after(fromDateValue) || actualDate.equal(fromDateValue)) && 
 			    (actualDate.before(toDateValue) || actualDate.equal(toDateValue)) ){
 		       System.out.println("satisfied records "+n.getFullName());
 		      }
+
+}
+catch (ParseException e) {e.printStackTrace();}
+
+		      
 	    		 		          		    		
 	    	}
 	  }	  
