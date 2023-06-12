@@ -128,10 +128,11 @@ public class GettingStartedApplication {
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	Date fromDateValue = formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[0]+"/"+arrOfFromDate[2]);
 Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[0]+"/"+arrOfToDate[2]);
+			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		  }
 		 catch (ParseException e) {e.printStackTrace();}
-    		showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
+    		
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
     	 	}
