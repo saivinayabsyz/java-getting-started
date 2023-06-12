@@ -121,21 +121,20 @@ public class GettingStartedApplication {
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		     
-		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed && n.getLastModifiedById()== userID)
+		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed )
 		      Date dj = n.getLastModifiedDate().getTime();
 		     
-		       if(dj.getYear()+1900 == 2023){
-		     	//  System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
-		       }
 		      int yearValue = dj.getYear()+1900;
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	Date fromDateValue = formatter.parse(fromDate+"/"+fromMonth+"/"+fromYear);
 Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
-			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
-			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) ){
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 n.getLastModifiedById()== userID){
+				      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
+			
 		       System.out.println("satisfied records "+n.getFullName());
 		      }
 
