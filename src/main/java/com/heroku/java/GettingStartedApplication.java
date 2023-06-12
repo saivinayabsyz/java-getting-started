@@ -158,8 +158,7 @@ Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[0]+"/"+arrOfTo
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
-			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
-				lastModifiedById.equals(userID)
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue))
 				){
 			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
@@ -199,7 +198,7 @@ int statusCode = response.getStatusLine().getStatusCode();
 if (statusCode == 201) {
 String response_string = EntityUtils.toString(response.getEntity());
 JSONObject json = new JSONObject(response_string);
-System.out.println("New Employee id from response: " + json.getString("id"));      
+System.out.println("New packagexml id from response: " + json.getString("id"));      
 } else {
 System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
 }
