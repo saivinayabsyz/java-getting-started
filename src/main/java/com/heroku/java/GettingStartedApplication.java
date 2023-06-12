@@ -125,7 +125,7 @@ public class GettingStartedApplication {
 		      Date dj = n.getLastModifiedDate().getTime();
 		     
 		       if(dj.getYear()+1900 == 2023){
-		     	  System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
+		     	//  System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
 		       }
 		      int yearValue = dj.getYear()+1900;
 		      try{
@@ -133,9 +133,8 @@ public class GettingStartedApplication {
 	Date fromDateValue = formatter.parse(fromDate+"/"+fromMonth+"/"+fromYear);
 Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
-			       System.out.println("yearValue "+yearValue+" fromYear "+fromYear+" fromDate "+fromDate+"dj.getDay()"+dj.getDay()+"dj.getMonth() "+dj.getMonth()+"fromMonth "+fromMonth);
-		      System.out.println("yearValue "+yearValue+"Integer.parseInt(toDateYear) "+Integer.parseInt(toDateYear)+"Integer.parseInt(toDate) "+Integer.parseInt(toDate)+" Integer.parseInt(toDateMonth)"+Integer.parseInt(toDateMonth));
-		      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
+			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
+			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
 			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) ){
 		       System.out.println("satisfied records "+n.getFullName());
 		      }
