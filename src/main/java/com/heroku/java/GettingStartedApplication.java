@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 import com.sforce.soap.metadata.*;
 import com.sforce.soap.partner.PartnerConnection;
@@ -126,10 +128,19 @@ public class GettingStartedApplication {
 		     	  System.out.println(n.getType() +" : " + n.getFullName()+" : "+n.getLastModifiedDate()+dj +n.getLastModifiedDate().getTime());   
 		       }
 		      int yearValue = dj.getYear()+1900;
+		      try{
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	Date fromDateValue = formatter.parse(fromDate+"/"+fromMonth+"/"+fromYear);
+Date toDateValue = formatter.parse(toDate+"/"+toDateMonth+"/"+toDateYear);
+			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
+
+}
+catch (ParseException e) {e.printStackTrace();}
+
 		       System.out.println("yearValue "+yearValue+" fromYear "+fromYear+" fromDate "+fromDate+"dj.getDay()"+dj.getDay()+"dj.getMonth() "+dj.getMonth()+"fromMonth "+fromMonth);
 		      System.out.println("yearValue "+yearValue+"Integer.parseInt(toDateYear) "+Integer.parseInt(toDateYear)+"Integer.parseInt(toDate) "+Integer.parseInt(toDate)+" Integer.parseInt(toDateMonth)"+Integer.parseInt(toDateMonth));
-		      if(  yearValue >= Integer.parseInt(fromYear) &&  dj.getDay() >= Integer.parseInt(fromDate)  && dj.getMonth() >= Integer.parseInt(fromMonth)
-			&& yearValue <= Integer.parseInt(toDateYear) &&  dj.getDay() <= Integer.parseInt(toDate)  &&  dj.getMonth() <= Integer.parseInt(toDateMonth)){
+		      if(  (actualDate.after(fromDateValue) || actualDate.equal(fromDateValue)) && 
+			    (actualDate.before(toDateValue) || actualDate.equal(toDateValue)) ){
 		       System.out.println("satisfied records "+n.getFullName());
 		      }
 	    		 		          		    		
