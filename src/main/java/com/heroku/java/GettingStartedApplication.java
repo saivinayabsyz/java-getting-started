@@ -110,8 +110,8 @@ public class GettingStartedApplication {
    System.out.println("sessionid"+sessionId);
 	    String[] arrOfFromDate  = fromDate.split("-");
 		 String[] arrOfToDate  = toDate.split("-");
-	    Date fromDateValue ;
-	    Date toDateValue;
+	    Date fromDateValue =new Date();  
+	    Date toDateValue=new Date();
 		  try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	fromDateValue= formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[2]+"/"+arrOfFromDate[0]);
