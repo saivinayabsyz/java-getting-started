@@ -174,7 +174,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     	 try {
 		  double asOfVersion = 58.0;
     		List<String> metadataComponents = new ArrayList<String>();
-	    	metadataComponents.add("CustomTab");
+	    	metadataComponents.add("ApexClass");
 		// metadataComponents.add("SharingRules");
 		// metadataComponents.add("ApexEmailNotifications");
 	    	
