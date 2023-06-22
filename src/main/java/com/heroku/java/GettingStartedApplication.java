@@ -57,7 +57,8 @@ import org.json.JSONObject;
 @Controller
 public class GettingStartedApplication {
     private final DataSource dataSource;
-    public static String  packageXML="";
+    public  String  packageXML="";
+	public 
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -145,7 +146,7 @@ Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfTo
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
-     public static void showMetaDataComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue){
+     public  void showMetaDataComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		     
@@ -165,7 +166,7 @@ Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfTo
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
 				      packageXML+="<members>"+n.getFullName()+"</members>";
 		  }
-packageXML+="<name>CustomObject</name>\n</types>\n";
+
 }
 catch (ParseException e) {e.printStackTrace();}
 
