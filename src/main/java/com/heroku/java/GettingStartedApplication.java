@@ -188,25 +188,8 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     		 
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-				//  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-		 lmqList = new ArrayList<ListMetadataQuery>();  
-		 query = new ListMetadataQuery();
-        		 query.setType("ApexEmailNotifications");
-		 query.setType("AssignmentRule");
-		 query.setType("Audience");
-        		 lmqList.add(query);    
-		 //lmr = metadataConnection.listMetadata(
-    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-		 lmqList = new ArrayList<ListMetadataQuery>();  
-		 query = new ListMetadataQuery();
-        		 query.setType("Flow");
-		 query.setType("FlowDefinition");
-		 query.setType("Queue");
-        		 lmqList.add(query);    
-		// lmr = metadataConnection.listMetadata(
-    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-		// showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		
 		 if(customTab!=null && customTab.length()!=0)
 			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
 		 if(sharingRules!=null && sharingRules.length()!=0)
