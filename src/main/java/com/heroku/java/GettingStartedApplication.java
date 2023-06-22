@@ -57,7 +57,8 @@ import org.json.JSONObject;
 @Controller
 public class GettingStartedApplication {
     private final DataSource dataSource;
-    public static String  packageXML;
+    public static String  packageXML="<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">";
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -165,7 +166,7 @@ Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfTo
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
 				      packageXML+="<members>"+n.getFullName()+"</members>";
 		  }
-
+packageXML+="<name>CustomObject</name>\n</types>\n";
 }
 catch (ParseException e) {e.printStackTrace();}
 
