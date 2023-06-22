@@ -58,7 +58,7 @@ import org.json.JSONObject;
 public class GettingStartedApplication {
     private final DataSource dataSource;
     public  String  packageXML="";
-	 String customTab='';
+	public  String customTab='';
         public String sharingRules = '';
         public String apexEmailNotifications = '';
         public String assignmentRules = '';
@@ -86,28 +86,28 @@ public class GettingStartedApplication {
         public String  profileSessionSettings=''; 
         public String  notificationTypeConfig=''; 
         public String  remoteSiteSettings=''; 
-        public String  quickActions=''; 
-        public String   reportTypes='';
-        public String   ModerationRules='';
-        public String   topicsForObjects=''; 
-        public String   siteDotComSites=''; 
-        public String entitlementProcesses = '';
-        public String flexipages = '';
-        public String moderation = '';
-        public String SharingCriteriaRules = '';
-        public String milestoneTypes = '';
-        public String CanvasMetadatas = '';
-        public String AutoResponseRules = '';
-        public String AnalyticSnapshots = '';
-        public String approvalProcesses = '';
-        public String userCriterias = '';
-        public String permissionsets = '';
-        public String corsWhitelistOrigins = '';
-        public String customPermissions = '';
-        public String globalValueSets = '';
-        public String groups = '';
-        public String sharingSets = '';
-        public String layouts = '';
+        public String  quickActions=""; 
+        public String   reportTypes="";
+        public String   ModerationRules="";
+        public String   topicsForObjects=""; 
+        public String   siteDotComSites=""; 
+        public String entitlementProcesses = "";
+        public String flexipages = "";
+        public String moderation = "";
+        public String SharingCriteriaRules = "";
+        public String milestoneTypes = "";
+        public String CanvasMetadatas = "";
+        public String AutoResponseRules = "";
+        public String AnalyticSnapshots = "";
+        public String approvalProcesses = "";
+        public String userCriterias = "";
+        public String permissionsets = "";
+        public String corsWhitelistOrigins = "";
+        public String customPermissions = "";
+        public String globalValueSets = "";
+        public String groups = "";
+        public String sharingSets = "";
+        public String layouts = "";
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -251,53 +251,53 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 				){
 			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
-				      if(n.getFileName().startsWith('tabs/')){
+				      if(n.getFileName().startsWith("tabs/")){
 				      customTab+="<members>"+n.getFullName()+"</members>";
 					      csvRows+=n.getFullName()+','+'Custom Tab\n';
 				      }
-				      else if(n.getFileName().startsWith('sharingRules/')){
+				      else if(n.getFileName().startsWith("sharingRules/")){
 				      sharingRules+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'sharing Rules\n';
+					      csvRows+=n.getFullName()+","+"sharing Rules\n';
 				      }
-				      else if(n.getFileName().startsWith('userCriteria/')){
+				      else if(n.getFileName().startsWith("userCriteria/")){
 				      userCriterias+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'User Criteria\n';
+					      csvRows+=n.getFullName()+","+"User Criteria\n';
 				      }
-				      else if(n.getFileName().startsWith('apexEmailNotifications/')){
+				      else if(n.getFileName().startsWith("apexEmailNotifications/")){
 				      apexEmailNotifications+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'Apex Email Notifications\n';
+					      csvRows+=n.getFullName()+","+"Apex Email Notifications\n";
 				      }
-				      else if(n.getFileName().startsWith('assignmentRules/')){
+				      else if(n.getFileName().startsWith("assignmentRules/")){
 				      assignmentRules+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'AssignmentRule\n';
+					      csvRows+=n.getFullName()+","+"AssignmentRule\n";
 				      }
-				      else if(n.getFileName().startsWith('audience/')){
+				      else if(n.getFileName().startsWith("audience/")){
 				      audience+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'Audience\n';
+					      csvRows+=n.getFullName()+","+"Audience\n";
 				      }
-				      else if(n.getFileName().startsWith('flows/')){
+				      else if(n.getFileName().startsWith("flows/")){
 				      flows+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'flows\n';
+					      csvRows+=n.getFullName()+","+"flows\n";
 				      }
-				      else if(n.getFileName().startsWith('flowDefinitions/')){
+				      else if(n.getFileName().startsWith("flowDefinitions/")){
 				      flowDefinitions+="<members>"+n.getFullName()+"</members>";
-				     csvRows+=n.getFullName()+','+'FlowDefinition\n';
+				     csvRows+=n.getFullName()+","+"FlowDefinition\n";
 				      }
-				      else if(n.getFileName().startsWith('queues/')){
+				      else if(n.getFileName().startsWith("queues/")){
 				      queues+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=+n.getFullName()+','+'Queue\n';
+					      csvRows+=+n.getFullName()+","+"Queue\n";
 				      }
-				      else if(n.getFileName().startsWith('communities/')){
+				      else if(n.getFileName().startsWith("communities/")){
 				      communities+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'Community\n';
+					      csvRows+=n.getFullName()+","+"Community\n";
 				      }
-				      else if(n.getFileName().startsWith('connectedApps/')){
+				      else if(n.getFileName().startsWith("connectedApps/")){
 				      connectedApps+="<members>"+n.getFullName()+"</members>";
-				     csvRows+=n.getFullName()+','+'ConnectedApp\n';
+				     csvRows+=n.getFullName()+","+"ConnectedApp\n";
 				      }
-				      else if(n.getFileName().startsWith('sites/')){
+				      else if(n.getFileName().startsWith("sites/")){
 				      sites+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=+n.getFullName()+','+'CustomSite\n';
+					      csvRows+=+n.getFullName()+","+"CustomSite\n";
 				      }
 		  }
 
