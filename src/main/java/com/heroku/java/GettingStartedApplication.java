@@ -172,7 +172,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     try {
 	     MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
     	 try {
-		  double asOfVersion = 56.0;
+		  double asOfVersion = 58.0;
     		List<String> metadataComponents = new ArrayList<String>();
 	    	metadataComponents.add("CustomTab");
 		// metadataComponents.add("SharingRules");
