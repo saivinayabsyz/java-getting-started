@@ -108,12 +108,22 @@ public class GettingStartedApplication {
     // shove the partner's session id into the metadata configuration then connect
     metadataConfig.setSessionId(sessionId);
    System.out.println("sessionid"+sessionId);
+	    String[] arrOfFromDate  = fromDate.split("-");
+		 String[] arrOfToDate  = toDate.split("-");
+		  try{
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	Date fromDateValue = formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[2]+"/"+arrOfFromDate[0]);
+Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[0]);
+	 }
+		 catch (ParseException e) {e.printStackTrace();}
     
     try {
 	     MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
     	 try {
     		List<String> metadataComponents = new ArrayList<String>();
-	    	metadataComponents.add("CustomObject");	    	
+	    	metadataComponents.add("CustomTab");
+		 metadataComponents.add("SharingRules");
+		 metadataComponents.add("ApexEmailNotifications");
 	    	
     		List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();    		 
     		for (String string : metadataComponents) {
@@ -126,16 +136,9 @@ public class GettingStartedApplication {
     		 // Assuming that the SOAP binding has already been established.    		    
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-		String[] arrOfFromDate  = fromDate.split("-");
-		 String[] arrOfToDate  = toDate.split("-");
-		  try{
-	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-	Date fromDateValue = formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[2]+"/"+arrOfFromDate[0]);
-Date toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[0]);
-			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+				  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
-		  }
-		 catch (ParseException e) {e.printStackTrace();}
+		 
     		
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
