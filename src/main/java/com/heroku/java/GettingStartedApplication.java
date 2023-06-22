@@ -57,8 +57,7 @@ import org.json.JSONObject;
 @Controller
 public class GettingStartedApplication {
     private final DataSource dataSource;
-    public static String  packageXML="<?xml version="1.0" encoding="UTF-8"?>
-<Package xmlns="http://soap.sforce.com/2006/04/metadata">";
+    public static String  packageXML="<?xml version="1.0" encoding="UTF-8"?><Package xmlns="http://soap.sforce.com/2006/04/metadata">";
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
