@@ -58,34 +58,34 @@ import org.json.JSONObject;
 public class GettingStartedApplication {
     private final DataSource dataSource;
     public  String  packageXML="";
-	public  String customTab='';
-        public String sharingRules = '';
-        public String apexEmailNotifications = '';
-        public String assignmentRules = '';
-        public String audience='';
-        public String flows='';
-        public String flowDefinitions='';
-        public String queues='';
-        public String communities='';
-        public String connectedApps='';
-        public String sites=''; 
-        public String  duplicateRules='';
-        public String  emailservices=''; 
-        public String    escalationRules=''; 
-        public String    experiences=''; 
-        public String    installedPackages=''; 
-        public String  externalServiceRegistrations=''; 
-        public String  objectListViews=''; 
-        public String  matchingRules=''; 
-        public String  managedContentTypeBundles=''; 
-        public String  managedTopics=''; 
-        public String  navigationMenus=''; 
-        public String  networks=''; 
-        public String  networkBranding=''; 
-        public String  profilePasswordPolicies=''; 
-        public String  profileSessionSettings=''; 
-        public String  notificationTypeConfig=''; 
-        public String  remoteSiteSettings=''; 
+	public  String customTab="";
+        public String sharingRules = "";
+        public String apexEmailNotifications = "";
+        public String assignmentRules = "";
+        public String audience="";
+        public String flows="";
+        public String flowDefinitions="";
+        public String queues="";
+        public String communities="";
+        public String connectedApps="";
+        public String sites="";
+        public String  duplicateRules="";
+        public String  emailservices="";
+        public String    escalationRules="";
+        public String    experiences="";
+        public String    installedPackages="";
+        public String  externalServiceRegistrations="";
+        public String  objectListViews="";
+        public String  matchingRules="";
+        public String  managedContentTypeBundles="";
+        public String  managedTopics="";
+        public String  navigationMenus="";
+        public String  networks="";
+        public String  networkBranding="";
+        public String  profilePasswordPolicies="";
+        public String  profileSessionSettings="";
+        public String  notificationTypeConfig="";
+        public String  remoteSiteSettings="";
         public String  quickActions=""; 
         public String   reportTypes="";
         public String   ModerationRules="";
@@ -253,15 +253,15 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
 				      if(n.getFileName().startsWith("tabs/")){
 				      customTab+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+','+'Custom Tab\n';
+					      csvRows+=n.getFullName()+","+'Custom Tab\n';
 				      }
 				      else if(n.getFileName().startsWith("sharingRules/")){
 				      sharingRules+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+","+"sharing Rules\n';
+					      csvRows+=n.getFullName()+","+"sharing Rules\n";
 				      }
 				      else if(n.getFileName().startsWith("userCriteria/")){
 				      userCriterias+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+","+"User Criteria\n';
+					      csvRows+=n.getFullName()+","+"User Criteria\n";
 				      }
 				      else if(n.getFileName().startsWith("apexEmailNotifications/")){
 				      apexEmailNotifications+="<members>"+n.getFullName()+"</members>";
