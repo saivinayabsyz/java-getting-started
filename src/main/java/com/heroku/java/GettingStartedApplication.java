@@ -58,7 +58,7 @@ import org.json.JSONObject;
 public class GettingStartedApplication {
     private final DataSource dataSource;
     public  String  packageXML="";
-	public 
+	
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
