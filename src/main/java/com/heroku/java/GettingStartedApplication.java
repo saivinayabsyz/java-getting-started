@@ -58,7 +58,56 @@ import org.json.JSONObject;
 public class GettingStartedApplication {
     private final DataSource dataSource;
     public  String  packageXML="";
-	
+	 String customTab='';
+        public String sharingRules = '';
+        public String apexEmailNotifications = '';
+        public String assignmentRules = '';
+        public String audience='';
+        public String flows='';
+        public String flowDefinitions='';
+        public String queues='';
+        public String communities='';
+        public String connectedApps='';
+        public String sites=''; 
+        public String  duplicateRules='';
+        public String  emailservices=''; 
+        public String    escalationRules=''; 
+        public String    experiences=''; 
+        public String    installedPackages=''; 
+        public String  externalServiceRegistrations=''; 
+        public String  objectListViews=''; 
+        public String  matchingRules=''; 
+        public String  managedContentTypeBundles=''; 
+        public String  managedTopics=''; 
+        public String  navigationMenus=''; 
+        public String  networks=''; 
+        public String  networkBranding=''; 
+        public String  profilePasswordPolicies=''; 
+        public String  profileSessionSettings=''; 
+        public String  notificationTypeConfig=''; 
+        public String  remoteSiteSettings=''; 
+        public String  quickActions=''; 
+        public String   reportTypes='';
+        public String   ModerationRules='';
+        public String   topicsForObjects=''; 
+        public String   siteDotComSites=''; 
+        public String entitlementProcesses = '';
+        public String flexipages = '';
+        public String moderation = '';
+        public String SharingCriteriaRules = '';
+        public String milestoneTypes = '';
+        public String CanvasMetadatas = '';
+        public String AutoResponseRules = '';
+        public String AnalyticSnapshots = '';
+        public String approvalProcesses = '';
+        public String userCriterias = '';
+        public String permissionsets = '';
+        public String corsWhitelistOrigins = '';
+        public String customPermissions = '';
+        public String globalValueSets = '';
+        public String groups = '';
+        public String sharingSets = '';
+        public String layouts = '';
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -122,6 +171,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     try {
 	     MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
     	 try {
+		  double asOfVersion = 27.0;
     		List<String> metadataComponents = new ArrayList<String>();
 	    	metadataComponents.add("CustomTab");
 		 metadataComponents.add("SharingRules");
@@ -134,11 +184,42 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
         		 lmqList.add(query);        		 
 			}    		     		    		    
     		 
-    		 double asOfVersion = 27.0;
-    		 // Assuming that the SOAP binding has already been established.    		    
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 				  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		 lmqList = new ArrayList<ListMetadataQuery>();  
+		 query = new ListMetadataQuery();
+        		 query.setType("ApexEmailNotifications");
+		 query.setType("AssignmentRule");
+		 query.setType("Audience");
+        		 lmqList.add(query);    
+		 lmr = metadataConnection.listMetadata(
+    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		 lmqList = new ArrayList<ListMetadataQuery>();  
+		 query = new ListMetadataQuery();
+        		 query.setType("Flow");
+		 query.setType("FlowDefinition");
+		 query.setType("Queue");
+        		 lmqList.add(query);    
+		 lmr = metadataConnection.listMetadata(
+    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+		 showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		 if(customTab!=null && customTab.length!=0)
+			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
+		 if(sharingRules!=null && sharingRules.length!=0)
+			 packageXMLString+="<types>\n"+sharingRules+"<name>sharingRules</name>\n</types>\n";
+		 if(apexEmailNotifications!=null && apexEmailNotifications.length!=0)
+			 packageXMLString+="<types>\n"+apexEmailNotifications+"<name>ApexEmailNotifications</name>\n</types>\n";
+		 if(audience!=null && audience.length!=0)
+			 packageXMLString+="<types>\n"+audience+"<name>Audience</name>\n</types>\n";
+		 if(flows!=null && flows.length!=0)
+			 packageXMLString+="<types>\n"+flows+"<name>Flow</name>\n</types>\n";
+		 if(flowDefinitions!=null && flowDefinitions.length!=0)
+			 packageXMLString+="<types>\n"+flowDefinitions+"<name>FlowDefinition</name>\n</types>\n";
+		  if(queues!=null && queues.length!=0)
+			 packageXMLString+="<types>\n"+queues+"<name>Queue</name>\n</types>\n";
+	
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 
     		
@@ -151,6 +232,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
+	
      public  void showMetaDataComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
@@ -169,7 +251,54 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 				){
 			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
-				      packageXML+="<members>"+n.getFullName()+"</members>";
+				      if(n.getFileName().startsWith('tabs/')){
+				      customTab+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'Custom Tab\n';
+				      }
+				      else if(n.getFileName().startsWith('sharingRules/')){
+				      sharingRules+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'sharing Rules\n';
+				      }
+				      else if(n.getFileName().startsWith('userCriteria/')){
+				      userCriterias+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'User Criteria\n';
+				      }
+				      else if(n.getFileName().startsWith('apexEmailNotifications/')){
+				      apexEmailNotifications+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'Apex Email Notifications\n';
+				      }
+				      else if(n.getFileName().startsWith('assignmentRules/')){
+				      assignmentRules+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'AssignmentRule\n';
+				      }
+				      else if(n.getFileName().startsWith('audience/')){
+				      audience+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'Audience\n';
+				      }
+				      else if(n.getFileName().startsWith('flows/')){
+				      flows+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'flows\n';
+				      }
+				      else if(n.getFileName().startsWith('flowDefinitions/')){
+				      flowDefinitions+="<members>"+n.getFullName()+"</members>";
+				     csvRows+=n.getFullName()+','+'FlowDefinition\n';
+				      }
+				      else if(n.getFileName().startsWith('queues/')){
+				      queues+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=+n.getFullName()+','+'Queue\n';
+				      }
+				      else if(n.getFileName().startsWith('communities/')){
+				      communities+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=n.getFullName()+','+'Community\n';
+				      }
+				      else if(n.getFileName().startsWith('connectedApps/')){
+				      connectedApps+="<members>"+n.getFullName()+"</members>";
+				     csvRows+=n.getFullName()+','+'ConnectedApp\n';
+				      }
+				      else if(n.getFileName().startsWith('sites/')){
+				      sites+="<members>"+n.getFullName()+"</members>";
+					      csvRows+=+n.getFullName()+','+'CustomSite\n';
+				      }
 		  }
 
 }
