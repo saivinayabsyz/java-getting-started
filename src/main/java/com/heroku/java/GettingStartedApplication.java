@@ -188,14 +188,14 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     		 
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-				  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+				//  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 lmqList = new ArrayList<ListMetadataQuery>();  
 		 query = new ListMetadataQuery();
         		 query.setType("ApexEmailNotifications");
 		 query.setType("AssignmentRule");
 		 query.setType("Audience");
         		 lmqList.add(query);    
-		 lmr = metadataConnection.listMetadata(
+		 //lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 lmqList = new ArrayList<ListMetadataQuery>();  
@@ -204,9 +204,9 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 query.setType("FlowDefinition");
 		 query.setType("Queue");
         		 lmqList.add(query);    
-		 lmr = metadataConnection.listMetadata(
+		// lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-		 showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		// showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 if(customTab!=null && customTab.length()!=0)
 			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
 		 if(sharingRules!=null && sharingRules.length()!=0)
@@ -238,11 +238,8 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
      public  void showMetaDataComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue){
 	  if (lmr != null) {
 	      for (FileProperties n : lmr) {
-		     
-		     // if(n.getLastModifiedDate() >=fromDateParsed && n.getLastModifiedDate() <=toDateParsed )
 		      Date dj = n.getLastModifiedDate().getTime();
-		       
-		      String lastModifiedById = n.getLastModifiedById();
+		       String lastModifiedById = n.getLastModifiedById();
 		      int yearValue = dj.getYear()+1900;
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
