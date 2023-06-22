@@ -253,7 +253,7 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
 				      if(n.getFileName().startsWith("tabs/")){
 				      customTab+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=n.getFullName()+","+'Custom Tab\n';
+					      csvRows+=n.getFullName()+","+"Custom Tab\n";
 				      }
 				      else if(n.getFileName().startsWith("sharingRules/")){
 				      sharingRules+="<members>"+n.getFullName()+"</members>";
