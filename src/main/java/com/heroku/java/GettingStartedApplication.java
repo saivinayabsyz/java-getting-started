@@ -175,8 +175,8 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		  double asOfVersion = 56.0;
     		List<String> metadataComponents = new ArrayList<String>();
 	    	metadataComponents.add("CustomTab");
-		 metadataComponents.add("SharingRules");
-		 metadataComponents.add("ApexEmailNotifications");
+		// metadataComponents.add("SharingRules");
+		// metadataComponents.add("ApexEmailNotifications");
 	    	
     		List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
 		 ListMetadataQuery query = new ListMetadataQuery();
