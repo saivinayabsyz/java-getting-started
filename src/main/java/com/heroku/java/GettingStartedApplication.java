@@ -57,7 +57,7 @@ import org.json.JSONObject;
 @Controller
 public class GettingStartedApplication {
     private final DataSource dataSource;
-    public  String  packageXML="";
+    public  String  packageXMLString="";
 	public  String  csvRows="";
 	public  String customTab="";
         public String sharingRules = "";
@@ -317,7 +317,7 @@ String uri =  "https://vinaypd2-dev-ed.my.salesforce.com/services/data/v56.0/sob
 try {
 Header oauthHeader = new BasicHeader("Authorization", "OAuth " + access_token);
 JSONObject packageXMLRecord = new JSONObject();
-packageXMLRecord.put("xml_string__c", packageXML);
+packageXMLRecord.put("xml_string__c", packageXMLString);
 packageXMLRecord.put("userid__c", userID);
 	packageXMLRecord.put("from_date__c", fromDate);
 	packageXMLRecord.put("to_date__c", toDate);
