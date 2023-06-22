@@ -58,6 +58,7 @@ import org.json.JSONObject;
 public class GettingStartedApplication {
     private final DataSource dataSource;
     public  String  packageXML="";
+	public  String  csvRows="";
 	public  String customTab="";
         public String sharingRules = "";
         public String apexEmailNotifications = "";
@@ -177,9 +178,10 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		 metadataComponents.add("SharingRules");
 		 metadataComponents.add("ApexEmailNotifications");
 	    	
-    		List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();    		 
+    		List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
+		 ListMetadataQuery query = new ListMetadataQuery();
     		for (String string : metadataComponents) {
-    			 ListMetadataQuery query = new ListMetadataQuery();
+    			 query = new ListMetadataQuery();
         		 query.setType(string);
         		 lmqList.add(query);        		 
 			}    		     		    		    
@@ -297,7 +299,7 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 				      }
 				      else if(n.getFileName().startsWith("sites/")){
 				      sites+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=+n.getFullName()+","+"CustomSite\n";
+					      csvRows=+n.getFullName()+","+"CustomSite\n";
 				      }
 		  }
 
