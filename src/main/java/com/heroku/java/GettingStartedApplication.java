@@ -207,19 +207,19 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 		 showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-		 if(customTab!=null && customTab.length!=0)
+		 if(customTab!=null && customTab.length()!=0)
 			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
-		 if(sharingRules!=null && sharingRules.length!=0)
+		 if(sharingRules!=null && sharingRules.length()!=0)
 			 packageXMLString+="<types>\n"+sharingRules+"<name>sharingRules</name>\n</types>\n";
-		 if(apexEmailNotifications!=null && apexEmailNotifications.length!=0)
+		 if(apexEmailNotifications!=null && apexEmailNotifications.length()!=0)
 			 packageXMLString+="<types>\n"+apexEmailNotifications+"<name>ApexEmailNotifications</name>\n</types>\n";
-		 if(audience!=null && audience.length!=0)
+		 if(audience!=null && audience.length()!=0)
 			 packageXMLString+="<types>\n"+audience+"<name>Audience</name>\n</types>\n";
-		 if(flows!=null && flows.length!=0)
+		 if(flows!=null && flows.length()!=0)
 			 packageXMLString+="<types>\n"+flows+"<name>Flow</name>\n</types>\n";
-		 if(flowDefinitions!=null && flowDefinitions.length!=0)
+		 if(flowDefinitions!=null && flowDefinitions.length()!=0)
 			 packageXMLString+="<types>\n"+flowDefinitions+"<name>FlowDefinition</name>\n</types>\n";
-		  if(queues!=null && queues.length!=0)
+		  if(queues!=null && queues.length()!=0)
 			 packageXMLString+="<types>\n"+queues+"<name>Queue</name>\n</types>\n";
 	
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
@@ -287,7 +287,7 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 				      }
 				      else if(n.getFileName().startsWith("queues/")){
 				      queues+="<members>"+n.getFullName()+"</members>";
-					      csvRows+=+n.getFullName()+","+"Queue\n";
+					      csvRows+=n.getFullName()+","+"Queue\n";
 				      }
 				      else if(n.getFileName().startsWith("communities/")){
 				      communities+="<members>"+n.getFullName()+"</members>";
@@ -299,7 +299,7 @@ showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 				      }
 				      else if(n.getFileName().startsWith("sites/")){
 				      sites+="<members>"+n.getFullName()+"</members>";
-					      csvRows=+n.getFullName()+","+"CustomSite\n";
+					      csvRows+=n.getFullName()+","+"CustomSite\n";
 				      }
 		  }
 
