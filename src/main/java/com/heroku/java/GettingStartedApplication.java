@@ -315,7 +315,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
-			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
 			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
 				 userID.equals(lastModifiedById)
