@@ -254,7 +254,77 @@ public class GettingStartedApplication {
                      lmr =  metadataConnection.listMetadata(
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
                           showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-               
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("SharingRules");
+                    metadataComponents.add("CustomTab");
+                    metadataComponents.add("NetworkBranding");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		 metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("ProfilePasswordPolicy");
+                    metadataComponents.add("ProfileSessionSetting");
+                    metadataComponents.add("NotificationTypeConfig");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("RemoteSiteSetting");
+                    metadataComponents.add("QuickAction");
+                    metadataComponents.add("ReportType");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("ModerationRule");
+                    metadataComponents.add("SiteDotCom");
+                    metadataComponents.add("EntitlementProcess");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		 metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("FlexiPage");
+                    metadataComponents.add("KeywordList");
+                    metadataComponents.add("SharingCriteriaRule");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		 
               if(assignmentRules!=null && assignmentRules.length()!=0)
               packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
               if(emailservices!=null && emailservices.length()!=0)
@@ -293,6 +363,36 @@ public class GettingStartedApplication {
 			 packageXMLString+="<types>\n"+navigationMenus+"<name>NavigationMenu</name>\n</types>\n";
 		 if(networks!=null && networks.length()!=0)
 			 packageXMLString+="<types>\n"+networks+"<name>Network</name>\n</types>\n";
+		 if(customTab!=null && customTab.length()!=0)
+			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
+		  if(sharingRules!=null && sharingRules.length()!=0)
+			 packageXMLString+="<types>\n"+sharingRules+"<name>sharingRule</name>\n</types>\n";
+		 if(networkBranding!=null && networkBranding.length()!=0)
+			 packageXMLString+="<types>\n"+networkBranding+"<name>NetworkBranding</name>\n</types>\n";
+		  if(profilePasswordPolicies!=null && profilePasswordPolicies.length()!=0)
+			 packageXMLString+="<types>\n"+profilePasswordPolicies+"<name>ProfilePasswordPolicy</name>\n</types>\n";
+		  if(profileSessionSettings!=null && profileSessionSettings.length()!=0)
+			 packageXMLString+="<types>\n"+profileSessionSettings+"<name>ProfileSessionSetting</name>\n</types>\n";
+		 if(notificationTypeConfig!=null && notificationTypeConfig.length()!=0)
+			 packageXMLString+="<types>\n"+notificationTypeConfig+"<name>NotificationTypeConfig</name>\n</types>\n";
+		 if(remoteSiteSettings!=null && remoteSiteSettings.length()!=0)
+			 packageXMLString+="<types>\n"+remoteSiteSettings+"<name>RemoteSiteSetting</name>\n</types>\n";
+		  if(quickActions!=null && quickActions.length()!=0)
+			 packageXMLString+="<types>\n"+quickActions+"<name>QuickAction</name>\n</types>\n";
+		 if(reportTypes!=null && reportTypes.length()!=0)
+			 packageXMLString+="<types>\n"+reportTypes+"<name>ReportType</name>\n</types>\n";
+		 if(ModerationRules!=null && ModerationRules.length()!=0)
+			 packageXMLString+="<types>\n"+ModerationRules+"<name>ModerationRule</name>\n</types>\n";
+		  if(siteDotComSites!=null && siteDotComSites.length()!=0)
+			 packageXMLString+="<types>\n"+siteDotComSites+"<name>SiteDotCom</name>\n</types>\n";
+		 if(entitlementProcesses!=null && entitlementProcesses.length()!=0)
+			 packageXMLString+="<types>\n"+entitlementProcesses+"<name>EntitlementProcess</name>\n</types>\n";
+		 if(flexipages!=null && flexipages.length()!=0)
+			 packageXMLString+="<types>\n"+flexipages+"<name>FlexiPage</name>\n</types>\n";
+		  if(moderation!=null && moderation.length()!=0)
+			 packageXMLString+="<types>\n"+moderation+"<name>KeywordList</name>\n</types>\n";
+		 if(SharingCriteriaRules!=null && SharingCriteriaRules.length()!=0)
+			 packageXMLString+="<types>\n"+SharingCriteriaRules+"<name>SharingCriteriaRule</name>\n</types>\n";
 		 
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
@@ -453,7 +553,67 @@ public class GettingStartedApplication {
                                     networks+="<members>"+n.getFullName()+"</members>\n";
                                     csvRows+=n.getFullName()+","+"Network\n";
                                 }
-                       
+				       else if(n.getFileName().startsWith("tabs/")){
+                                tabs+="<members>"+n.getFullName()+"</members>\n";
+                               csvRows+=n.getFullName()+","+"Custom Tab\n";
+                                }
+                                else if(n.getFileName().startsWith("sharingRules/")){
+                                    sharingRules+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Sharing Rules\n";
+                                }
+                                else if(n.getFileName().startsWith("networkBranding/")){
+                                    networkBranding+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Network Branding\n";
+                                }
+				      else if(n.getFileName().startsWith("profilePasswordPolicies/")){
+                                profilePasswordPolicies+="<members>"+n.getFullName()+"</members>\n";
+                               csvRows+=n.getFullName()+","+"ProfilePasswordPolicy\n";
+                                }
+                                else if(n.getFileName().startsWith("profileSessionSettings/")){
+                                    profileSessionSettings+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Profile SessionSetting\n";
+                                }
+                                else if(n.getFileName().startsWith("notificationTypeConfig/")){
+                                    notificationTypeConfig+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"NotificationTypeConfig\n";
+                                }
+				      else if(n.getFileName().startsWith("remoteSiteSettings/")){
+                                remoteSiteSettings+="<members>"+n.getFullName()+"</members>\n";
+                               csvRows+=n.getFullName()+","+"RemoteSiteSetting\n";
+                                }
+                                else if(n.getFileName().startsWith("quickActions/")){
+                                    quickActions+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"QuickAction\n";
+                                }
+                                else if(n.getFileName().startsWith("reportTypes/")){
+                                    reportTypes+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"ReportType\n";
+                                }
+				        else if(n.getFileName().startsWith("moderation/")){
+                                ModerationRules+="<members>"+n.getFullName()+"</members>\n";
+                               csvRows+=n.getFullName()+","+"ModerationRule\n";
+                                }
+                                else if(n.getFileName().startsWith("siteDotComSites/")){
+                                    siteDotComSites+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"SiteDotCom\n";
+                                }
+                                else if(n.getFileName().startsWith("entitlementProcesses/")){
+                                    entitlementProcesses+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"EntitlementProcess\n";
+                                }
+				      else if(n.getFileName().startsWith("flexipages/")){
+                                flexipages+="<members>"+n.getFullName()+"</members>\n";
+                               csvRows+=n.getFullName()+","+"FlexiPage\n";
+                                }
+                                else if(n.getFileName().startsWith("sharingRules/")){
+                                    SharingCriteriaRules+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"SharingCriteriaRule\n";
+                                }
+				      else if(n.getFileName().startsWith("moderation/")){
+                                    moderation+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"KeywordList\n";
+                                }
+                               
 		  }
 
 }
