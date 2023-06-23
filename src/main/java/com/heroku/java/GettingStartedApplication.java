@@ -544,7 +544,8 @@ public class GettingStartedApplication {
                              query.setType(string);
 				             query.setFolder(n.getFullName());
                              lmqList.add(query);        		 
-                        }    
+                        } 
+                        try{
                      lmr =  metadataConnection.listMetadata(
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 
@@ -571,6 +572,10 @@ public class GettingStartedApplication {
 		      catch (ParseException e) {e.printStackTrace();}
 	      }
  }
+				     }
+ catch (ConnectionException ce) {
+    		 	ce.printStackTrace();
+    	 	}
 				      }
 			      }
 		      }
@@ -581,6 +586,7 @@ public class GettingStartedApplication {
 	   if(dashboards!=null && dashboards.length()!=0)
 			 packageXMLString+="<types>\n"+dashboards+"<name>Dashboard</name>\n</types>\n";
  }
+
 	
  public  void showReportomponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
 	String reports="";
@@ -612,7 +618,8 @@ public class GettingStartedApplication {
                              query.setType(string);
 				             query.setFolder(n.getFullName());
                              lmqList.add(query);        		 
-                        }    
+                        } 
+                        try{
                      lmr =  metadataConnection.listMetadata(
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 
@@ -639,6 +646,10 @@ public class GettingStartedApplication {
 		      catch (ParseException e) {e.printStackTrace();}
 	      }
  }
+				     }
+  catch (ConnectionException ce) {
+    		 	ce.printStackTrace();
+    	 	}
 				      }
 			      }
 		      }
