@@ -535,6 +535,8 @@ public class GettingStartedApplication {
 				     if(n.getFileName().startsWith("dashboards/")){
 				      dashboards+="<members>"+n.getFullName()+"</members>\n";
 					  csvRows+=n.getFullName()+","+"Dashboard Folder\n";
+				     }
+				}
 					  ListMetadataQuery query = new ListMetadataQuery();
 					  ArrayList<String>  metadataComponents = new ArrayList<String>();
                       ArrayList<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
@@ -577,8 +579,8 @@ public class GettingStartedApplication {
     		 	ce.printStackTrace();
     	 	}
 				      }
-			      }
-		      }
+			      
+		      
 		      catch (ParseException e) {e.printStackTrace();}
 	      }
 	  }
@@ -609,6 +611,8 @@ public class GettingStartedApplication {
 				     if(n.getFileName().startsWith("reports/")){
 				      reports+="<members>"+n.getFullName()+"</members>\n";
 					  csvRows+=n.getFullName()+","+"ReportFolder\n";
+				     }
+				}
 					  ListMetadataQuery query = new ListMetadataQuery();
 					  ArrayList<String>  metadataComponents = new ArrayList<String>();
                       ArrayList<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
@@ -651,8 +655,8 @@ public class GettingStartedApplication {
     		 	ce.printStackTrace();
     	 	}
 				      }
-			      }
-		      }
+			      
+		      
 		      catch (ParseException e) {e.printStackTrace();}
 	      }
 	  }
