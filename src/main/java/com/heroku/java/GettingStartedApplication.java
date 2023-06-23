@@ -469,6 +469,4 @@ npe.printStackTrace();
         SpringApplication.run(GettingStartedApplication.class, args);
     }
 }
- Main {
-    
-}
+
