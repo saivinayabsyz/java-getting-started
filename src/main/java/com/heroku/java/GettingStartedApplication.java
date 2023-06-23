@@ -350,6 +350,30 @@ public class GettingStartedApplication {
                      lmr =  metadataConnection.listMetadata(
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
                           showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		 metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("ReportFolder");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showReportomponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("DashboardFolder");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showDashboardComponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);
 		 
               if(assignmentRules!=null && assignmentRules.length()!=0)
               packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
@@ -489,6 +513,140 @@ public class GettingStartedApplication {
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
+
+ public  void showDashboardComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
+	String dashboards='';
+	 if (lmr != null) {
+	      for (FileProperties n : lmr) {
+		      Date dj = n.getLastModifiedDate().getTime();
+		       String lastModifiedById = n.getLastModifiedById();
+		      int yearValue = dj.getYear()+1900;
+		      int month = dj.getMonth()+1;
+		      try{
+	              SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
+			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 userID.equals(lastModifiedById)
+				){
+		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
+				     if(n.getFileName().startsWith("dashboards/")){
+				      dashboards+="<members>"+n.getFullName()+"</members>\n";
+					  csvRows+=n.getFullName()+","+"Dashboard Folder\n";
+					  ListMetadataQuery query = new ListMetadataQuery();
+					  ArrayList<String>()  metadataComponents = new ArrayList<String>();
+                      ArrayList<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
+                      metadataComponents.add("Dashboard");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+				             query.setFolder(n.getFullName());
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+
+ if (lmr != null) {
+	      for (FileProperties n : lmr) {
+		      Date dj = n.getLastModifiedDate().getTime();
+		       String lastModifiedById = n.getLastModifiedById();
+		      int yearValue = dj.getYear()+1900;
+		      int month = dj.getMonth()+1;
+		      try{
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
+			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 userID.equals(lastModifiedById)
+				){
+				     if(n.getFileName().startsWith("dashboards/")){
+				      dashboards+="<members>"+n.getFullName()+"</members>\n";
+					      csvRows+=n.getFullName()+","+"Dashboard\n";
+				     }
+				}
+		      }
+		      catch (ParseException e) {e.printStackTrace();}
+	      }
+ }
+				      }
+			      }
+		      }
+		      catch (ParseException e) {e.printStackTrace();}
+	      }
+	  }
+	  System.out.println("reports "+reports);
+	   if(dashboards!=null && dashboards.length()!=0)
+			 packageXMLString+="<types>\n"+dashboards+"<name>Dashboard</name>\n</types>\n";
+ }
+	
+ public  void showReportomponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
+	String reports='';
+	 if (lmr != null) {
+	      for (FileProperties n : lmr) {
+		      Date dj = n.getLastModifiedDate().getTime();
+		       String lastModifiedById = n.getLastModifiedById();
+		      int yearValue = dj.getYear()+1900;
+		      int month = dj.getMonth()+1;
+		      try{
+	              SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
+			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 userID.equals(lastModifiedById)
+				){
+		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
+				     if(n.getFileName().startsWith("reports/")){
+				      reports+="<members>"+n.getFullName()+"</members>\n";
+					  csvRows+=n.getFullName()+","+"ReportFolder\n";
+					  ListMetadataQuery query = new ListMetadataQuery();
+					  ArrayList<String>()  metadataComponents = new ArrayList<String>();
+                      ArrayList<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
+                      metadataComponents.add("Report");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+				             query.setFolder(n.getFullName());
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+
+ if (lmr != null) {
+	      for (FileProperties n : lmr) {
+		      Date dj = n.getLastModifiedDate().getTime();
+		       String lastModifiedById = n.getLastModifiedById();
+		      int yearValue = dj.getYear()+1900;
+		      int month = dj.getMonth()+1;
+		      try{
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
+			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 userID.equals(lastModifiedById)
+				){
+				       if(n.getFileName().startsWith("reports/")){
+				      reports+="<members>"+n.getFullName()+"</members>\n";
+					      csvRows+=n.getFullName()+","+"ReportFolder\n";
+				       }
+				}
+		      }
+		      catch (ParseException e) {e.printStackTrace();}
+	      }
+ }
+				      }
+			      }
+		      }
+		      catch (ParseException e) {e.printStackTrace();}
+	      }
+	  }
+	  System.out.println("reports "+reports);
+	   if(reports!=null && reports.length()!=0)
+			 packageXMLString+="<types>\n"+Report+"<name>Layout</name>\n</types>\n";
+ }
 	
      public  void showMetaDataComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue){
 	  if (lmr != null) {
