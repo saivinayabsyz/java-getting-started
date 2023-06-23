@@ -515,7 +515,7 @@ public class GettingStartedApplication {
     }
 
  public  void showDashboardComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
-	String dashboards='';
+	String dashboards="";
 	 if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		      Date dj = n.getLastModifiedDate().getTime();
@@ -535,7 +535,7 @@ public class GettingStartedApplication {
 				      dashboards+="<members>"+n.getFullName()+"</members>\n";
 					  csvRows+=n.getFullName()+","+"Dashboard Folder\n";
 					  ListMetadataQuery query = new ListMetadataQuery();
-					  ArrayList<String>()  metadataComponents = new ArrayList<String>();
+					  ArrayList<String>  metadataComponents = new ArrayList<String>();
                       ArrayList<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
                       metadataComponents.add("Dashboard");
                         for (String string : metadataComponents) {
@@ -582,7 +582,7 @@ public class GettingStartedApplication {
  }
 	
  public  void showReportomponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
-	String reports='';
+	String reports="";
 	 if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		      Date dj = n.getLastModifiedDate().getTime();
@@ -602,7 +602,7 @@ public class GettingStartedApplication {
 				      reports+="<members>"+n.getFullName()+"</members>\n";
 					  csvRows+=n.getFullName()+","+"ReportFolder\n";
 					  ListMetadataQuery query = new ListMetadataQuery();
-					  ArrayList<String>()  metadataComponents = new ArrayList<String>();
+					  ArrayList<String>  metadataComponents = new ArrayList<String>();
                       ArrayList<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
                       metadataComponents.add("Report");
                         for (String string : metadataComponents) {
