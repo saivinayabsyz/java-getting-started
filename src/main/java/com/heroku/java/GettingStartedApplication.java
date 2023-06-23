@@ -324,6 +324,32 @@ public class GettingStartedApplication {
                      lmr =  metadataConnection.listMetadata(
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
                           showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		 metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("PermissionSet");
+                    metadataComponents.add("Group");
+                    metadataComponents.add("SharingSet");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("Layout");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 
               if(assignmentRules!=null && assignmentRules.length()!=0)
               packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
@@ -393,6 +419,14 @@ public class GettingStartedApplication {
 			 packageXMLString+="<types>\n"+moderation+"<name>KeywordList</name>\n</types>\n";
 		 if(SharingCriteriaRules!=null && SharingCriteriaRules.length()!=0)
 			 packageXMLString+="<types>\n"+SharingCriteriaRules+"<name>SharingCriteriaRule</name>\n</types>\n";
+		  if(permissionsets!=null && permissionsets.length()!=0)
+			 packageXMLString+="<types>\n"+permissionsets+"<name>PermissionSet</name>\n</types>\n";
+		  if(groups!=null && groups.length()!=0)
+			 packageXMLString+="<types>\n"+groups+"<name>Group</name>\n</types>\n";
+		 if(sharingSets!=null && sharingSets.length()!=0)
+			 packageXMLString+="<types>\n"+sharingSets+"<name>SharingSet</name>\n</types>\n";
+		 if(layouts!=null && layouts.length()!=0)
+			 packageXMLString+="<types>\n"+layouts+"<name>Layout</name>\n</types>\n";
 		 
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
@@ -612,6 +646,22 @@ public class GettingStartedApplication {
 				      else if(n.getFileName().startsWith("moderation/")){
                                     moderation+="<members>"+n.getFullName()+"</members>\n";
                                     csvRows+=n.getFullName()+","+"KeywordList\n";
+                                }
+				      else if(n.getFileName().startsWith("permissionsets/")){
+                                permissionsets+="<members>"+n.getFullName()+"</members>\n";
+                               csvRows+=n.getFullName()+","+"PermissionSet\n";
+                                }
+                                else if(n.getFileName().startsWith("groups/")){
+                                    groups+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Group\n";
+                                }
+				      else if(n.getFileName().startsWith("sharingSets/")){
+                                    sharingSets+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"SharingSet\n";
+                                }
+				      else if(n.getFileName().startsWith("layouts/")){
+                                    layouts+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Layout\n";
                                 }
                                
 		  }
