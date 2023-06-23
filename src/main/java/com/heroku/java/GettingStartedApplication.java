@@ -240,6 +240,21 @@ public class GettingStartedApplication {
                       Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
                     showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 
+
+                    metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("ManagedTopics");
+                    metadataComponents.add("NavigationMenu");
+                    metadataComponents.add("Network");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+               
               if(assignmentRules!=null && assignmentRules.length()!=0)
               packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
               if(emailservices!=null && emailservices.length()!=0)
@@ -272,6 +287,12 @@ public class GettingStartedApplication {
 			 packageXMLString+="<types>\n"+objectListViews+"<name>ListView</name>\n</types>\n";
 		 if(matchingRules!=null && matchingRules.length()!=0)
 			 packageXMLString+="<types>\n"+matchingRules+"<name>MatchingRule</name>\n</types>\n";
+             if(managedTopics!=null && managedTopics.length()!=0)
+			 packageXMLString+="<types>\n"+managedTopics+"<name>ManagedTopics</name>\n</types>\n";
+		  if(navigationMenus!=null && navigationMenus.length()!=0)
+			 packageXMLString+="<types>\n"+navigationMenus+"<name>NavigationMenu</name>\n</types>\n";
+		 if(networks!=null && networks.length()!=0)
+			 packageXMLString+="<types>\n"+networks+"<name>Network</name>\n</types>\n";
 		 
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
@@ -352,15 +373,7 @@ public class GettingStartedApplication {
 				){
 		//	System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
-				      if(n.getFileName().startsWith("tabs/")){
-				      customTab+="<members>"+n.getFullName()+"</members>\n";
-					      csvRows+=n.getFullName()+","+"Custom Tab\n";
-				      }
-				      else if(n.getFileName().startsWith("sharingRules/")){
-				      sharingRules+="<members>"+n.getFullName()+"</members>\n";
-					      csvRows+=n.getFullName()+","+"sharing Rules\n";
-				      }
-				      else if(n.getFileName().startsWith("userCriteria/")){
+				     if(n.getFileName().startsWith("userCriteria/")){
 				      userCriterias+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"User Criteria\n";
 				      }
@@ -428,6 +441,18 @@ public class GettingStartedApplication {
                                 matchingRules+="<members>"+n.getFullName()+"</members>\n";
                                 csvRows+=n.getFullName()+","+"MatchingRule\n";
                             }
+                            else if(n.getFileName().startsWith("managedTopics/")){
+                                managedTopics+="<members>"+n.getFullName()+"</members>\n";
+                               csvRows+=n.getFullName()+","+"ManagedTopics\n";
+                                }
+                                else if(n.getFileName().startsWith("navigationMenus/")){
+                                    navigationMenus+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"NavigationMenu\n";
+                                }
+                                else if(n.getFileName().startsWith("networks/")){
+                                    networks+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Network\n";
+                                }
                        
 		  }
 
