@@ -223,7 +223,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
         		 lmqList.add(query);        		 
 			}    
 
-		  FileProperties[] lmr = = metadataConnection.listMetadata(
+		  FileProperties[] lmr =  metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 
