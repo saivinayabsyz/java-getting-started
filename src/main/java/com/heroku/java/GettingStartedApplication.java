@@ -317,9 +317,10 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		      Date dj = n.getLastModifiedDate().getTime();
 		       String lastModifiedById = n.getLastModifiedById();
 		      int yearValue = dj.getYear()+1900;
+		      int month = dj.getMonth()+1;
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+dj.getMonth()+"/"+yearValue);
+			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
 			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
 			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
