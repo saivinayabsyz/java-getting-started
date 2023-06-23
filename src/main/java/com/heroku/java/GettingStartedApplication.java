@@ -1,4 +1,4 @@
-package com.heroku.java;
+public package com.heroku.java;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -134,27 +134,8 @@ public class GettingStartedApplication {
     }
      
     public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate){
-	  
- System.out.println(fromDate+"  "); 
-  //  ConnectorConfig partnerConfig = new ConnectorConfig();
     ConnectorConfig metadataConfig = new ConnectorConfig();
-    
-    
-  //  partnerConfig.setUsername(USERNAME);
-   // partnerConfig.setPassword(PASSWORD);
-
-   // @SuppressWarnings("unused")
-  //  PartnerConnection partnerConnection = com.sforce.soap.partner.Connector.newConnection(partnerConfig);
-    
-   // String metaurl = partnerConfig.getServiceEndpoint();
-
-    //The metadata service endpoint is baked in the wsdl file, but same metadata wsdl file can be used for differnent orgs,
-    //only metadata service endpoint has to be set according to the org
-    //metaurl = metaurl.replace("Soap/u", "Soap/m");
-   // System.out.println(metaurl);
-    metadataConfig.setServiceEndpoint(endpoint);
-    
-    
+    metadataConfig.setServiceEndpoint(endpoint); 
     // shove the partner's session id into the metadata configuration then connect
     metadataConfig.setSessionId(sessionId);
    System.out.println("sessionid"+sessionId);
@@ -165,7 +146,7 @@ public class GettingStartedApplication {
 		  try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	fromDateValue= formatter.parse(arrOfFromDate[1]+"/"+arrOfFromDate[2]+"/"+arrOfFromDate[0]);
-toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[0]);
+    toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[0]);
 	 }
 		 catch (ParseException e) {e.printStackTrace();}
     
@@ -179,7 +160,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		
 	    	metadataComponents.add("CustomSite");
 		metadataComponents.add("DuplicateRule");
-		 metadataComponents.add("ApexEmailNotifications");
+		 metadataComponents.add("EmailServicesFunction");
 	    	
     		
     		for (String string : metadataComponents) {
@@ -225,9 +206,28 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		 lmr =  metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+              metadataComponents = new ArrayList<String>();
+		lmqList = new ArrayList<ListMetadataQuery>();  
+		metadataComponents.add("EscalationRule");
+		metadataComponents.add("ExperienceBundle");
+		metadataComponents.add("InstalledPackage");
+	    	
+    		
+    		for (String string : metadataComponents) {
+    			 query = new ListMetadataQuery();
+        		 query.setType(string);
+        		 lmqList.add(query);        		 
+			}    
+
+		 lmr =  metadataConnection.listMetadata(
+    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 
-		 if(apexEmailNotifications!=null && apexEmailNotifications.length()!=0)
-			 packageXMLString+="<types>\n"+apexEmailNotifications+"<name>ApexEmailNotifications</name>\n</types>\n";
+              if(assignmentRules!=null && assignmentRules.length()!=0)
+              packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
+              if(emailservices!=null && emailservices.length()!=0)
+			 packageXMLString+="<types>\n"+emailservices+"<name>EmailServicesFunction</name>\n</types>\n";
 		 if(audience!=null && audience.length()!=0)
 			 packageXMLString+="<types>\n"+audience+"<name>Audience</name>\n</types>\n";
 		 if(flows!=null && flows.length()!=0)
@@ -244,15 +244,18 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 			 packageXMLString+="<types>\n"+sites+"<name>CustomSite</name>\n</types>\n";
 		 if(duplicateRules!=null && duplicateRules.length()!=0)
 			 packageXMLString+="<types>\n"+duplicateRules+"<name>DuplicateRule</name>\n</types>\n";
-		 if(emailservices!=null && emailservices.length()!=0)
-			 packageXMLString+="<types>\n"+emailservices+"<name>EmailServicesFunction</name>\n</types>\n";
-	
+             if(escalationRules!=null && escalationRules.length()!=0)
+			 packageXMLString+="<types>\n"+escalationRules+"<name>EscalationRules</name>\n</types>\n";
+		  if(experiences!=null && experiences.length()!=0)
+			 packageXMLString+="<types>\n"+experiences+"<name>ExperienceBundle</name>\n</types>\n";
+		 if(installedPackages!=null && installedPackages.length()!=0)
+			 packageXMLString+="<types>\n"+installedPackages+"<name>InstalledPackage</name>\n</types>\n";
+		 
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
 		 csvRows="";
 	customTab="";
         sharingRules = "";
-        apexEmailNotifications = "";
         assignmentRules = "";
         audience="";
         flows="";
@@ -340,9 +343,9 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 				      userCriterias+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"User Criteria\n";
 				      }
-				      else if(n.getFileName().startsWith("apexEmailNotifications/")){
-				      apexEmailNotifications+="<members>"+n.getFullName()+"</members>\n";
-					      csvRows+=n.getFullName()+","+"Apex Email Notifications\n";
+				      else if(n.getFileName().startsWith("emailservices/")){
+                        emailservices+="<members>"+n.getFullName()+"</members>\n";
+					      csvRows+=n.getFullName()+","+"EmailServicesFunction\n";
 				      }
 				      else if(n.getFileName().startsWith("assignmentRules/")){
 				      assignmentRules+="<members>"+n.getFullName()+"</members>\n";
@@ -380,6 +383,18 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 				      duplicateRules+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"DuplicateRule\n";
 				      }
+                      else if(n.getFileName().startsWith("escalationRules/")){
+                        escalationRules+="<members>"+n.getFullName()+"</members>\n";
+                       csvRows+=n.getFullName()+","+"EscalationRules\n";
+                        }
+                        else if(n.getFileName().startsWith("experiences/")){
+                            experiences+="<members>"+n.getFullName()+"</members>\n";
+                            csvRows+=n.getFullName()+","+"ExperienceBundle\n";
+                        }
+                        else if(n.getFileName().startsWith("installedPackages/")){
+                            installedPackages+="<members>"+n.getFullName()+"</members>\n";
+                            csvRows+=n.getFullName()+","+"InstalledPackage\n";
+                        }
 		  }
 
 }
@@ -453,4 +468,7 @@ npe.printStackTrace();
     public static void main(String[] args) {
         SpringApplication.run(GettingStartedApplication.class, args);
     }
+}
+ Main {
+    
 }
