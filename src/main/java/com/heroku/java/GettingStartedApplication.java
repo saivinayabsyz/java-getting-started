@@ -421,7 +421,7 @@ public class GettingStartedApplication {
                            csvRows+=n.getFullName()+","+"ManagedContentTypeBundle\n";
                             }
                             else if(n.getFileName().startsWith("objects/")){
-                                objects+="<members>"+n.getFullName()+"</members>\n";
+                                objectListViews+="<members>"+n.getFullName()+"</members>\n";
                                 csvRows+=n.getFullName()+","+"ListView\n";
                             }
                             else if(n.getFileName().startsWith("matchingRules/")){
