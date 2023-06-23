@@ -125,8 +125,8 @@ public class GettingStartedApplication {
     public void createHotel(@RequestBody AuthParams metadataparams) {
 	    System.out.print("Hello!");  
 	    System.out.println("Hello, logs!");
-	    System.out.println("metadataparams "+metadataparams+metadataparams.orgURL);
-        fetchMetadata(metadataparams.accessToken,metadataparams.orgURL,metadataparams.userID,metadataparams.fromDate,metadataparams.toDate);
+	    System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken);
+        //fetchMetadata(metadataparams.accessToken,metadataparams.orgURL,metadataparams.userID,metadataparams.fromDate,metadataparams.toDate);
         System.out.print("Hello!");  
       //  response.getWriter().write(hotel.accessToken);  
      
