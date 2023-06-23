@@ -554,7 +554,7 @@ public class GettingStartedApplication {
                                     csvRows+=n.getFullName()+","+"Network\n";
                                 }
 				       else if(n.getFileName().startsWith("tabs/")){
-                                tabs+="<members>"+n.getFullName()+"</members>\n";
+                                customTab+="<members>"+n.getFullName()+"</members>\n";
                                csvRows+=n.getFullName()+","+"Custom Tab\n";
                                 }
                                 else if(n.getFileName().startsWith("sharingRules/")){
