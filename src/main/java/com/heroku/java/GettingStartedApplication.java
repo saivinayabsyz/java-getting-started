@@ -177,8 +177,8 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     		List<String> metadataComponents = new ArrayList<String>();
 		 List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
 		
-	    	/*metadataComponents.add("CustomTab");
-		metadataComponents.add("SharingRules");
+	    	metadataComponents.add("CustomSite");
+		metadataComponents.add("DuplicateRule");
 		 metadataComponents.add("ApexEmailNotifications");
 	    	
     		
@@ -208,13 +208,12 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		 lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-*/
+
 		 metadataComponents = new ArrayList<String>();
 		lmqList = new ArrayList<ListMetadataQuery>();  
-		 metadataComponents.add("Flow");
-	    	metadataComponents.add("FlowDefinition");
-		//metadataComponents.add("Queue");
-		 //metadataComponents.add("Community");
+		metadataComponents.add("FlowDefinition");
+		metadataComponents.add("Queue");
+		metadataComponents.add("Community");
 	    	
     		
     		for (String string : metadataComponents) {
@@ -223,14 +222,10 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
         		 lmqList.add(query);        		 
 			}    
 
-		  FileProperties[] lmr =  metadataConnection.listMetadata(
+		 lmr =  metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 
-		 if(customTab!=null && customTab.length()!=0)
-			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
-		 if(sharingRules!=null && sharingRules.length()!=0)
-			 packageXMLString+="<types>\n"+sharingRules+"<name>sharingRules</name>\n</types>\n";
 		 if(apexEmailNotifications!=null && apexEmailNotifications.length()!=0)
 			 packageXMLString+="<types>\n"+apexEmailNotifications+"<name>ApexEmailNotifications</name>\n</types>\n";
 		 if(audience!=null && audience.length()!=0)
@@ -241,6 +236,16 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 			 packageXMLString+="<types>\n"+flowDefinitions+"<name>FlowDefinition</name>\n</types>\n";
 		  if(queues!=null && queues.length()!=0)
 			 packageXMLString+="<types>\n"+queues+"<name>Queue</name>\n</types>\n";
+		 if(communities!=null && communities.length()!=0)
+			 packageXMLString+="<types>\n"+communities+"<name>Community</name>\n</types>\n";
+		 if(connectedApps!=null && connectedApps.length()!=0)
+			 packageXMLString+="<types>\n"+connectedApps+"<name>ConnectedApp</name>\n</types>\n";
+		  if(sites!=null && sites.length()!=0)
+			 packageXMLString+="<types>\n"+sites+"<name>CustomSite</name>\n</types>\n";
+		 if(duplicateRules!=null && duplicateRules.length()!=0)
+			 packageXMLString+="<types>\n"+duplicateRules+"<name>DuplicateRule</name>\n</types>\n";
+		 if(emailservices!=null && emailservices.length()!=0)
+			 packageXMLString+="<types>\n"+emailservices+"<name>EmailServicesFunction</name>\n</types>\n";
 	
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
@@ -369,6 +374,10 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 				      else if(n.getFileName().startsWith("sites/")){
 				      sites+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"CustomSite\n";
+				      }
+				      else if(n.getFileName().startsWith("duplicateRules/")){
+				      duplicateRules+="<members>"+n.getFullName()+"</members>\n";
+					      csvRows+=n.getFullName()+","+"DuplicateRule\n";
 				      }
 		  }
 
