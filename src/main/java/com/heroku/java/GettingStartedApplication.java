@@ -244,6 +244,57 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 	
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
+		 csvRows="";
+	customTab="";
+        sharingRules = "";
+        apexEmailNotifications = "";
+        assignmentRules = "";
+        audience="";
+        flows="";
+        flowDefinitions="";
+        queues="";
+        communities="";
+        connectedApps="";
+        sites="";
+        duplicateRules="";
+        emailservices="";
+          escalationRules="";
+          experiences="";
+          installedPackages="";
+        externalServiceRegistrations="";
+        objectListViews="";
+        matchingRules="";
+        managedContentTypeBundles="";
+        managedTopics="";
+        navigationMenus="";
+        networks="";
+        networkBranding="";
+        profilePasswordPolicies="";
+        profileSessionSettings="";
+        notificationTypeConfig="";
+        remoteSiteSettings="";
+        quickActions=""; 
+         reportTypes="";
+         ModerationRules="";
+         topicsForObjects=""; 
+         siteDotComSites=""; 
+        entitlementProcesses = "";
+        flexipages = "";
+        moderation = "";
+        SharingCriteriaRules = "";
+        milestoneTypes = "";
+        CanvasMetadatas = "";
+        AutoResponseRules = "";
+        AnalyticSnapshots = "";
+        approvalProcesses = "";
+        userCriterias = "";
+        permissionsets = "";
+        corsWhitelistOrigins = "";
+        customPermissions = "";
+        globalValueSets = "";
+        groups = "";
+        sharingSets = "";
+        layouts = "";
     		
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
@@ -264,6 +315,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		      try{
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			      Date actualDate = formatter.parse(dj.getDay()+"/"+dj.getMonth()+"/"+yearValue);
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
 			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
 				 userID.equals(lastModifiedById)
