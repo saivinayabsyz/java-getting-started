@@ -1,4 +1,4 @@
-package com.heroku.java;
+ package com.heroku.java;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -75,7 +75,6 @@ public class GettingStartedApplication {
         public String    escalationRules="";
         public String    experiences="";
         public String    installedPackages="";
-        public String  externalServiceRegistrations="";
         public String  objectListViews="";
         public String  matchingRules="";
         public String  managedContentTypeBundles="";
@@ -223,6 +222,23 @@ public class GettingStartedApplication {
 		 lmr =  metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+              metadataComponents = new ArrayList<String>();
+              lmqList = new ArrayList<ListMetadataQuery>();  
+              metadataComponents.add("ManagedContentTypeBundle");
+              metadataComponents.add("ListView");
+              metadataComponents.add("MatchingRule");
+                  
+                  
+                  for (String string : metadataComponents) {
+                       query = new ListMetadataQuery();
+                       query.setType(string);
+                       lmqList.add(query);        		 
+                  }    
+      
+               lmr =  metadataConnection.listMetadata(
+                      Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                    showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
 		 
               if(assignmentRules!=null && assignmentRules.length()!=0)
               packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
@@ -250,6 +266,12 @@ public class GettingStartedApplication {
 			 packageXMLString+="<types>\n"+experiences+"<name>ExperienceBundle</name>\n</types>\n";
 		 if(installedPackages!=null && installedPackages.length()!=0)
 			 packageXMLString+="<types>\n"+installedPackages+"<name>InstalledPackage</name>\n</types>\n";
+             if(managedContentTypeBundles!=null && managedContentTypeBundles.length()!=0)
+			 packageXMLString+="<types>\n"+managedContentTypeBundles+"<name>ManagedContentTypeBundle</name>\n</types>\n";
+		  if(objectListViews!=null && objectListViews.length()!=0)
+			 packageXMLString+="<types>\n"+objectListViews+"<name>ListView</name>\n</types>\n";
+		 if(matchingRules!=null && matchingRules.length()!=0)
+			 packageXMLString+="<types>\n"+matchingRules+"<name>MatchingRule</name>\n</types>\n";
 		 
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
@@ -269,7 +291,6 @@ public class GettingStartedApplication {
           escalationRules="";
           experiences="";
           installedPackages="";
-        externalServiceRegistrations="";
         objectListViews="";
         matchingRules="";
         managedContentTypeBundles="";
@@ -395,6 +416,19 @@ public class GettingStartedApplication {
                             installedPackages+="<members>"+n.getFullName()+"</members>\n";
                             csvRows+=n.getFullName()+","+"InstalledPackage\n";
                         }
+                        else if(n.getFileName().startsWith("managedContentTypeBundles/")){
+                            managedContentTypeBundles+="<members>"+n.getFullName()+"</members>\n";
+                           csvRows+=n.getFullName()+","+"ManagedContentTypeBundle\n";
+                            }
+                            else if(n.getFileName().startsWith("objects/")){
+                                objects+="<members>"+n.getFullName()+"</members>\n";
+                                csvRows+=n.getFullName()+","+"ListView\n";
+                            }
+                            else if(n.getFileName().startsWith("matchingRules/")){
+                                matchingRules+="<members>"+n.getFullName()+"</members>\n";
+                                csvRows+=n.getFullName()+","+"MatchingRule\n";
+                            }
+                       
 		  }
 
 }
@@ -412,6 +446,7 @@ try {
 Header oauthHeader = new BasicHeader("Authorization", "OAuth " + access_token);
 JSONObject packageXMLRecord = new JSONObject();
 packageXMLRecord.put("xml_string__c", packageXMLString);
+packageXMLRecord.put("CSV_String__c", csvRows);
 packageXMLRecord.put("userid__c", userID);
 	packageXMLRecord.put("from_date__c", fromDate);
 	packageXMLRecord.put("to_date__c", toDate);
