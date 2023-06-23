@@ -516,6 +516,7 @@ public class GettingStartedApplication {
 
  public  void showDashboardComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
 	String dashboards="";
+	 double asOfVersion = 58.0;
 	 if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		      Date dj = n.getLastModifiedDate().getTime();
@@ -548,22 +549,22 @@ public class GettingStartedApplication {
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 
  if (lmr != null) {
-	      for (FileProperties n : lmr) {
-		      Date dj = n.getLastModifiedDate().getTime();
-		       String lastModifiedById = n.getLastModifiedById();
-		      int yearValue = dj.getYear()+1900;
-		      int month = dj.getMonth()+1;
+	      for (FileProperties n2 : lmr) {
+		       dj = n2.getLastModifiedDate().getTime();
+		        lastModifiedById = n2.getLastModifiedById();
+		       yearValue = dj.getYear()+1900;
+		       month = dj.getMonth()+1;
 		      try{
-	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+	 formatter = new SimpleDateFormat("dd/MM/yyyy");
+			       actualDate = formatter.parse(n2.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
 			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
 			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
 				 userID.equals(lastModifiedById)
 				){
-				     if(n.getFileName().startsWith("dashboards/")){
-				      dashboards+="<members>"+n.getFullName()+"</members>\n";
-					      csvRows+=n.getFullName()+","+"Dashboard\n";
+				     if(n2.getFileName().startsWith("dashboards/")){
+				      dashboards+="<members>"+n2.getFullName()+"</members>\n";
+					      csvRows+=n2.getFullName()+","+"Dashboard\n";
 				     }
 				}
 		      }
@@ -583,6 +584,7 @@ public class GettingStartedApplication {
 	
  public  void showReportomponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
 	String reports="";
+	 double asOfVersion = 58.0;
 	 if (lmr != null) {
 	      for (FileProperties n : lmr) {
 		      Date dj = n.getLastModifiedDate().getTime();
@@ -615,22 +617,22 @@ public class GettingStartedApplication {
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 
  if (lmr != null) {
-	      for (FileProperties n : lmr) {
-		      Date dj = n.getLastModifiedDate().getTime();
-		       String lastModifiedById = n.getLastModifiedById();
-		      int yearValue = dj.getYear()+1900;
-		      int month = dj.getMonth()+1;
+	      for (FileProperties n2 : lmr) {
+		       dj = n2.getLastModifiedDate().getTime();
+		        lastModifiedById = n2.getLastModifiedById();
+		       yearValue = dj.getYear()+1900;
+		       month = dj.getMonth()+1;
 		      try{
-	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+	 formatter = new SimpleDateFormat("dd/MM/yyyy");
+			       actualDate = formatter.parse(n2.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
 			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
 			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
 			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
 				 userID.equals(lastModifiedById)
 				){
-				       if(n.getFileName().startsWith("reports/")){
-				      reports+="<members>"+n.getFullName()+"</members>\n";
-					      csvRows+=n.getFullName()+","+"ReportFolder\n";
+				       if(n2.getFileName().startsWith("reports/")){
+				      reports+="<members>"+n2.getFullName()+"</members>\n";
+					      csvRows+=n2.getFullName()+","+"ReportFolder\n";
 				       }
 				}
 		      }
