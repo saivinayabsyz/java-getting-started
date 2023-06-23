@@ -271,51 +271,51 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
 				      if(n.getFileName().startsWith("tabs/")){
-				      customTab+="<members>"+n.getFullName()+"</members>";
+				      customTab+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"Custom Tab\n";
 				      }
 				      else if(n.getFileName().startsWith("sharingRules/")){
-				      sharingRules+="<members>"+n.getFullName()+"</members>";
+				      sharingRules+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"sharing Rules\n";
 				      }
 				      else if(n.getFileName().startsWith("userCriteria/")){
-				      userCriterias+="<members>"+n.getFullName()+"</members>";
+				      userCriterias+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"User Criteria\n";
 				      }
 				      else if(n.getFileName().startsWith("apexEmailNotifications/")){
-				      apexEmailNotifications+="<members>"+n.getFullName()+"</members>";
+				      apexEmailNotifications+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"Apex Email Notifications\n";
 				      }
 				      else if(n.getFileName().startsWith("assignmentRules/")){
-				      assignmentRules+="<members>"+n.getFullName()+"</members>";
+				      assignmentRules+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"AssignmentRule\n";
 				      }
 				      else if(n.getFileName().startsWith("audience/")){
-				      audience+="<members>"+n.getFullName()+"</members>";
+				      audience+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"Audience\n";
 				      }
 				      else if(n.getFileName().startsWith("flows/")){
-				      flows+="<members>"+n.getFullName()+"</members>";
+				      flows+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"flows\n";
 				      }
 				      else if(n.getFileName().startsWith("flowDefinitions/")){
-				      flowDefinitions+="<members>"+n.getFullName()+"</members>";
+				      flowDefinitions+="<members>"+n.getFullName()+"</members>\n";
 				     csvRows+=n.getFullName()+","+"FlowDefinition\n";
 				      }
 				      else if(n.getFileName().startsWith("queues/")){
-				      queues+="<members>"+n.getFullName()+"</members>";
+				      queues+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"Queue\n";
 				      }
 				      else if(n.getFileName().startsWith("communities/")){
-				      communities+="<members>"+n.getFullName()+"</members>";
+				      communities+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"Community\n";
 				      }
 				      else if(n.getFileName().startsWith("connectedApps/")){
-				      connectedApps+="<members>"+n.getFullName()+"</members>";
+				      connectedApps+="<members>"+n.getFullName()+"</members>\n";
 				     csvRows+=n.getFullName()+","+"ConnectedApp\n";
 				      }
 				      else if(n.getFileName().startsWith("sites/")){
-				      sites+="<members>"+n.getFullName()+"</members>";
+				      sites+="<members>"+n.getFullName()+"</members>\n";
 					      csvRows+=n.getFullName()+","+"CustomSite\n";
 				      }
 		  }
