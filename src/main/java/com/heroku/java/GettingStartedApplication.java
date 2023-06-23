@@ -577,7 +577,7 @@ public class GettingStartedApplication {
 		      catch (ParseException e) {e.printStackTrace();}
 	      }
 	  }
-	  System.out.println("reports "+reports);
+	  System.out.println("dashboards "+dashboards);
 	   if(dashboards!=null && dashboards.length()!=0)
 			 packageXMLString+="<types>\n"+dashboards+"<name>Dashboard</name>\n</types>\n";
  }
@@ -647,7 +647,7 @@ public class GettingStartedApplication {
 	  }
 	  System.out.println("reports "+reports);
 	   if(reports!=null && reports.length()!=0)
-			 packageXMLString+="<types>\n"+Report+"<name>Layout</name>\n</types>\n";
+			 packageXMLString+="<types>\n"+reports+"<name>Report</name>\n</types>\n";
  }
 	
      public  void showMetaDataComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue){
