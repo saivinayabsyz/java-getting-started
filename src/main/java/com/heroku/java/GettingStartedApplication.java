@@ -173,13 +173,15 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 	     MetadataConnection metadataConnection = com.sforce.soap.metadata.Connector.newConnection(metadataConfig);
     	 try {
 		  double asOfVersion = 58.0;
+		  ListMetadataQuery query ;
     		List<String> metadataComponents = new ArrayList<String>();
+		 List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
+		
 	    	metadataComponents.add("CustomTab");
 		metadataComponents.add("SharingRules");
 		 metadataComponents.add("ApexEmailNotifications");
 	    	
-    		List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
-		 ListMetadataQuery query = new ListMetadataQuery();
+    		
     		for (String string : metadataComponents) {
     			 query = new ListMetadataQuery();
         		 query.setType(string);
@@ -189,7 +191,42 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		metadataComponents = new ArrayList<String>();
+		lmqList = new ArrayList<ListMetadataQuery>();  
 		
+	    	metadataComponents.add("AssignmentRule");
+		metadataComponents.add("Audience");
+		 metadataComponents.add("Flow");
+	    	
+    		
+    		for (String string : metadataComponents) {
+    			 query = new ListMetadataQuery();
+        		 query.setType(string);
+        		 lmqList.add(query);        		 
+			}    
+
+		 lmr = metadataConnection.listMetadata(
+    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		 metadataComponents = new ArrayList<String>();
+		lmqList = new ArrayList<ListMetadataQuery>();  
+		
+	    	metadataComponents.add("FlowDefinition");
+		metadataComponents.add("Queue");
+		 metadataComponents.add("Community");
+	    	
+    		
+    		for (String string : metadataComponents) {
+    			 query = new ListMetadataQuery();
+        		 query.setType(string);
+        		 lmqList.add(query);        		 
+			}    
+
+		 lmr = metadataConnection.listMetadata(
+    		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+		 
 		 if(customTab!=null && customTab.length()!=0)
 			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
 		 if(sharingRules!=null && sharingRules.length()!=0)
@@ -206,7 +243,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 			 packageXMLString+="<types>\n"+queues+"<name>Queue</name>\n</types>\n";
 	
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
-		 
+		 packageXMLString = "";
     		
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
