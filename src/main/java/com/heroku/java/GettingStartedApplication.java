@@ -177,7 +177,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
     		List<String> metadataComponents = new ArrayList<String>();
 		 List<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
 		
-	    	metadataComponents.add("CustomTab");
+	    	/*metadataComponents.add("CustomTab");
 		metadataComponents.add("SharingRules");
 		 metadataComponents.add("ApexEmailNotifications");
 	    	
@@ -208,13 +208,13 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 		 lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-
+*/
 		 metadataComponents = new ArrayList<String>();
 		lmqList = new ArrayList<ListMetadataQuery>();  
-		
+		 metadataComponents.add("Flow");
 	    	metadataComponents.add("FlowDefinition");
-		metadataComponents.add("Queue");
-		 metadataComponents.add("Community");
+		//metadataComponents.add("Queue");
+		 //metadataComponents.add("Community");
 	    	
     		
     		for (String string : metadataComponents) {
@@ -320,7 +320,7 @@ toDateValue = formatter.parse(arrOfToDate[1]+"/"+arrOfToDate[2]+"/"+arrOfToDate[
 			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
 				 userID.equals(lastModifiedById)
 				){
-			System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
+		//	System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
 		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
 				      if(n.getFileName().startsWith("tabs/")){
 				      customTab+="<members>"+n.getFullName()+"</members>\n";
