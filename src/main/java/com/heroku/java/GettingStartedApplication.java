@@ -108,6 +108,7 @@ public class GettingStartedApplication {
         public String sharingSets = "";
         public String layouts = "";
 	 public String pages = "";
+	public String components = "";
 	public String classes = "";
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
