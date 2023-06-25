@@ -93,7 +93,6 @@ public class GettingStartedApplication {
         public String   siteDotComSites=""; 
         public String entitlementProcesses = "";
         public String flexipages = "";
-        public String moderation = "";
         public String SharingCriteriaRules = "";
         public String milestoneTypes = "";
         public String CanvasMetadatas = "";
@@ -108,6 +107,8 @@ public class GettingStartedApplication {
         public String groups = "";
         public String sharingSets = "";
         public String layouts = "";
+	 public String pages = "";
+	public String classes = "";
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -314,7 +315,7 @@ public class GettingStartedApplication {
 		 metadataComponents = new ArrayList<String>();
                     lmqList = new ArrayList<ListMetadataQuery>();  
                     metadataComponents.add("FlexiPage");
-                    metadataComponents.add("KeywordList");
+                   // metadataComponents.add("KeywordList");
                     metadataComponents.add("SharingCriteriaRule");
                         for (String string : metadataComponents) {
                              query = new ListMetadataQuery();
@@ -342,7 +343,21 @@ public class GettingStartedApplication {
 		  metadataComponents = new ArrayList<String>();
                     lmqList = new ArrayList<ListMetadataQuery>();  
                     metadataComponents.add("Layout");
+		 metadataComponents.add("ApexPage");
+		 metadataComponents.add("ApexComponent");
                         for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("ApexClass");
+		        for (String string : metadataComponents) {
                              query = new ListMetadataQuery();
                              query.setType(string);
                              lmqList.add(query);        		 
@@ -416,7 +431,7 @@ public class GettingStartedApplication {
 		 if(customTab!=null && customTab.length()!=0)
 			 packageXMLString+="<types>\n"+customTab+"<name>CustomTab</name>\n</types>\n";
 		  if(sharingRules!=null && sharingRules.length()!=0)
-			 packageXMLString+="<types>\n"+sharingRules+"<name>sharingRule</name>\n</types>\n";
+			 packageXMLString+="<types>\n"+sharingRules+"<name>SharingRules</name>\n</types>\n";
 		 if(networkBranding!=null && networkBranding.length()!=0)
 			 packageXMLString+="<types>\n"+networkBranding+"<name>NetworkBranding</name>\n</types>\n";
 		  if(profilePasswordPolicies!=null && profilePasswordPolicies.length()!=0)
@@ -439,8 +454,6 @@ public class GettingStartedApplication {
 			 packageXMLString+="<types>\n"+entitlementProcesses+"<name>EntitlementProcess</name>\n</types>\n";
 		 if(flexipages!=null && flexipages.length()!=0)
 			 packageXMLString+="<types>\n"+flexipages+"<name>FlexiPage</name>\n</types>\n";
-		  if(moderation!=null && moderation.length()!=0)
-			 packageXMLString+="<types>\n"+moderation+"<name>KeywordList</name>\n</types>\n";
 		 if(SharingCriteriaRules!=null && SharingCriteriaRules.length()!=0)
 			 packageXMLString+="<types>\n"+SharingCriteriaRules+"<name>SharingCriteriaRule</name>\n</types>\n";
 		  if(permissionsets!=null && permissionsets.length()!=0)
@@ -451,6 +464,12 @@ public class GettingStartedApplication {
 			 packageXMLString+="<types>\n"+sharingSets+"<name>SharingSet</name>\n</types>\n";
 		 if(layouts!=null && layouts.length()!=0)
 			 packageXMLString+="<types>\n"+layouts+"<name>Layout</name>\n</types>\n";
+		 if(pages!=null && pages.length()!=0)
+			 packageXMLString+="<types>\n"+pages+"<name>ApexPage</name>\n</types>\n";
+		 if(components!=null && components.length()!=0)
+			 packageXMLString+="<types>\n"+components+"<name>ApexComponent</name>\n</types>\n";
+		 if(classes!=null && classes.length()!=0)
+			 packageXMLString+="<types>\n"+classes+"<name>ApexClass</name>\n</types>\n";
 		 
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
@@ -488,7 +507,6 @@ public class GettingStartedApplication {
          siteDotComSites=""; 
         entitlementProcesses = "";
         flexipages = "";
-        moderation = "";
         SharingCriteriaRules = "";
         milestoneTypes = "";
         CanvasMetadatas = "";
@@ -503,6 +521,9 @@ public class GettingStartedApplication {
         groups = "";
         sharingSets = "";
         layouts = "";
+		 pages = "";
+		 components= "";
+		 classes="";
     		
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
@@ -818,11 +839,7 @@ public class GettingStartedApplication {
                                     SharingCriteriaRules+="<members>"+n.getFullName()+"</members>\n";
                                     csvRows+=n.getFullName()+","+"SharingCriteriaRule\n";
                                 }
-				      else if(n.getFileName().startsWith("moderation/")){
-                                    moderation+="<members>"+n.getFullName()+"</members>\n";
-                                    csvRows+=n.getFullName()+","+"KeywordList\n";
-                                }
-				      else if(n.getFileName().startsWith("permissionsets/")){
+				          else if(n.getFileName().startsWith("permissionsets/")){
                                 permissionsets+="<members>"+n.getFullName()+"</members>\n";
                                csvRows+=n.getFullName()+","+"PermissionSet\n";
                                 }
@@ -837,6 +854,18 @@ public class GettingStartedApplication {
 				      else if(n.getFileName().startsWith("layouts/")){
                                     layouts+="<members>"+n.getFullName()+"</members>\n";
                                     csvRows+=n.getFullName()+","+"Layout\n";
+                                }
+				      else if(n.getFileName().startsWith("pages/")){
+                                    pages+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Apex Page\n";
+                                }
+					     else if(n.getFileName().startsWith("components/")){
+                                    components+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Apex Component\n";
+                                }
+				       else if(n.getFileName().startsWith("classes/")){
+                                    classes+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Apex Class\n";
                                 }
                                
 		  }
