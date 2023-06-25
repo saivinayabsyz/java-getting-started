@@ -123,6 +123,7 @@ public class GettingStartedApplication {
 	public String permissionsetgroups="";
 	public String namedCredentials="";
 	public String notificationtypes="";
+	public String components="";
 	
 	
 
@@ -616,6 +617,7 @@ public class GettingStartedApplication {
         groups = "";
         sharingSets = "";
         layouts = "";
+		 components="";
 		 pages = "";
 		 components= "";
 		 classes="";
