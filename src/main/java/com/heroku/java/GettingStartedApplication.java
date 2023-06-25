@@ -171,7 +171,7 @@ public class GettingStartedApplication {
     		 FileProperties[] lmr = metadataConnection.listMetadata(
     		    Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
 			  showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-		/*metadataComponents = new ArrayList<String>();
+		metadataComponents = new ArrayList<String>();
 		lmqList = new ArrayList<ListMetadataQuery>();  
 		
 	    	metadataComponents.add("AssignmentRule");
@@ -350,7 +350,7 @@ public class GettingStartedApplication {
                      lmr =  metadataConnection.listMetadata(
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
                           showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
-*/
+
 		 metadataComponents = new ArrayList<String>();
                     lmqList = new ArrayList<ListMetadataQuery>();  
                     metadataComponents.add("ReportFolder");
@@ -363,7 +363,7 @@ public class GettingStartedApplication {
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
                           showReportomponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);
 
-		/*  metadataComponents = new ArrayList<String>();
+		 metadataComponents = new ArrayList<String>();
                     lmqList = new ArrayList<ListMetadataQuery>();  
                     metadataComponents.add("DashboardFolder");
                         for (String string : metadataComponents) {
@@ -373,7 +373,7 @@ public class GettingStartedApplication {
                         }    
                      lmr =  metadataConnection.listMetadata(
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
-                          showDashboardComponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);*/
+                          showDashboardComponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);
 		 
               if(assignmentRules!=null && assignmentRules.length()!=0)
               packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
