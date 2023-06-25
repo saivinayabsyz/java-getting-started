@@ -108,8 +108,24 @@ public class GettingStartedApplication {
         public String sharingSets = "";
         public String layouts = "";
 	 public String pages = "";
-	public String components = "";
 	public String classes = "";
+	public String labels = "";
+	public String profiles = "";
+	public String triggers = "";
+	public String staticresources = "";
+	public String aura = "";
+	public String dataSources="";
+	public String lwc="";
+	public String restrictionRules="";
+	public String permissionsetgroups="";
+	public String namedCredentials="";
+	public String notificationtypes="";
+	public String permissionsetgroups="";
+	public String namedCredentials="";
+	public String notificationtypes="";
+	
+	
+
     @Autowired
     public GettingStartedApplication(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -357,7 +373,51 @@ public class GettingStartedApplication {
 
 		  metadataComponents = new ArrayList<String>();
                     lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("ApexTrigger");
+		 metadataComponents.add("StaticResource");
+		 metadataComponents.add("AuraDefinitionBundle");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
                     metadataComponents.add("ApexClass");
+		 metadataComponents.add("CustomLabel");
+		 metadataComponents.add("Profile");
+		        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		  metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("ExternalDataSource");
+		 metadataComponents.add("LightningComponentBundle");
+		 metadataComponents.add("RestrictionRule");
+		        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showMetaDataComponents(lmr,userID,fromDateValue,toDateValue);
+
+		 metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("CustomNotificationType");
+		 metadataComponents.add("PermissionSetGroup");
+		 metadataComponents.add("NamedCredential");
 		        for (String string : metadataComponents) {
                              query = new ListMetadataQuery();
                              query.setType(string);
@@ -391,6 +451,18 @@ public class GettingStartedApplication {
                             Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
                           showDashboardComponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);
 		 
+		 metadataComponents = new ArrayList<String>();
+                    lmqList = new ArrayList<ListMetadataQuery>();  
+                    metadataComponents.add("DocumentFolder");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+                             lmqList.add(query);        		 
+                        }    
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+                          showDashboardComponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);
+		 showDocumentComponents(lmr,userID,fromDateValue,toDateValue,metadataConnection);
               if(assignmentRules!=null && assignmentRules.length()!=0)
               packageXMLString+="<types>\n"+assignmentRules+"<name>AssignmentRule</name>\n</types>\n";
               if(emailservices!=null && emailservices.length()!=0)
@@ -471,6 +543,28 @@ public class GettingStartedApplication {
 			 packageXMLString+="<types>\n"+components+"<name>ApexComponent</name>\n</types>\n";
 		 if(classes!=null && classes.length()!=0)
 			 packageXMLString+="<types>\n"+classes+"<name>ApexClass</name>\n</types>\n";
+		 if(labels!=null && labels.length()!=0)
+			 packageXMLString+="<types>\n"+labels+"<name>CustomLabel</name>\n</types>\n";
+		 if(profiles!=null && profiles.length()!=0)
+			 packageXMLString+="<types>\n"+profiles+"<name>Profile</name>\n</types>\n";
+		  if(triggers!=null && triggers.length()!=0)
+			 packageXMLString+="<types>\n"+triggers+"<name>ApexTrigger</name>\n</types>\n";
+		 if(staticresources!=null && staticresources.length()!=0)
+			 packageXMLString+="<types>\n"+staticresources+"<name>StaticResource</name>\n</types>\n";
+		 if(aura!=null && aura.length()!=0)
+			 packageXMLString+="<types>\n"+aura+"<name>AuraDefinitionBundle</name>\n</types>\n";
+		 if(dataSources!=null && dataSources.length()!=0)
+			 packageXMLString+="<types>\n"+dataSources+"<name>ExternalDataSource</name>\n</types>\n";
+		 if(lwc!=null && lwc.length()!=0)
+			 packageXMLString+="<types>\n"+lwc+"<name>LightningComponentBundle</name>\n</types>\n";
+		 if(restrictionRules!=null && restrictionRules.length()!=0)
+			 packageXMLString+="<types>\n"+restrictionRules+"<name>RestrictionRule</name>\n</types>\n";
+		  if(permissionsetgroups!=null && permissionsetgroups.length()!=0)
+			 packageXMLString+="<types>\n"+permissionsetgroups+"<name>PermissionSetGroup</name>\n</types>\n";
+		 if(namedCredentials!=null && namedCredentials.length()!=0)
+			 packageXMLString+="<types>\n"+namedCredentials+"<name>NamedCredential</name>\n</types>\n";
+		 if(notificationtypes!=null && notificationtypes.length()!=0)
+			 packageXMLString+="<types>\n"+notificationtypes+"<name>CustomNotificationType</name>\n</types>\n";
 		 
 		insertPakageXML(userID,  fromDate,  toDate,  sessionId); 
 		 packageXMLString = "";
@@ -525,6 +619,17 @@ public class GettingStartedApplication {
 		 pages = "";
 		 components= "";
 		 classes="";
+		 labels= "";
+		 profiles="";
+		 staticresources="";
+		 triggers= "";
+		 aura="";
+		 dataSources="";
+		 lwc="";
+		 restrictionRules="";
+		 permissionsetgroups="";
+		 namedCredentials="";
+		 notificationtypes="";
     		
     		} catch (ConnectionException ce) {
     		 	ce.printStackTrace();
@@ -535,6 +640,81 @@ public class GettingStartedApplication {
         System.out.println("\n Error: \n" +ex.getMessage());
     }  
     }
+
+	 public  void showDocumentComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
+	String documents="";
+	 double asOfVersion = 58.0;
+	 if (lmr != null) {
+	      for (FileProperties n : lmr) {
+		      Date dj = n.getLastModifiedDate().getTime();
+		       String lastModifiedById = n.getLastModifiedById();
+		      int yearValue = dj.getYear()+1900;
+		      int month = dj.getMonth()+1;
+		      try{
+	              SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			      Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
+			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 userID.equals(lastModifiedById)
+				){
+		       System.out.println("satisfied records "+n.getFullName()+" files "+n.getFileName());
+				     if(n.getFileName().startsWith("documents/")){
+				      documents+="<members>"+n.getFullName()+"</members>\n";
+					  csvRows+=n.getFullName()+","+"Document Folder\n";
+				     }
+				}
+					  ListMetadataQuery query = new ListMetadataQuery();
+					  ArrayList<String>  metadataComponents = new ArrayList<String>();
+                      ArrayList<ListMetadataQuery> lmqList = new ArrayList<ListMetadataQuery>();  
+                      metadataComponents.add("Document");
+                        for (String string : metadataComponents) {
+                             query = new ListMetadataQuery();
+                             query.setType(string);
+				             query.setFolder(n.getFullName());
+                             lmqList.add(query);        		 
+                        } 
+                        try{
+                     lmr =  metadataConnection.listMetadata(
+                            Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length,ListMetadataQuery[].class), asOfVersion);
+
+ if (lmr != null) {
+	      for (FileProperties n2 : lmr) {
+		       dj = n2.getLastModifiedDate().getTime();
+		        lastModifiedById = n2.getLastModifiedById();
+		       yearValue = dj.getYear()+1900;
+		       month = dj.getMonth()+1;
+		      try{
+	 formatter = new SimpleDateFormat("dd/MM/yyyy");
+			       actualDate = formatter.parse(n2.getLastModifiedDate().get(Calendar.DAY_OF_MONTH)+"/"+month+"/"+yearValue);
+			      System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n);
+			      if(  (actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) && 
+			    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+				 userID.equals(lastModifiedById)
+				){
+				     if(n2.getFileName().startsWith("documents/")){
+				      documents+="<members>"+n2.getFullName()+"</members>\n";
+					      csvRows+=n2.getFullName()+","+"Document\n";
+				     }
+				}
+		      }
+		      catch (ParseException e) {e.printStackTrace();}
+	      }
+ }
+				     }
+ catch (ConnectionException ce) {
+    		 	ce.printStackTrace();
+    	 	}
+				      }
+			      
+		      
+		      catch (ParseException e) {e.printStackTrace();}
+	      }
+	  }
+	  System.out.println("documents "+documents);
+	   if(documents!=null && documents.length()!=0)
+			 packageXMLString+="<types>\n"+documents+"<name>Document</name>\n</types>\n";
+ }
 
  public  void showDashboardComponents(FileProperties[] lmr,String userID, Date fromDateValue,Date toDateValue,MetadataConnection metadataConnection){
 	String dashboards="";
@@ -867,6 +1047,14 @@ public class GettingStartedApplication {
 				       else if(n.getFileName().startsWith("classes/")){
                                     classes+="<members>"+n.getFullName()+"</members>\n";
                                     csvRows+=n.getFullName()+","+"Apex Class\n";
+                                }
+				      else if(n.getFileName().startsWith("labels/")){
+                                    labels+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Custom Label\n";
+                                }
+				       else if(n.getFileName().startsWith("profiles/")){
+                                    profiles+="<members>"+n.getFullName()+"</members>\n";
+                                    csvRows+=n.getFullName()+","+"Profile\n";
                                 }
                                
 		  }
