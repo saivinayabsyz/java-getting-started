@@ -318,7 +318,7 @@ public class GettingStartedApplication {
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("ModerationRule");
         metadataComponents.add("SiteDotCom");
-        metadataComponents.add("EntitlementProcess");
+     //   metadataComponents.add("EntitlementProcess");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
