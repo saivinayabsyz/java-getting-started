@@ -145,11 +145,8 @@ public class GettingStartedApplication {
     })
   @ResponseStatus(HttpStatus.CREATED)
   public void createHotel(@RequestBody AuthParams metadataparams) {
-    System.out.print("Hello!");
-    System.out.println("Hello, logs!");
     // System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken);
     fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate);
-    System.out.print("Hello!");
     //  response.getWriter().write(hotel.accessToken);  
 
   }
@@ -159,7 +156,6 @@ public class GettingStartedApplication {
     metadataConfig.setServiceEndpoint(endpoint);
     // shove the partner's session id into the metadata configuration then connect
     metadataConfig.setSessionId(sessionId);
-    System.out.println("sessionid" + sessionId);
     String[] arrOfFromDate = fromDate.split("-");
     String[] arrOfToDate = toDate.split("-");
     Date fromDateValue = new Date();
@@ -701,12 +697,10 @@ public class GettingStartedApplication {
         try {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
           Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-          System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
           if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
           ) {
-            System.out.println("satisfied records " + n.getFullName() + " files " + n.getFileName());
             if (n.getFileName().startsWith("documents/")) {
               documents += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Document Folder\n";
@@ -735,7 +729,6 @@ public class GettingStartedApplication {
                 try {
                   formatter = new SimpleDateFormat("dd/MM/yyyy");
                   actualDate = formatter.parse(n2.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-                  System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
                   if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
                     (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
                     userID.equals(lastModifiedById)
@@ -758,7 +751,6 @@ public class GettingStartedApplication {
         }
       }
     }
-    System.out.println("documents " + documents);
     if (documents != null && documents.length() != 0)
       packageXMLString += "<types>\n" + documents + "<name>Document</name>\n</types>\n";
   }
@@ -773,7 +765,6 @@ public class GettingStartedApplication {
         try {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
           Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-          System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
           if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
@@ -801,7 +792,6 @@ public class GettingStartedApplication {
         try {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
           Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-          System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
           if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
@@ -834,12 +824,10 @@ public class GettingStartedApplication {
         try {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
           Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-          System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
           if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
           ) {
-            System.out.println("satisfied records " + n.getFullName() + " files " + n.getFileName());
             if (n.getFileName().startsWith("dashboards/")) {
               dashboards += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Dashboard Folder\n";
@@ -868,7 +856,6 @@ public class GettingStartedApplication {
                 try {
                   formatter = new SimpleDateFormat("dd/MM/yyyy");
                   actualDate = formatter.parse(n2.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-                  System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
                   if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
                     (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
                     userID.equals(lastModifiedById)
@@ -891,7 +878,6 @@ public class GettingStartedApplication {
         }
       }
     }
-    System.out.println("dashboards " + dashboards);
     if (dashboards != null && dashboards.length() != 0)
       packageXMLString += "<types>\n" + dashboards + "<name>Dashboard</name>\n</types>\n";
   }
@@ -908,12 +894,10 @@ public class GettingStartedApplication {
         try {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
           Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-          System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
           if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
           ) {
-            System.out.println("satisfied records " + n.getFullName() + " files " + n.getFileName());
             if (n.getFileName().startsWith("reports/")) {
               reports += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "ReportFolder\n";
@@ -942,7 +926,6 @@ public class GettingStartedApplication {
                 try {
                   formatter = new SimpleDateFormat("dd/MM/yyyy");
                   actualDate = formatter.parse(n2.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-                  System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
                   if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
                     (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
                     userID.equals(lastModifiedById)
@@ -965,7 +948,6 @@ public class GettingStartedApplication {
         }
       }
     }
-    System.out.println("reports " + reports);
     if (reports != null && reports.length() != 0)
       packageXMLString += "<types>\n" + reports + "<name>Report</name>\n</types>\n";
   }
@@ -980,13 +962,10 @@ public class GettingStartedApplication {
         try {
           SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
           Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
-          System.out.println("fromDateValue " + fromDateValue + "toDateValue " + toDateValue + " actualDate " + actualDate + n);
           if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
           ) {
-            //	System.out.println("fromDateValue "+fromDateValue+"toDateValue "+toDateValue+" actualDate "+actualDate+n.getFullName());
-            System.out.println("satisfied records " + n.getFullName() + " files " + n.getFileName());
             if (n.getFileName().startsWith("userCriteria/")) {
               userCriterias += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "User Criteria\n";
