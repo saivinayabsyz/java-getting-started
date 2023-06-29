@@ -145,7 +145,7 @@ public class GettingStartedApplication {
     })
   @ResponseStatus(HttpStatus.CREATED)
   public void createHotel(@RequestBody AuthParams metadataparams) {
-    // System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken);
+    // System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken);
     fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate);
     //  response.getWriter().write(hotel.accessToken);  
 
@@ -778,7 +778,7 @@ FileProperties[] lmr;
         if (workflowFieldUpdates != null && workflowFieldUpdates.length() != 0)
           packageXMLString += "<types>\n" + workflowFieldUpdates + "<name>WorkflowFieldUpdate</name>\n</types>\n";
 
-        insertPakageXML(userID, fromDate, toDate, sessionId);
+        insertPakageXML(userID, fromDate, toDate, metadataparams.packageXMLAccessToken);
         packageXMLString = "";
         csvRows = "";
         customTab = "";
