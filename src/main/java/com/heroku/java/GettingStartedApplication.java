@@ -190,6 +190,9 @@ FileProperties[] lmr;
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+          System.out.println("sites "+sites);  
+           System.out.println("duplicateRules "+duplicateRules);  
+           System.out.println("emailservices "+emailservices);  
 }
            catch(Exception e)  
         {  
@@ -212,6 +215,9 @@ FileProperties[] lmr;
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+           System.out.println("assignmentRules "+assignmentRules);  
+          System.out.println("audience "+audience);  
+          System.out.println("flows "+flows);  
 }
            catch(Exception e)  
         {  
@@ -234,6 +240,9 @@ FileProperties[] lmr;
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+           System.out.println("flowDefinitions "+flowDefinitions);  
+          System.out.println("queues "+queues);  
+          System.out.println("communities "+communities);  
 }
            catch(Exception e)  
         {  
@@ -252,9 +261,18 @@ FileProperties[] lmr;
           lmqList.add(query);
         }
 
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+               System.out.println("escalationRules "+escalationRules);  
+          System.out.println("experiences "+experiences);  
+          System.out.println("installedPackages "+installedPackages);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -268,9 +286,19 @@ FileProperties[] lmr;
           lmqList.add(query);
         }
 
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+             System.out.println("managedContentTypeBundles "+managedContentTypeBundles);  
+          System.out.println("objectListViews "+objectListViews);  
+          System.out.println("matchingRules "+matchingRules);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -282,9 +310,18 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+             System.out.println("managedTopics "+managedTopics);  
+          System.out.println("navigationMenus "+navigationMenus);  
+          System.out.println("networks "+networks);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -296,9 +333,18 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+               System.out.println("sharingRules "+sharingRules);  
+          System.out.println("customTab "+customTab);  
+          System.out.println("networkBranding "+networkBranding);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -310,9 +356,19 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+              System.out.println("profilePasswordPolicies "+profilePasswordPolicies);  
+          System.out.println("profileSessionSettings "+profileSessionSettings);  
+          System.out.println("notificationTypeConfig "+notificationTypeConfig);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -324,9 +380,19 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+              System.out.println("remoteSiteSettings "+remoteSiteSettings);  
+          System.out.println("quickActions "+quickActions);  
+          System.out.println("reportTypes "+reportTypes);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -338,9 +404,19 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+             System.out.println("ModerationRules "+ModerationRules);  
+          System.out.println("siteDotComSites "+siteDotComSites);  
+        
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -352,9 +428,17 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+          try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+              System.out.println("flexipages "+flexipages);  
+          System.out.println("SharingCriteriaRules "+SharingCriteriaRules);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -366,9 +450,19 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+          try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+             System.out.println("permissionsets "+permissionsets);  
+          System.out.println("groups "+groups);  
+            System.out.println("sharingSets "+sharingSets);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -380,9 +474,19 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+              System.out.println("layouts "+layouts);  
+          System.out.println("pages "+pages);  
+            System.out.println("components "+components);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -394,9 +498,18 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+                System.out.println("staticresources "+staticresources);  
+          System.out.println("triggers "+triggers);  
+            System.out.println("aura "+aura);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -408,9 +521,18 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+           try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+                System.out.println("classes "+classes);  
+          System.out.println("labels "+labels);  
+            System.out.println("profiles "+profiles);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -422,9 +544,18 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+          try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+          System.out.println("dataSources "+dataSources);  
+          System.out.println("lwc "+lwc);  
+            System.out.println("restrictionRules "+restrictionRules);    
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -436,9 +567,19 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+          try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+             System.out.println("notificationtypes "+notificationtypes);  
+          System.out.println("permissionsetgroups "+permissionsetgroups);  
+            System.out.println("workflowFieldUpdates "+workflowFieldUpdates);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -450,9 +591,19 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+          try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+             System.out.println("autoResponseRules "+autoResponseRules);  
+          System.out.println("workflows "+workflows);  
+            System.out.println("homePageLayouts "+homePageLayouts);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
