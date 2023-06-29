@@ -208,7 +208,6 @@ FileProperties[] lmr;
           lmqList.add(query);
         }
 
-        FileProperties[] lmr;
         try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
@@ -231,7 +230,6 @@ FileProperties[] lmr;
           lmqList.add(query);
         }
 
-        FileProperties[] lmr;
         try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
