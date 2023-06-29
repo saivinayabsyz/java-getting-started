@@ -185,10 +185,15 @@ public class GettingStartedApplication {
           query.setType(string);
           lmqList.add(query);
         }
-
+try{
         FileProperties[] lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
 
@@ -202,9 +207,15 @@ public class GettingStartedApplication {
           lmqList.add(query);
         }
 
-        lmr = metadataConnection.listMetadata(
+        try{
+        FileProperties[] lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -218,9 +229,15 @@ public class GettingStartedApplication {
           lmqList.add(query);
         }
 
-        lmr = metadataConnection.listMetadata(
+        try{
+        FileProperties[] lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
