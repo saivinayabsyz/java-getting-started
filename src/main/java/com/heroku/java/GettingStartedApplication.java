@@ -185,8 +185,9 @@ public class GettingStartedApplication {
           query.setType(string);
           lmqList.add(query);
         }
-try{
-        FileProperties[] lmr = metadataConnection.listMetadata(
+FileProperties[] lmr;
+        try{
+        lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
 }
@@ -207,8 +208,9 @@ try{
           lmqList.add(query);
         }
 
+        FileProperties[] lmr;
         try{
-        FileProperties[] lmr = metadataConnection.listMetadata(
+        lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
 }
@@ -229,8 +231,9 @@ try{
           lmqList.add(query);
         }
 
+        FileProperties[] lmr;
         try{
-        FileProperties[] lmr = metadataConnection.listMetadata(
+        lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
 }
