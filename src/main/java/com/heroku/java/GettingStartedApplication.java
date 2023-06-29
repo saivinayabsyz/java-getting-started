@@ -146,12 +146,12 @@ public class GettingStartedApplication {
   @ResponseStatus(HttpStatus.CREATED)
   public void createHotel(@RequestBody AuthParams metadataparams) {
     // System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken);
-    fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate);
+    fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate,metadataparams.packageXMLAccessToken);
     //  response.getWriter().write(hotel.accessToken);  
 
   }
 
-  public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate) {
+  public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate, String packageXMLAccessToken) {
     ConnectorConfig metadataConfig = new ConnectorConfig();
     metadataConfig.setServiceEndpoint(endpoint);
     // shove the partner's session id into the metadata configuration then connect
@@ -778,7 +778,7 @@ FileProperties[] lmr;
         if (workflowFieldUpdates != null && workflowFieldUpdates.length() != 0)
           packageXMLString += "<types>\n" + workflowFieldUpdates + "<name>WorkflowFieldUpdate</name>\n</types>\n";
 
-        insertPakageXML(userID, fromDate, toDate, metadataparams.packageXMLAccessToken);
+        insertPakageXML(userID, fromDate, toDate, packageXMLAccessToken);
         packageXMLString = "";
         csvRows = "";
         customTab = "";
