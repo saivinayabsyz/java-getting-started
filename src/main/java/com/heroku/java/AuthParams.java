@@ -22,6 +22,8 @@ public class AuthParams {
     String fromDate;
 	@Column()
     String toDate;
+	@Column()
+    String packageXMLAccessToken;
 
    
     public AuthParams() {
@@ -29,9 +31,15 @@ public class AuthParams {
 public String getaccessToken() {
         return accessToken;
     }
+	public String getpackageXMLAccessToken() {
+        return packageXMLAccessToken;
+    }
 
     public void setaccessToken(String accessToken) {
         this.accessToken = accessToken;
+    }
+	public void setpackageXMLAccessToken(String packageXMLAccessToken) {
+        this.packageXMLAccessToken = packageXMLAccessToken;
     }
 	
 	public String getorgURL() {
@@ -68,12 +76,13 @@ public String getaccessToken() {
         this.toDate = toDate;
     }
 	
-    public AuthParams(String accessToken, String orgURL, String userID,String fromDate,String toDate) {
+    public AuthParams(String accessToken, String orgURL, String userID,String fromDate,String toDate, String packageXMLAccessToken) {
         this.accessToken = accessToken;
         this.orgURL = orgURL;
         this.userID = userID;
 		 this.fromDate = fromDate;
         this.toDate = toDate;
+	    this.packageXMLAccessToken = packageXMLAccessToken;
     }
     
 }
