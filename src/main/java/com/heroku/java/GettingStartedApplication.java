@@ -398,6 +398,7 @@ FileProperties[] lmr;
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("ModerationRule");
         metadataComponents.add("SiteDotCom");
+          metadataComponents.add("ConnectedApp");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
