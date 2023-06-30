@@ -87,7 +87,6 @@ public class GettingStartedApplication {
   public String quickActions = "";
   public String reportTypes = "";
   public String ModerationRules = "";
-  public String topicsForObjects = "";
   public String siteDotComSites = "";
   public String entitlementProcesses = "";
   public String flexipages = "";
@@ -840,7 +839,6 @@ FileProperties[] lmr;
         quickActions = "";
         reportTypes = "";
         ModerationRules = "";
-        topicsForObjects = "";
         siteDotComSites = "";
         entitlementProcesses = "";
         flexipages = "";
