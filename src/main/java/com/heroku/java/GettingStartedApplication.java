@@ -398,7 +398,6 @@ FileProperties[] lmr;
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("ModerationRule");
         metadataComponents.add("SiteDotCom");
-     //   metadataComponents.add("EntitlementProcess");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -417,11 +416,29 @@ FileProperties[] lmr;
             System.out.println(e);  
         }  
 
+         metadataComponents = new ArrayList < String > ();
+        lmqList = new ArrayList < ListMetadataQuery > ();
+        metadataComponents.add("EntitlementProcess");
+        for (String string: metadataComponents) {
+          query = new ListMetadataQuery();
+          query.setType(string);
+          lmqList.add(query);
+        }
+           try{
+        lmr = metadataConnection.listMetadata(
+          Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
+        showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
+             System.out.println("EntitlementProcess "+EntitlementProcess);  
+}
+           catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("FlexiPage");
-        // metadataComponents.add("KeywordList");
         metadataComponents.add("SharingCriteriaRule");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
