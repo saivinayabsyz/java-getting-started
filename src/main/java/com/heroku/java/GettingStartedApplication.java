@@ -8,7 +8,7 @@ import com.heroku.java.AuthParams;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -123,6 +123,7 @@ public class GettingStartedApplication {
   public String autoResponseRules = "";
   public String workflowRules = "";
   public String workflowFieldUpdates = "";
+  public Set<String> workflowSet = new HashSet<String>();
 
   @Autowired
   public GettingStartedApplication(DataSource dataSource) {
@@ -795,7 +796,18 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + workflowRules + "<name>WorkflowRule</name>\n</types>\n";
         if (workflowFieldUpdates != null && workflowFieldUpdates.length() != 0)
           packageXMLString += "<types>\n" + workflowFieldUpdates + "<name>WorkflowFieldUpdate</name>\n</types>\n";
-
+         Iterator<String> i = workflowSet.iterator();
+        String workflowSetString;
+        // It holds true till there is a single element
+        // remaining in the object
+        while (i.hasNext()){
+          workflowSetString ="<members>"+ i.next()+"</members>";
+           csvRows +=  i.next() + "," + "Workflow\n";
+        }
+        if (workflowSetString != null && workflowSetString.length() != 0)
+          packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
+            
+        
         insertPakageXML(userID, fromDate, toDate, packageXMLAccessToken);
         packageXMLString = "";
         csvRows = "";
@@ -959,6 +971,7 @@ FileProperties[] lmr;
             if (n.getFileName().startsWith("workflows/")) {
               workflowFieldUpdates += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Workflow Field Updates\n";
+              workflowSet.add(n.getFullName().split(".")[0]);
             }
 
           }
@@ -988,6 +1001,7 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "NamedCredentials\n";
             } else if (n.getFileName().startsWith("workflows/")) {
               workflowRules += "<members>" + n.getFullName() + "</members>\n";
+              workflowSet.add(n.getFullName().split(".")[0]);
               csvRows += n.getFullName() + "," + "Workflows\n";
             }
 
