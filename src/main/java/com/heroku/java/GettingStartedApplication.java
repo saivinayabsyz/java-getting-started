@@ -428,7 +428,7 @@ FileProperties[] lmr;
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showMetaDataComponents(lmr, userID, fromDateValue, toDateValue);
-             System.out.println("EntitlementProcess "+EntitlementProcess);  
+             System.out.println("entitlementProcesses "+entitlementProcesses);  
 }
            catch(Exception e)  
         {  
