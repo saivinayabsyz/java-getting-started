@@ -131,6 +131,7 @@ public class GettingStartedApplication {
   public String workflowOutBoundMessages = "";
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
+ 
 public static void main(String[] args) {
     SpringApplication.run(GettingStartedApplication.class, args);
   }
@@ -747,6 +748,19 @@ FileProperties[] lmr;
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showDocumentComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
+
+        metadataComponents = new ArrayList < String > ();
+        lmqList = new ArrayList < ListMetadataQuery > ();
+        metadataComponents.add("EmailFolder");
+        for (String string: metadataComponents) {
+          query = new ListMetadataQuery();
+          query.setType(string);
+          lmqList.add(query);
+        }
+        
+        lmr = metadataConnection.listMetadata(
+          Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
+        showEmailFolderComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
        
 
             if (assignmentRules != null && assignmentRules.length() != 0)
@@ -869,7 +883,7 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + escalationRuleObject + "<name>EscalationRule</name>\n</types>\n";
           if (assignmentRulesObject != null && assignmentRulesObject.length() != 0)
           packageXMLString += "<types>\n" + assignmentRulesObject + "<name>AssignmentRules</name>\n</types>\n";
-
+      =
          String workflowSetString="";
          System.out.println("workflowSet 843"+workflowSet); 
          Iterator<String> i = workflowSet.iterator();
@@ -959,7 +973,7 @@ FileProperties[] lmr;
         escalationRuleObject="";
         assignmentRulesObject = "";
         workflowOutBoundMessages="";
-
+     =
       } catch (ConnectionException ce) {
         ce.printStackTrace();
       }
@@ -969,6 +983,78 @@ FileProperties[] lmr;
     }
   }
 
+
+ public void showEmailFolderComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue, MetadataConnection metadataConnection) {
+    String emailTemplates = "";
+    double asOfVersion = 58.0;
+    if (lmr != null) {
+      for (FileProperties n: lmr) {
+        if(includePackaged || n.getManageableState().toString() != "installed"){
+        Date dj = n.getLastModifiedDate().getTime();
+        String lastModifiedById = n.getLastModifiedById();
+        int yearValue = dj.getYear() + 1900;
+        int month = dj.getMonth() + 1;
+        try {
+          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+          Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
+          if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
+            (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+            userID.equals(lastModifiedById)
+          ) {
+            if (n.getFileName().startsWith("email/")) {
+              emailTemplates += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "Document Folder\n";
+            }
+          }
+          ListMetadataQuery query = new ListMetadataQuery();
+          ArrayList < String > metadataComponents = new ArrayList < String > ();
+          ArrayList < ListMetadataQuery > lmqList = new ArrayList < ListMetadataQuery > ();
+          metadataComponents.add("EmailTemplate");
+          for (String string: metadataComponents) {
+            query = new ListMetadataQuery();
+            query.setType(string);
+            query.setFolder(n.getFullName());
+            lmqList.add(query);
+          }
+          try {
+            lmr = metadataConnection.listMetadata(
+              Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
+
+            if (lmr != null) {
+              for (FileProperties n2: lmr) {
+                dj = n2.getLastModifiedDate().getTime();
+                lastModifiedById = n2.getLastModifiedById();
+                yearValue = dj.getYear() + 1900;
+                month = dj.getMonth() + 1;
+                try {
+                  formatter = new SimpleDateFormat("dd/MM/yyyy");
+                  actualDate = formatter.parse(n2.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
+                  if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
+                    (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+                    userID.equals(lastModifiedById)
+                  ) {
+                    if (n2.getFileName().startsWith("email/")) {
+                      emailTemplates += "<members>" + n2.getFullName() + "</members>\n";
+                      csvRows += n2.getFullName() + "," + "Email Template\n";
+                    }
+                  }
+                } catch (ParseException e) {
+                  e.printStackTrace();
+                }
+              }
+            }
+          } catch (ConnectionException ce) {
+            ce.printStackTrace();
+          }
+        } catch (ParseException e) {
+          e.printStackTrace();
+        }
+        }
+      }
+    }
+    if (emailTemplates != null && emailTemplates.length() != 0)
+      packageXMLString += "<types>\n" + emailTemplates + "<name>EmailTemplate</name>\n</types>\n";
+  }
   
    public void showEscalationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
