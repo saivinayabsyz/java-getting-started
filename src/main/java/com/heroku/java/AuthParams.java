@@ -24,6 +24,8 @@ public class AuthParams {
     String toDate;
 	@Column()
     String packageXMLAccessToken;
+	@Column()
+    String includePackaged;
 
    
     public AuthParams() {
@@ -37,6 +39,13 @@ public String getaccessToken() {
 
     public void setaccessToken(String accessToken) {
         this.accessToken = accessToken;
+    }
+	public String getincludePackaged() {
+        return includePackaged;
+    }
+
+    public void setincludePackaged(String accessToken) {
+        this.includePackaged = includePackaged;
     }
 	public void setpackageXMLAccessToken(String packageXMLAccessToken) {
         this.packageXMLAccessToken = packageXMLAccessToken;
@@ -76,13 +85,14 @@ public String getaccessToken() {
         this.toDate = toDate;
     }
 	
-    public AuthParams(String accessToken, String orgURL, String userID,String fromDate,String toDate, String packageXMLAccessToken) {
+    public AuthParams(String accessToken, String orgURL, String userID,String fromDate,String toDate, String packageXMLAccessToken, String includePackaged) {
         this.accessToken = accessToken;
         this.orgURL = orgURL;
         this.userID = userID;
 		 this.fromDate = fromDate;
         this.toDate = toDate;
 	    this.packageXMLAccessToken = packageXMLAccessToken;
+	    this.includePackaged = includePackaged;
     }
     
 }
