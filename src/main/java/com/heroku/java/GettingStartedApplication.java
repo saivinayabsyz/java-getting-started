@@ -129,6 +129,7 @@ public class GettingStartedApplication {
   public String assignmentRulesObject = "";
   public String workflowOutBoundMessages = "";
   public Set<String> workflowSet = new HashSet<String>();
+  public boolean includePackaged="";
 
   @Autowired
   public GettingStartedApplication(DataSource dataSource) {
@@ -152,6 +153,7 @@ public class GettingStartedApplication {
   @ResponseStatus(HttpStatus.CREATED)
   public void createHotel(@RequestBody AuthParams metadataparams) {
     // System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken);
+   includePackaged = Boolean.parseBoolean(metadataparams.includePackaged);  
     fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate,metadataparams.packageXMLAccessToken);
     //  response.getWriter().write(hotel.accessToken);  
 
@@ -968,6 +970,7 @@ FileProperties[] lmr;
    public void showEscalationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
+        if(includePackaged || n.getManageableState == 'installed'){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -995,6 +998,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+        }
         }
       }
     }
