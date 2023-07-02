@@ -808,8 +808,6 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + entitlementProcesses + "<name>EntitlementProcess</name>\n</types>\n";
         if (flexipages != null && flexipages.length() != 0)
           packageXMLString += "<types>\n" + flexipages + "<name>FlexiPage</name>\n</types>\n";
-        if (SharingCriteriaRules != null && SharingCriteriaRules.length() != 0)
-          packageXMLString += "<types>\n" + SharingCriteriaRules + "<name>SharingCriteriaRule</name>\n</types>\n";
         if (permissionsets != null && permissionsets.length() != 0)
           packageXMLString += "<types>\n" + permissionsets + "<name>PermissionSet</name>\n</types>\n";
         if (groups != null && groups.length() != 0)
@@ -1128,7 +1126,6 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "NamedCredentials\n";
             } else if (n.getFileName().startsWith("workflows/")) {
               workflowRules += "<members>" + n.getFullName() + "</members>\n";
-              System.out.println("split "+n.getFullName());  
               workflowSet.add(n.getFullName().split("[.]")[0]);
               csvRows += n.getFullName() + "," + "Workflow Rule\n";
             }
@@ -1399,10 +1396,7 @@ FileProperties[] lmr;
             } else if (n.getFileName().startsWith("flexipages/")) {
               flexipages += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "FlexiPage\n";
-            } else if (n.getFileName().startsWith("sharingRules/")) {
-              SharingCriteriaRules += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "SharingCriteriaRule\n";
-            } else if (n.getFileName().startsWith("permissionsets/")) {
+            }  else if (n.getFileName().startsWith("permissionsets/")) {
               permissionsets += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "PermissionSet\n";
             } else if (n.getFileName().startsWith("groups/")) {
