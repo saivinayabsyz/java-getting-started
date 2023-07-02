@@ -1088,7 +1088,7 @@ FileProperties[] lmr;
               workflowRules += "<members>" + n.getFullName() + "</members>\n";
               System.out.println("split "+n.getFullName());  
               workflowSet.add(n.getFullName().split("[.]")[0]);
-              csvRows += n.getFullName() + "," + "Workflows\n";
+              csvRows += n.getFullName() + "," + "Workflow Rule\n";
             }
             else if (n.getFileName().startsWith("sharingRules/")) {
               sharingCriteriaRules += "<members>" + n.getFullName() + "</members>\n";
