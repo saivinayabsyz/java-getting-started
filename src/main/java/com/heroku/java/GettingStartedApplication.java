@@ -4,6 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import com.heroku.java.AuthParams;package com.heroku.java;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
 import com.heroku.java.AuthParams;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -970,7 +976,7 @@ FileProperties[] lmr;
    public void showEscalationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
-        if(includePackaged || n.getManageableState().toString() == "installed"){
+        if(includePackaged || n.getManageableState().toString() != "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1009,6 +1015,7 @@ FileProperties[] lmr;
     double asOfVersion = 58.0;
     if (lmr != null) {
       for (FileProperties n: lmr) {
+        if(includePackaged || n.getManageableState().toString() != "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1068,6 +1075,7 @@ FileProperties[] lmr;
         } catch (ParseException e) {
           e.printStackTrace();
         }
+        }
       }
     }
     if (documents != null && documents.length() != 0)
@@ -1077,6 +1085,7 @@ FileProperties[] lmr;
   public void showWorkFlowFieldComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
+          if(includePackaged || n.getManageableState().toString() != "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1107,6 +1116,7 @@ FileProperties[] lmr;
         } catch (ParseException e) {
           e.printStackTrace();
         }
+          }
       }
     }
   }
@@ -1114,6 +1124,7 @@ FileProperties[] lmr;
   public void showWorkFlowComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
+          if(includePackaged || n.getManageableState().toString() != "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1142,6 +1153,7 @@ FileProperties[] lmr;
         } catch (ParseException e) {
           e.printStackTrace();
         }
+          }
       }
     }
   }
@@ -1151,6 +1163,7 @@ FileProperties[] lmr;
     double asOfVersion = 58.0;
     if (lmr != null) {
       for (FileProperties n: lmr) {
+          if(includePackaged || n.getManageableState().toString() != "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1210,6 +1223,7 @@ FileProperties[] lmr;
         } catch (ParseException e) {
           e.printStackTrace();
         }
+          }
       }
     }
     if (dashboards != null && dashboards.length() != 0)
@@ -1221,6 +1235,7 @@ FileProperties[] lmr;
     double asOfVersion = 58.0;
     if (lmr != null) {
       for (FileProperties n: lmr) {
+          if(includePackaged || n.getManageableState().toString() != "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1280,6 +1295,7 @@ FileProperties[] lmr;
         } catch (ParseException e) {
           e.printStackTrace();
         }
+          }
       }
     }
     if (reports != null && reports.length() != 0)
@@ -1290,6 +1306,7 @@ FileProperties[] lmr;
   public void showMetaDataComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
+          if(includePackaged || n.getManageableState().toString() != "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1464,6 +1481,7 @@ FileProperties[] lmr;
         } catch (ParseException e) {
           e.printStackTrace();
         }
+          }
 
       }
     }
@@ -1531,7 +1549,6 @@ FileProperties[] lmr;
     }
   }
 
-  public static void main(String[] args) {
-    SpringApplication.run(GettingStartedApplication.class, args);
-  }
+ 
 }
+
