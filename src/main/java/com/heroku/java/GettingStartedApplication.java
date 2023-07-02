@@ -883,7 +883,7 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + escalationRuleObject + "<name>EscalationRule</name>\n</types>\n";
           if (assignmentRulesObject != null && assignmentRulesObject.length() != 0)
           packageXMLString += "<types>\n" + assignmentRulesObject + "<name>AssignmentRules</name>\n</types>\n";
-      =
+      
          String workflowSetString="";
          System.out.println("workflowSet 843"+workflowSet); 
          Iterator<String> i = workflowSet.iterator();
