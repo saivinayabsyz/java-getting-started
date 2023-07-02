@@ -123,6 +123,7 @@ public class GettingStartedApplication {
   public String autoResponseRules = "";
   public String workflowRules = "";
   public String workflowFieldUpdates = "";
+  public String fieldSets = "";
   public Set<String> workflowSet = new HashSet<String>();
 
   @Autowired
@@ -640,6 +641,8 @@ FileProperties[] lmr;
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("WorkflowFieldUpdate");
+          metadataComponents.add("MatchingRules");
+          metadataComponents.add("FieldSet");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -684,19 +687,7 @@ FileProperties[] lmr;
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showDocumentComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
 
-        metadataComponents = new ArrayList < String > ();
-        lmqList = new ArrayList < ListMetadataQuery > ();
-        metadataComponents.add("MatchingRules");
-        for (String string: metadataComponents) {
-          query = new ListMetadataQuery();
-          query.setType(string);
-          lmqList.add(query);
-        }
-        lmr = metadataConnection.listMetadata(
-          Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
-        showMatchingRuleObject(lmr, userID, fromDateValue, toDateValue);
-        
-        if (assignmentRules != null && assignmentRules.length() != 0)
+            if (assignmentRules != null && assignmentRules.length() != 0)
           packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
         if (emailservices != null && emailservices.length() != 0)
           packageXMLString += "<types>\n" + emailservices + "<name>EmailServicesFunction</name>\n</types>\n";
@@ -810,6 +801,8 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + workflowFieldUpdates + "<name>WorkflowFieldUpdate</name>\n</types>\n";
          if (matchingRuleObject != null && matchingRuleObject.length() != 0)
           packageXMLString += "<types>\n" + matchingRuleObject + "<name>MatchingRules</name>\n</types>\n";
+         if (fieldSets != null && fieldSets.length() != 0)
+          packageXMLString += "<types>\n" + fieldSets + "<name>FieldSet</name>\n</types>\n";
          Iterator<String> i = workflowSet.iterator();
         String workflowSetString;
         // It holds true till there is a single element
@@ -888,6 +881,7 @@ FileProperties[] lmr;
         notificationtypes = "";
         workflowFieldUpdates = "";
         workflowRules = "";
+        fieldSets = "";
 
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -898,6 +892,7 @@ FileProperties[] lmr;
     }
   }
 
+  
    public void showMatchingRuleObject(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
@@ -912,10 +907,7 @@ FileProperties[] lmr;
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
           ) {
-            if (n.getFileName().startsWith("MatchingRules/")) {
-              matchingRuleObject += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "Matching Rules\n";
-            }
+           
 
           }
         } catch (ParseException e) {
@@ -1013,6 +1005,14 @@ FileProperties[] lmr;
               workflowFieldUpdates += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Workflow Field Updates\n";
               workflowSet.add(n.getFullName().split(".")[0]);
+            }
+             if (n.getFileName().startsWith("MatchingRules/")) {
+              matchingRuleObject += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "Matching Rules\n";
+            }
+            if (n.getFileName().startsWith("objects/")) {
+              fieldSets += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "FieldSet\n";
             }
 
           }
