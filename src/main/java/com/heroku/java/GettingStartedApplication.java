@@ -973,7 +973,7 @@ FileProperties[] lmr;
         escalationRuleObject="";
         assignmentRulesObject = "";
         workflowOutBoundMessages="";
-     =
+     
       } catch (ConnectionException ce) {
         ce.printStackTrace();
       }
