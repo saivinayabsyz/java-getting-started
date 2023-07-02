@@ -124,6 +124,7 @@ public class GettingStartedApplication {
   public String workflowRules = "";
   public String workflowFieldUpdates = "";
   public String fieldSets = "";
+  public String sharingCriteriaRules = "";
   public Set<String> workflowSet = new HashSet<String>();
 
   @Autowired
@@ -629,6 +630,7 @@ FileProperties[] lmr;
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("WorkflowRule");
         metadataComponents.add("NamedCredential");
+        metadataComponents.add("SharingCriteriaRule");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -640,6 +642,7 @@ FileProperties[] lmr;
         showWorkFlowComponents(lmr, userID, fromDateValue, toDateValue);
           System.out.println("workflowRules "+workflowRules); 
           System.out.println("namedCredentials "+namedCredentials); 
+           System.out.println("SharingCriteriaRule "+sharingCriteriaRules); 
         }
           catch(Exception e)  
         {  
@@ -833,6 +836,8 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + matchingRuleObject + "<name>MatchingRules</name>\n</types>\n";
          if (fieldSets != null && fieldSets.length() != 0)
           packageXMLString += "<types>\n" + fieldSets + "<name>FieldSet</name>\n</types>\n";
+          if (sharingCriteriaRules != null && sharingCriteriaRules.length() != 0)
+          packageXMLString += "<types>\n" + sharingCriteriaRules + "<name>SharingCriteriaRule</name>\n</types>\n";
         
          Iterator<String> i = workflowSet.iterator();
          System.out.println("workflowSet "+workflowSet);  
@@ -914,6 +919,7 @@ FileProperties[] lmr;
         workflowFieldUpdates = "";
         workflowRules = "";
         fieldSets = "";
+        sharingCriteriaRules = "";
 
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -1078,6 +1084,10 @@ FileProperties[] lmr;
               System.out.println("split "+n.getFullName());  
               workflowSet.add(n.getFullName().split("[.]")[0]);
               csvRows += n.getFullName() + "," + "Workflows\n";
+            }
+            else if (n.getFileName().startsWith("sharingRules/")) {
+              sharingCriteriaRules += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "SharingCriteriaRule\n";
             }
 
           }
