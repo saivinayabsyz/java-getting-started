@@ -686,7 +686,7 @@ FileProperties[] lmr;
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
-        metadataComponents.add("WorkflowFieldUpdate");
+        metadataComponents.add("MatchingRules");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
