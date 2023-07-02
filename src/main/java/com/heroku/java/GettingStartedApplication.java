@@ -152,8 +152,8 @@ public class GettingStartedApplication {
     })
   @ResponseStatus(HttpStatus.CREATED)
   public void createHotel(@RequestBody AuthParams metadataparams) {
-    // System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken);
-   includePackaged = Boolean.parseBoolean(metadataparams.includePackaged);  
+    System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken+metadataparams.includePackaged);
+   includePackaged = Boolean.valueOf(metadataparams.includePackaged);  
     fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate,metadataparams.packageXMLAccessToken);
     //  response.getWriter().write(hotel.accessToken);  
 
