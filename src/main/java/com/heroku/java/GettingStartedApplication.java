@@ -1093,7 +1093,7 @@ FileProperties[] lmr;
    public void showEscalationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
-        if(includePackaged || n.getManageableState().toString() != "installed"){
+        if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1133,7 +1133,7 @@ FileProperties[] lmr;
     double asOfVersion = 58.0;
     if (lmr != null) {
       for (FileProperties n: lmr) {
-        if(includePackaged || n.getManageableState().toString() != "installed"){
+        if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1205,7 +1205,7 @@ FileProperties[] lmr;
   public void showWorkFlowFieldComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
-          if(includePackaged || n.getManageableState().toString() != "installed"){
+          if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1245,7 +1245,7 @@ FileProperties[] lmr;
   public void showWorkFlowComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
-          if(includePackaged || n.getManageableState().toString() != "installed"){
+          if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
@@ -1432,7 +1432,7 @@ FileProperties[] lmr;
   public void showMetaDataComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
-          if(includePackaged || n.getManageableState().toString() != "installed"){
+          if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
