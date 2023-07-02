@@ -130,6 +130,7 @@ public class GettingStartedApplication {
   public String assignmentRulesObject = "";
   public String workflowOutBoundMessages = "";
   public String validationRules = "";
+  public String recordTypes = "";
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
  
@@ -743,6 +744,26 @@ FileProperties[] lmr;
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         } 
+
+         metadataComponents = new ArrayList < String > ();
+        lmqList = new ArrayList < ListMetadataQuery > ();
+        metadataComponents.add("RecordType");
+        for (String string: metadataComponents) {
+          query = new ListMetadataQuery();
+          query.setType(string);
+          lmqList.add(query);
+        }
+         try{
+        
+        lmr = metadataConnection.listMetadata(
+          Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
+        showRecordTypeComponents(lmr, userID, fromDateValue, toDateValue);
+}
+          catch(Exception e)  
+        {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
+            System.out.println(e);  
+        } 
         
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -937,6 +958,8 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + assignmentRulesObject + "<name>AssignmentRules</name>\n</types>\n";
         if (validationRules != null && validationRules.length() != 0)
           packageXMLString += "<types>\n" + validationRules + "<name>ValidationRule</name>\n</types>\n";
+          if (recordTypes != null && recordTypes.length() != 0)
+          packageXMLString += "<types>\n" + recordTypes + "<name>RecordType</name>\n</types>\n";
       
          String workflowSetString="";
          System.out.println("workflowSet 843"+workflowSet); 
@@ -1028,6 +1051,7 @@ FileProperties[] lmr;
         assignmentRulesObject = "";
         workflowOutBoundMessages="";
         validationRules="";
+        recordTypes="";
      
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -1041,6 +1065,36 @@ FileProperties[] lmr;
   }
 
 
+  public void showRecordTypeComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
+    if (lmr != null) {
+      for (FileProperties n: lmr) {
+        if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
+        Date dj = n.getLastModifiedDate().getTime();
+        String lastModifiedById = n.getLastModifiedById();
+        int yearValue = dj.getYear() + 1900;
+        int month = dj.getMonth() + 1;
+        try {
+          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+          Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
+          if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
+            (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+            userID.equals(lastModifiedById)
+          ) {
+           if (n.getFileName().startsWith("objects/")) {
+              recordTypes += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "Record Type\n";
+            }
+            
+          }
+        } catch (ParseException e) {
+          e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
+        }
+        }
+      }
+    }
+  }
+  
   public void showValidationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
