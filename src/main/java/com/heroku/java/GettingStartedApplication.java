@@ -465,7 +465,6 @@ FileProperties[] lmr;
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("FlexiPage");
-        metadataComponents.add("SharingCriteriaRule");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
