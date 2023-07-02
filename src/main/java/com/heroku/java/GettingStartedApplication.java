@@ -129,7 +129,7 @@ public class GettingStartedApplication {
   public String assignmentRulesObject = "";
   public String workflowOutBoundMessages = "";
   public Set<String> workflowSet = new HashSet<String>();
-  public Boolean includePackaged="";
+  public Boolean includePackaged=false;
 
   @Autowired
   public GettingStartedApplication(DataSource dataSource) {
@@ -970,7 +970,7 @@ FileProperties[] lmr;
    public void showEscalationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
-        if(includePackaged || n.getmanageableState == "installed"){
+        if(includePackaged || n.getmanageableState() == "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
