@@ -131,7 +131,9 @@ public class GettingStartedApplication {
   public String workflowOutBoundMessages = "";
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
-
+public static void main(String[] args) {
+    SpringApplication.run(GettingStartedApplication.class, args);
+  }
   @Autowired
   public GettingStartedApplication(DataSource dataSource) {
     this.dataSource = dataSource;
