@@ -833,12 +833,14 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + matchingRuleObject + "<name>MatchingRules</name>\n</types>\n";
          if (fieldSets != null && fieldSets.length() != 0)
           packageXMLString += "<types>\n" + fieldSets + "<name>FieldSet</name>\n</types>\n";
+        
          Iterator<String> i = workflowSet.iterator();
+         System.out.println("workflowSet "+workflowSet);  
         String workflowSetString="";
         // It holds true till there is a single element
         // remaining in the object
         while (i.hasNext()){
-          workflowSetString ="<members>"+ i.next()+"</members>";
+          workflowSetString ="<members>"+ i.next()+"</members>\n";
            csvRows +=  i.next() + "," + "Workflow\n";
         }
         if (workflowSetString != null && workflowSetString.length() != 0)
