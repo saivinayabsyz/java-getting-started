@@ -711,15 +711,11 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
-        try{
+        
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showDocumentComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
-        }
-          catch(Exception e)  
-        {  
-            System.out.println(e);  
-        }  
+       
 
             if (assignmentRules != null && assignmentRules.length() != 0)
           packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
