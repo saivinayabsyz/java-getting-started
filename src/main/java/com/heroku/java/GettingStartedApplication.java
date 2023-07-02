@@ -1287,19 +1287,19 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "ConnectedApp\n";
             } else if (n.getFileName().startsWith("sites/")) {
               sites += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "CustomSite\n";
+              csvRows += n.getFullName() + "," + "Custom Site\n";
             } else if (n.getFileName().startsWith("duplicateRules/")) {
               duplicateRules += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "DuplicateRule\n";
+              csvRows += n.getFullName() + "," + "Duplicate Rule\n";
             } else if (n.getFileName().startsWith("escalationRules/")) {
               escalationRules += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "EscalationRules\n";
+              csvRows += n.getFullName() + "," + "Escalation Rules\n";
             } else if (n.getFileName().startsWith("experiences/")) {
               experiences += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "ExperienceBundle\n";
+              csvRows += n.getFullName() + "," + "Experience Bundle\n";
             } else if (n.getFileName().startsWith("installedPackages/")) {
               installedPackages += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "InstalledPackage\n";
+              csvRows += n.getFullName() + "," + "Installed Package\n";
             } else if (n.getFileName().startsWith("managedContentTypeBundles/")) {
               managedContentTypeBundles += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "ManagedContentTypeBundle\n";
@@ -1308,13 +1308,13 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "ListView\n";
             } else if (n.getFileName().startsWith("matchingRules/")) {
               matchingRules += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "MatchingRule\n";
+              csvRows += n.getFullName() + "," + "Matching Rule\n";
             } else if (n.getFileName().startsWith("managedTopics/")) {
               managedTopics += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "ManagedTopics\n";
+              csvRows += n.getFullName() + "," + "Managed Topics\n";
             } else if (n.getFileName().startsWith("navigationMenus/")) {
               navigationMenus += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "NavigationMenu\n";
+              csvRows += n.getFullName() + "," + "Navigation Menu\n";
             } else if (n.getFileName().startsWith("networks/")) {
               networks += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Network\n";
@@ -1410,7 +1410,7 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "Data Source\n";
             } else if (n.getFileName().startsWith("lwc/")) {
               lwc += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "LWC\n";
+              csvRows += n.getFullName() + "," + "LightningComponentBundle (lwc)\n";
             } else if (n.getFileName().startsWith("restrictionRules/")) {
               restrictionRules += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "RestrictionRules\n";
