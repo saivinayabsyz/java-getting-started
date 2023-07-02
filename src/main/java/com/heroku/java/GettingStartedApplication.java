@@ -125,6 +125,7 @@ public class GettingStartedApplication {
   public String workflowFieldUpdates = "";
   public String fieldSets = "";
   public String sharingCriteriaRules = "";
+  public String escalationRuleObject = "";
   public Set<String> workflowSet = new HashSet<String>();
 
   @Autowired
@@ -423,6 +424,7 @@ FileProperties[] lmr;
          metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("EntitlementProcess");
+        
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -671,6 +673,25 @@ FileProperties[] lmr;
         {  
             System.out.println(e);  
         }  
+
+        metadataComponents = new ArrayList < String > ();
+        lmqList = new ArrayList < ListMetadataQuery > ();
+        metadataComponents.add("EscalationRules");
+        for (String string: metadataComponents) {
+          query = new ListMetadataQuery();
+          query.setType(string);
+          lmqList.add(query);
+        }
+        try{
+        lmr = metadataConnection.listMetadata(
+          Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
+        showEscalationRulesComponents(lmr, userID, fromDateValue, toDateValue);
+        }
+          catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
+        
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("ReportFolder");
@@ -838,6 +859,8 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + fieldSets + "<name>FieldSet</name>\n</types>\n";
           if (sharingCriteriaRules != null && sharingCriteriaRules.length() != 0)
           packageXMLString += "<types>\n" + sharingCriteriaRules + "<name>SharingCriteriaRule</name>\n</types>\n";
+        if (escalationRuleObject != null && escalationRuleObject.length() != 0)
+          packageXMLString += "<types>\n" + escalationRuleObject + "<name>EscalationRule</name>\n</types>\n";
 
          String workflowSetString="";
          System.out.println("workflowSet 843"+workflowSet); 
@@ -925,6 +948,7 @@ FileProperties[] lmr;
         workflowRules = "";
         fieldSets = "";
         sharingCriteriaRules = "";
+        escalationRuleObject="";
 
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -936,7 +960,7 @@ FileProperties[] lmr;
   }
 
   
-   public void showMatchingRuleObject(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
+   public void showEscalationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
         Date dj = n.getLastModifiedDate().getTime();
@@ -950,7 +974,10 @@ FileProperties[] lmr;
             (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
             userID.equals(lastModifiedById)
           ) {
-           
+           if (n.getFileName().startsWith("escalationRules/")) {
+              escalationRuleObject += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "Escalation Rule\n";
+            }
 
           }
         } catch (ParseException e) {
@@ -1407,7 +1434,7 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "Aura Definition Bundle\n";
             } else if (n.getFileName().startsWith("dataSources/")) {
               dataSources += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "Data Source\n";
+              csvRows += n.getFullName() + "," + "External Data Source\n";
             } else if (n.getFileName().startsWith("lwc/")) {
               lwc += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "LightningComponentBundle (lwc)\n";
