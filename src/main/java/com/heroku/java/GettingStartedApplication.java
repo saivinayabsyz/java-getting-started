@@ -840,7 +840,7 @@ FileProperties[] lmr;
         // It holds true till there is a single element
         // remaining in the object
         while (i.hasNext()){
-          workflowSetString ="<members>"+ i.next()+"</members>\n";
+          workflowSetString +="<members>"+ i.next()+"</members>\n";
            csvRows +=  i.next() + "," + "Workflow\n";
         }
         if (workflowSetString != null && workflowSetString.length() != 0)
