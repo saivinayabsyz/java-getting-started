@@ -804,7 +804,7 @@ FileProperties[] lmr;
          if (fieldSets != null && fieldSets.length() != 0)
           packageXMLString += "<types>\n" + fieldSets + "<name>FieldSet</name>\n</types>\n";
          Iterator<String> i = workflowSet.iterator();
-        String workflowSetString;
+        String workflowSetString="";
         // It holds true till there is a single element
         // remaining in the object
         while (i.hasNext()){
