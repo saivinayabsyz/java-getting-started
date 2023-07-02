@@ -970,7 +970,7 @@ FileProperties[] lmr;
    public void showEscalationRulesComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
-        if(includePackaged || n.getManageableState() == "installed"){
+        if(includePackaged || n.getManageableState().toString() == "installed"){
         Date dj = n.getLastModifiedDate().getTime();
         String lastModifiedById = n.getLastModifiedById();
         int yearValue = dj.getYear() + 1900;
