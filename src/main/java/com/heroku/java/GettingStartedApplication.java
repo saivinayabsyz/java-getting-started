@@ -126,6 +126,7 @@ public class GettingStartedApplication {
   public String fieldSets = "";
   public String sharingCriteriaRules = "";
   public String escalationRuleObject = "";
+  public String assignmentRulesObject = "";
   public Set<String> workflowSet = new HashSet<String>();
 
   @Autowired
@@ -677,6 +678,7 @@ FileProperties[] lmr;
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("EscalationRules");
+        metadataComponents.add("AssignmentRules");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -861,6 +863,8 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + sharingCriteriaRules + "<name>SharingCriteriaRule</name>\n</types>\n";
         if (escalationRuleObject != null && escalationRuleObject.length() != 0)
           packageXMLString += "<types>\n" + escalationRuleObject + "<name>EscalationRule</name>\n</types>\n";
+          if (assignmentRulesObject != null && assignmentRulesObject.length() != 0)
+          packageXMLString += "<types>\n" + assignmentRulesObject + "<name>AssignmentRules</name>\n</types>\n";
 
          String workflowSetString="";
          System.out.println("workflowSet 843"+workflowSet); 
@@ -949,6 +953,7 @@ FileProperties[] lmr;
         fieldSets = "";
         sharingCriteriaRules = "";
         escalationRuleObject="";
+        assignmentRulesObject = "";
 
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -977,6 +982,10 @@ FileProperties[] lmr;
            if (n.getFileName().startsWith("escalationRules/")) {
               escalationRuleObject += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Escalation Rule\n";
+            }
+            if (n.getFileName().startsWith("assignmentRules/")) {
+              assignmentRulesObject += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "Assignment Rules\n";
             }
 
           }
