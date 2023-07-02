@@ -75,6 +75,7 @@ public class GettingStartedApplication {
   public String installedPackages = "";
   public String objectListViews = "";
   public String matchingRules = "";
+  public String matchingRuleObject = "";
   public String managedContentTypeBundles = "";
   public String managedTopics = "";
   public String navigationMenus = "";
@@ -681,8 +682,20 @@ FileProperties[] lmr;
         }
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
-        showDashboardComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
         showDocumentComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
+
+        metadataComponents = new ArrayList < String > ();
+        lmqList = new ArrayList < ListMetadataQuery > ();
+        metadataComponents.add("WorkflowFieldUpdate");
+        for (String string: metadataComponents) {
+          query = new ListMetadataQuery();
+          query.setType(string);
+          lmqList.add(query);
+        }
+        lmr = metadataConnection.listMetadata(
+          Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
+        showMatchingRuleObject(lmr, userID, fromDateValue, toDateValue);
+        
         if (assignmentRules != null && assignmentRules.length() != 0)
           packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
         if (emailservices != null && emailservices.length() != 0)
@@ -795,6 +808,8 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + workflowRules + "<name>WorkflowRule</name>\n</types>\n";
         if (workflowFieldUpdates != null && workflowFieldUpdates.length() != 0)
           packageXMLString += "<types>\n" + workflowFieldUpdates + "<name>WorkflowFieldUpdate</name>\n</types>\n";
+         if (matchingRuleObject != null && matchingRuleObject.length() != 0)
+          packageXMLString += "<types>\n" + matchingRuleObject + "<name>MatchingRules</name>\n</types>\n";
          Iterator<String> i = workflowSet.iterator();
         String workflowSetString;
         // It holds true till there is a single element
@@ -827,6 +842,7 @@ FileProperties[] lmr;
         installedPackages = "";
         objectListViews = "";
         matchingRules = "";
+        matchingRuleObject = "";
         managedContentTypeBundles = "";
         managedTopics = "";
         navigationMenus = "";
@@ -879,6 +895,33 @@ FileProperties[] lmr;
 
     } catch (Exception ex) {
       System.out.println("\n Error: \n" + ex.getMessage());
+    }
+  }
+
+   public void showMatchingRuleObject(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
+    if (lmr != null) {
+      for (FileProperties n: lmr) {
+        Date dj = n.getLastModifiedDate().getTime();
+        String lastModifiedById = n.getLastModifiedById();
+        int yearValue = dj.getYear() + 1900;
+        int month = dj.getMonth() + 1;
+        try {
+          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+          Date actualDate = formatter.parse(n.getLastModifiedDate().get(Calendar.DAY_OF_MONTH) + "/" + month + "/" + yearValue);
+          if ((actualDate.after(fromDateValue) || actualDate.equals(fromDateValue)) &&
+            (actualDate.before(toDateValue) || actualDate.equals(toDateValue)) &&
+            userID.equals(lastModifiedById)
+          ) {
+            if (n.getFileName().startsWith("MatchingRules/")) {
+              matchingRuleObject += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "Matching Rules\n";
+            }
+
+          }
+        } catch (ParseException e) {
+          e.printStackTrace();
+        }
+      }
     }
   }
 
