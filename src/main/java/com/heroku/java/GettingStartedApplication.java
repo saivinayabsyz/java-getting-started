@@ -840,12 +840,14 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + sharingCriteriaRules + "<name>SharingCriteriaRule</name>\n</types>\n";
 
          String workflowSetString="";
+         System.out.println("workflowSet 843"+workflowSet); 
          Iterator<String> i = workflowSet.iterator();
-        
+         System.out.println("workflowSet 845"+workflowSet); 
        
         // It holds true till there is a single element
         // remaining in the object
         while (i.hasNext()){
+           System.out.println("workflowSet 850"+workflowSet); 
           workflowSetString +="<members>"+ i.next()+"</members>\n";
            System.out.println("workflowSetString "+workflowSetString);  
            csvRows +=  i.next() + "," + "Workflow\n";
