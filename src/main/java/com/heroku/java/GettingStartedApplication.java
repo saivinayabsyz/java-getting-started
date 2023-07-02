@@ -178,6 +178,7 @@ public static void main(String[] args) {
       toDateValue = formatter.parse(arrOfToDate[1] + "/" + arrOfToDate[2] + "/" + arrOfToDate[0]);
     } catch (ParseException e) {
       e.printStackTrace();
+      System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
     }
 
     try {
@@ -208,6 +209,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
         metadataComponents = new ArrayList < String > ();
@@ -233,6 +235,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -258,6 +261,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -283,6 +287,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -308,6 +313,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -332,6 +338,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -355,6 +362,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -378,6 +386,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -402,6 +411,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -426,6 +436,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -446,6 +457,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -468,6 +480,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -491,6 +504,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -515,6 +529,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -539,6 +554,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -562,6 +578,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -585,6 +602,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -608,6 +626,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -631,6 +650,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -654,7 +674,8 @@ FileProperties[] lmr;
            System.out.println("SharingCriteriaRule "+sharingCriteriaRules); 
         }
           catch(Exception e)  
-        {  
+        { 
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -678,6 +699,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
 
@@ -698,6 +720,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
         
@@ -717,6 +740,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
         metadataComponents = new ArrayList < String > ();
@@ -734,6 +758,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
         metadataComponents = new ArrayList < String > ();
@@ -744,11 +769,17 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+         try{
         
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showDocumentComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
-
+}
+          catch(Exception e)  
+        {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
+            System.out.println(e);  
+        } 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("EmailFolder");
@@ -757,11 +788,16 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
-        
+        try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showEmailFolderComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
-       
+       }
+          catch(Exception e)  
+        {  
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
+            System.out.println(e);  
+        } 
 
             if (assignmentRules != null && assignmentRules.length() != 0)
           packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
@@ -976,10 +1012,12 @@ FileProperties[] lmr;
      
       } catch (ConnectionException ce) {
         ce.printStackTrace();
+        System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
 
     } catch (Exception ex) {
       System.out.println("\n Error: \n" + ex.getMessage());
+      System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
     }
   }
 
@@ -1040,6 +1078,7 @@ FileProperties[] lmr;
                   }
                 } catch (ParseException e) {
                   e.printStackTrace();
+                  System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
@@ -1048,6 +1087,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
         }
       }
@@ -1087,6 +1127,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
         }
       }
@@ -1149,6 +1190,7 @@ FileProperties[] lmr;
                   }
                 } catch (ParseException e) {
                   e.printStackTrace();
+                  System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
@@ -1157,6 +1199,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
         }
       }
@@ -1198,6 +1241,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
           }
       }
@@ -1235,6 +1279,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
           }
       }
@@ -1297,6 +1342,7 @@ FileProperties[] lmr;
                   }
                 } catch (ParseException e) {
                   e.printStackTrace();
+                  System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
@@ -1305,6 +1351,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
           }
       }
@@ -1369,6 +1416,7 @@ FileProperties[] lmr;
                   }
                 } catch (ParseException e) {
                   e.printStackTrace();
+                  System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
@@ -1377,6 +1425,7 @@ FileProperties[] lmr;
           }
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
           }
       }
@@ -1563,6 +1612,7 @@ FileProperties[] lmr;
 
         } catch (ParseException e) {
           e.printStackTrace();
+          System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
           }
 
