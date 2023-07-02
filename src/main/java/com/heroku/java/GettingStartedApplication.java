@@ -736,7 +736,7 @@ FileProperties[] lmr;
         
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
-        showValidationRulesComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
+        showValidationRulesComponents(lmr, userID, fromDateValue, toDateValue);
 }
           catch(Exception e)  
         {  
