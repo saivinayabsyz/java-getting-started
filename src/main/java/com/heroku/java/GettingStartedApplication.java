@@ -1035,7 +1035,7 @@ FileProperties[] lmr;
               workflowFieldUpdates += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Workflow Field Updates\n";
               System.out.println("split "+n.getFullName());  
-              workflowSet.add(n.getFullName().split(".")[0]);
+              workflowSet.add(n.getFullName().split("[.]")[0]);
             }
              if (n.getFileName().startsWith("MatchingRules/")) {
               matchingRuleObject += "<members>" + n.getFullName() + "</members>\n";
@@ -1074,7 +1074,7 @@ FileProperties[] lmr;
             } else if (n.getFileName().startsWith("workflows/")) {
               workflowRules += "<members>" + n.getFullName() + "</members>\n";
               System.out.println("split "+n.getFullName());  
-              workflowSet.add(n.getFullName().split(".")[0]);
+              workflowSet.add(n.getFullName().split("[.]")[0]);
               csvRows += n.getFullName() + "," + "Workflows\n";
             }
 
