@@ -634,9 +634,17 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+        try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showWorkFlowComponents(lmr, userID, fromDateValue, toDateValue);
+          System.out.println("workflowRules "+workflowRules); 
+          System.out.println("namedCredentials "+namedCredentials); 
+        }
+          catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
@@ -648,9 +656,18 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+        try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showWorkFlowFieldComponents(lmr, userID, fromDateValue, toDateValue);
+           System.out.println("workflowFieldUpdates "+workflowFieldUpdates); 
+          System.out.println("matchingRuleObject "+matchingRuleObject); 
+          System.out.println("fieldSets "+fieldSets); 
+        }
+          catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("ReportFolder");
@@ -659,10 +676,16 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+        try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showReportomponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
-
+            System.out.println("fieldSets "+fieldSets); 
+        }
+          catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("DashboardFolder");
@@ -671,10 +694,15 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+        try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showDashboardComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
-
+        }
+          catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("DocumentFolder");
@@ -683,9 +711,15 @@ FileProperties[] lmr;
           query.setType(string);
           lmqList.add(query);
         }
+        try{
         lmr = metadataConnection.listMetadata(
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showDocumentComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
+        }
+          catch(Exception e)  
+        {  
+            System.out.println(e);  
+        }  
 
             if (assignmentRules != null && assignmentRules.length() != 0)
           packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
@@ -1192,6 +1226,7 @@ FileProperties[] lmr;
     }
     if (reports != null && reports.length() != 0)
       packageXMLString += "<types>\n" + reports + "<name>Report</name>\n</types>\n";
+    
   }
 
   public void showMetaDataComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
