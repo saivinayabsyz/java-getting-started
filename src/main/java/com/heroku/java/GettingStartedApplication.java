@@ -127,6 +127,7 @@ public class GettingStartedApplication {
   public String sharingCriteriaRules = "";
   public String escalationRuleObject = "";
   public String assignmentRulesObject = "";
+  public String workflowOutBoundMessages = "";
   public Set<String> workflowSet = new HashSet<String>();
 
   @Autowired
@@ -608,7 +609,6 @@ FileProperties[] lmr;
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("AutoResponseRule");
-        metadataComponents.add("WorkflowOutboundMessage");
         metadataComponents.add("HomePageLayout");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
@@ -679,6 +679,7 @@ FileProperties[] lmr;
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("EscalationRules");
         metadataComponents.add("AssignmentRules");
+        metadataComponents.add("WorkflowOutboundMessage");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -847,8 +848,8 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + notificationtypes + "<name>CustomNotificationType</name>\n</types>\n";
         if (homePageLayouts != null && homePageLayouts.length() != 0)
           packageXMLString += "<types>\n" + homePageLayouts + "<name>HomePageLayout</name>\n</types>\n";
-        if (workflows != null && workflows.length() != 0)
-          packageXMLString += "<types>\n" + workflows + "<name>WorkflowOutboundMessage</name>\n</types>\n";
+        if (workflowOutBoundMessages != null && workflowOutBoundMessages.length() != 0)
+          packageXMLString += "<types>\n" + workflowOutBoundMessages + "<name>WorkflowOutboundMessage</name>\n</types>\n";
         if (autoResponseRules != null && autoResponseRules.length() != 0)
           packageXMLString += "<types>\n" + autoResponseRules + "<name>AutoResponseRules</name>\n</types>\n";
         if (workflowRules != null && workflowRules.length() != 0)
@@ -954,6 +955,7 @@ FileProperties[] lmr;
         sharingCriteriaRules = "";
         escalationRuleObject="";
         assignmentRulesObject = "";
+        workflowOutBoundMessages="";
 
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -983,9 +985,13 @@ FileProperties[] lmr;
               escalationRuleObject += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Escalation Rules\n";
             }
-            if (n.getFileName().startsWith("assignmentRules/")) {
+            else if (n.getFileName().startsWith("assignmentRules/")) {
               assignmentRulesObject += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Assignment Rules\n";
+            }
+            else if (n.getFileName().startsWith("workflows/")) {
+              workflowOutBoundMessages += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "Workflow OutBound Messages\n";
             }
 
           }
@@ -1426,9 +1432,6 @@ FileProperties[] lmr;
             } else if (n.getFileName().startsWith("homePageLayouts/")) {
               homePageLayouts += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "HomePageLayout\n";
-            } else if (n.getFileName().startsWith("workflows/")) {
-              workflows += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "WorkflowOutboundMessage\n";
             } else if (n.getFileName().startsWith("autoResponseRules/")) {
               autoResponseRules += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "AutoResponseRule\n";
