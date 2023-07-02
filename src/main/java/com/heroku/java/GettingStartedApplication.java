@@ -764,7 +764,7 @@ FileProperties[] lmr;
         if (duplicateRules != null && duplicateRules.length() != 0)
           packageXMLString += "<types>\n" + duplicateRules + "<name>DuplicateRule</name>\n</types>\n";
         if (escalationRules != null && escalationRules.length() != 0)
-          packageXMLString += "<types>\n" + escalationRules + "<name>EscalationRules</name>\n</types>\n";
+          packageXMLString += "<types>\n" + escalationRules + "<name>EscalationRule</name>\n</types>\n";
         if (experiences != null && experiences.length() != 0)
           packageXMLString += "<types>\n" + experiences + "<name>ExperienceBundle</name>\n</types>\n";
         if (installedPackages != null && installedPackages.length() != 0)
@@ -981,7 +981,7 @@ FileProperties[] lmr;
           ) {
            if (n.getFileName().startsWith("escalationRules/")) {
               escalationRuleObject += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "Escalation Rule\n";
+              csvRows += n.getFullName() + "," + "Escalation Rules\n";
             }
             if (n.getFileName().startsWith("assignmentRules/")) {
               assignmentRulesObject += "<members>" + n.getFullName() + "</members>\n";
@@ -1329,7 +1329,7 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "Duplicate Rule\n";
             } else if (n.getFileName().startsWith("escalationRules/")) {
               escalationRules += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + "Escalation Rules\n";
+              csvRows += n.getFullName() + "," + "Escalation Rule\n";
             } else if (n.getFileName().startsWith("experiences/")) {
               experiences += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Experience Bundle\n";
