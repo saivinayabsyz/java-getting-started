@@ -848,9 +848,10 @@ FileProperties[] lmr;
         // remaining in the object
         while (i.hasNext()){
            System.out.println("workflowSet 850"+workflowSet); 
-          workflowSetString +="<members>"+ i.next()+"</members>\n";
+          String wName = i.next();
+          workflowSetString +="<members>"+ wName+"</members>\n";
            System.out.println("workflowSetString "+workflowSetString);  
-           csvRows +=  i.next() + "," + "Workflow\n";
+           csvRows +=  wName + "," + "Workflow\n";
         }
         if (workflowSetString != null && workflowSetString.length() != 0)
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
