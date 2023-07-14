@@ -1758,7 +1758,7 @@ FileProperties[] lmr;
               csvRows += n.getFullName() + "," + "SamlSsoConfig\n";
             } else if (n.getFileName().startsWith("cspTrustedSites/")) {
               cspTrustedSites += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + CspTrustedSite\n";
+              csvRows += n.getFullName() + "," + "CspTrustedSite\n";
             }
 
           }
