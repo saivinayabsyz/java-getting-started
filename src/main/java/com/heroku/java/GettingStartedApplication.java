@@ -131,6 +131,10 @@ public class GettingStartedApplication {
   public String workflowOutBoundMessages = "";
   public String validationRules = "";
   public String recordTypes = "";
+  public String externalServiceRegistrations = "";
+  public String managedContentTypes = "";
+  public String platformEventChannelMembers = "";
+  public String cleanDataServices = "";
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
  
@@ -161,8 +165,6 @@ public static void main(String[] args) {
     System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken+metadataparams.includePackaged);
    includePackaged = metadataparams.includePackaged=="true"?true:false;  
     fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate,metadataparams.packageXMLAccessToken);
-    //  response.getWriter().write(hotel.accessToken);  
-
   }
 
   public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate, String packageXMLAccessToken) {
@@ -728,6 +730,8 @@ FileProperties[] lmr;
           metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("ValidationRule");
+        metadataComponents.add("PlatformEventChannelMember");
+        metadataComponents.add("CleanDataService");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -748,6 +752,8 @@ FileProperties[] lmr;
          metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("RecordType");
+        metadataComponents.add("ExternalServiceRegistration");
+        metadataComponents.add("ManagedContentType");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -960,6 +966,14 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + validationRules + "<name>ValidationRule</name>\n</types>\n";
           if (recordTypes != null && recordTypes.length() != 0)
           packageXMLString += "<types>\n" + recordTypes + "<name>RecordType</name>\n</types>\n";
+        if (externalServiceRegistrations != null && externalServiceRegistrations.length() != 0)
+          packageXMLString += "<types>\n" + externalServiceRegistrations + "<name>ExternalServiceRegistration</name>\n</types>\n";
+        if (managedContentTypes != null && managedContentTypes.length() != 0)
+          packageXMLString += "<types>\n" + managedContentTypes + "<name>ManagedContentType</name>\n</types>\n";
+        if (platformEventChannelMembers != null && platformEventChannelMembers.length() != 0)
+          packageXMLString += "<types>\n" + platformEventChannelMembers + "<name>PlatformEventChannelMember</name>\n</types>\n";
+        if (cleanDataServices != null && cleanDataServices.length() != 0)
+          packageXMLString += "<types>\n" + cleanDataServices + "<name>CleanDataService</name>\n</types>\n";
       
          String workflowSetString="";
          System.out.println("workflowSet 843"+workflowSet); 
@@ -1052,6 +1066,10 @@ FileProperties[] lmr;
         workflowOutBoundMessages="";
         validationRules="";
         recordTypes="";
+        externalServiceRegistrations = "";
+  managedContentTypes = "";
+  platformEventChannelMembers = "";
+        cleanDataServices="";
      
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -1084,6 +1102,14 @@ FileProperties[] lmr;
               recordTypes += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Record Type\n";
             }
+            if (n.getFileName().startsWith("externalServiceRegistrations/")) {
+              externalServiceRegistrations += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "ExternalService Registrations\n";
+            }
+            if (n.getFileName().startsWith("managedContentTypes/")) {
+              managedContentTypes += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + Managed Content Types\n";
+            }
             
           }
         } catch (ParseException e) {
@@ -1114,7 +1140,14 @@ FileProperties[] lmr;
               validationRules += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Validation Rules\n";
             }
-            
+            if (n.getFileName().startsWith("platformEventChannelMembers/")) {
+              platformEventChannelMembers += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + Platform Event Channel Members\n";
+            }
+            if (n.getFileName().startsWith("cleanDataServices/")) {
+              cleanDataServices += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + CleanData Services\n";
+            }
           }
         } catch (ParseException e) {
           e.printStackTrace();
