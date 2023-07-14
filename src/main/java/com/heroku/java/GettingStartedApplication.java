@@ -1108,7 +1108,7 @@ FileProperties[] lmr;
             }
             if (n.getFileName().startsWith("managedContentTypes/")) {
               managedContentTypes += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + Managed Content Types\n";
+              csvRows += n.getFullName() + "," + "Managed Content Types\n";
             }
             
           }
@@ -1142,11 +1142,11 @@ FileProperties[] lmr;
             }
             if (n.getFileName().startsWith("platformEventChannelMembers/")) {
               platformEventChannelMembers += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + Platform Event Channel Members\n";
+              csvRows += n.getFullName() + "," + "Platform Event Channel Members\n";
             }
             if (n.getFileName().startsWith("cleanDataServices/")) {
               cleanDataServices += "<members>" + n.getFullName() + "</members>\n";
-              csvRows += n.getFullName() + "," + CleanData Services\n";
+              csvRows += n.getFullName() + "," + "CleanData Services\n";
             }
           }
         } catch (ParseException e) {
