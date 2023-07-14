@@ -135,6 +135,8 @@ public class GettingStartedApplication {
   public String managedContentTypes = "";
   public String platformEventChannelMembers = "";
   public String cleanDataServices = "";
+  public String samlssoconfigs = "";
+  public String cspTrustedSites = "";
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
  
@@ -469,6 +471,7 @@ FileProperties[] lmr;
         metadataComponents = new ArrayList < String > ();
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("FlexiPage");
+        metadataComponents.add("SamlSsoConfig");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -638,6 +641,7 @@ FileProperties[] lmr;
         lmqList = new ArrayList < ListMetadataQuery > ();
         metadataComponents.add("AutoResponseRule");
         metadataComponents.add("HomePageLayout");
+        metadataComponents.add("CspTrustedSite");
         for (String string: metadataComponents) {
           query = new ListMetadataQuery();
           query.setType(string);
@@ -974,6 +978,10 @@ FileProperties[] lmr;
           packageXMLString += "<types>\n" + platformEventChannelMembers + "<name>PlatformEventChannelMember</name>\n</types>\n";
         if (cleanDataServices != null && cleanDataServices.length() != 0)
           packageXMLString += "<types>\n" + cleanDataServices + "<name>CleanDataService</name>\n</types>\n";
+        if (cspTrustedSites != null && cspTrustedSites.length() != 0)
+          packageXMLString += "<types>\n" + cspTrustedSites + "<name>CspTrustedSite</name>\n</types>\n";
+        if (samlssoconfigs != null && samlssoconfigs.length() != 0)
+          packageXMLString += "<types>\n" + samlssoconfigs + "<name>SamlSsoConfig</name>\n</types>\n";
       
          String workflowSetString="";
          System.out.println("workflowSet 843"+workflowSet); 
@@ -1070,6 +1078,8 @@ FileProperties[] lmr;
   managedContentTypes = "";
   platformEventChannelMembers = "";
         cleanDataServices="";
+         samlssoconfigs = "";
+  cspTrustedSites = "";
      
       } catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -1742,6 +1752,13 @@ FileProperties[] lmr;
             } else if (n.getFileName().startsWith("notificationtypes/")) {
               notificationtypes += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "Notification Types\n";
+            }
+            else if (n.getFileName().startsWith("samlssoconfigs/")) {
+              samlssoconfigs += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + "SamlSsoConfig\n";
+            } else if (n.getFileName().startsWith("cspTrustedSites/")) {
+              cspTrustedSites += "<members>" + n.getFullName() + "</members>\n";
+              csvRows += n.getFullName() + "," + CspTrustedSite\n";
             }
 
           }
