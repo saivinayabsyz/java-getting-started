@@ -846,10 +846,15 @@ FileProperties[] lmr;
           Arrays.copyOf(lmqList.toArray(), lmqList.toArray().length, ListMetadataQuery[].class), asOfVersion);
         showEmailFolderComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
         
-
+PackageTypeMembers pdi = new PackageTypeMembers();
         
-            if (assignmentRules != null && assignmentRules.length() != 0)
-          packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
+            if (assignmentRules != null && assignmentRules.length() != 0){
+                    packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
+                    pdi = new PackageTypeMembers();
+                    pdi.setName("AssignmentRule");
+                    pdi.setMembers(assignmentRules.replace('<members>','').replace('<members>\n',',').split(","));
+                    pd.add(pdi);
+            }
         if (emailservices != null && emailservices.length() != 0)
           packageXMLString += "<types>\n" + emailservices + "<name>EmailServicesFunction</name>\n</types>\n";
         if (audience != null && audience.length() != 0)
@@ -1584,7 +1589,6 @@ FileProperties[] lmr;
   }
 
   public void showMetaDataComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
-    PackageTypeMembers pdi = new PackageTypeMembers();
     if (lmr != null) {
       for (FileProperties n: lmr) {
           if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
@@ -1600,11 +1604,7 @@ FileProperties[] lmr;
             userID.equals(lastModifiedById)
           ) {
             if (n.getFileName().startsWith("userCriteria/")) {
-                    pdi = new PackageTypeMembers();
-                    pdi.setName("UserCriteria");
-                    pdi.setMembers(n.getFullName());
-                    pd.add(pdi);
-              userCriterias += "<members>" + n.getFullName() + "</members>\n";
+             userCriterias += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "User Criteria\n";
             } else if (n.getFileName().startsWith("emailservices/")) {
               emailservices += "<members>" + n.getFullName() + "</members>\n";
