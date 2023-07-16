@@ -1584,6 +1584,7 @@ FileProperties[] lmr;
   }
 
   public void showMetaDataComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
+    PackageTypeMembers pdi = new PackageTypeMembers();
     if (lmr != null) {
       for (FileProperties n: lmr) {
           if(includePackaged || n.getManageableState()==null || (n.getManageableState()!=null && n.getManageableState().toString() != "installed")){
@@ -1599,6 +1600,10 @@ FileProperties[] lmr;
             userID.equals(lastModifiedById)
           ) {
             if (n.getFileName().startsWith("userCriteria/")) {
+                    pdi = new PackageTypeMembers();
+                    pdi.setName("UserCriteria");
+                    pdi.setMembers(n.getFullName());
+                    pd.add(pdi);
               userCriterias += "<members>" + n.getFullName() + "</members>\n";
               csvRows += n.getFullName() + "," + "User Criteria\n";
             } else if (n.getFileName().startsWith("emailservices/")) {
