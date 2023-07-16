@@ -27,6 +27,7 @@ import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
+import com.sforce.soap.metadata.PackageTypeMembers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -139,6 +140,7 @@ public class GettingStartedApplication {
   public String cspTrustedSites = "";
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
+  public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
  
 public static void main(String[] args) {
     SpringApplication.run(GettingStartedApplication.class, args);
