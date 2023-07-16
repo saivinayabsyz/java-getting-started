@@ -852,7 +852,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                     packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
                     pdi = new PackageTypeMembers();
                     pdi.setName("AssignmentRule");
-                    pdi.setMembers(assignmentRules.replace('<members>','').replace('<members>\n',',').split(","));
+                    pdi.setMembers(assignmentRules.replace("<members>","").replace("<members>\n",",").split(","));
                     pd.add(pdi);
             }
         if (emailservices != null && emailservices.length() != 0)
