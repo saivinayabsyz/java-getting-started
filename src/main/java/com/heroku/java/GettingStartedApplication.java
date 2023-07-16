@@ -1111,6 +1111,80 @@ PackageTypeMembers pdi = new PackageTypeMembers();
     }
   }
 
+  public void createChangeSet(){
+          com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
+            r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
+            r.setVersion(API_VERSION + "");
+            request.setUnpackaged(p);
+            AsyncResult asyncResult = metadataConnection.retrieve(retrieveRequest);
+        String asyncResultId = asyncResult.getId();
+        
+        // Wait for the retrieve to complete
+        int poll = 0;
+        long waitTimeMilliSecs = ONE_SECOND;
+        RetrieveResult result = null;
+        do {
+            Thread.sleep(waitTimeMilliSecs);
+            // Double the wait time for the next iteration
+            waitTimeMilliSecs *= 2;
+            if (poll++ > MAX_NUM_POLL_REQUESTS) {
+                throw new Exception("Request timed out.  If this is a large set " +
+                "of metadata components, check that the time allowed " +
+                "by MAX_NUM_POLL_REQUESTS is sufficient.");
+            }
+            result = metadataConnection.checkRetrieveStatus(
+                    asyncResultId, true);
+            System.out.println("Retrieve Status: " + result.getStatus());
+        } while (!result.isDone());
+
+        if (result.getStatus() == RetrieveStatus.Failed) {
+            throw new Exception(result.getErrorStatusCode() + " msg: " +
+                    result.getErrorMessage());
+        } else if (result.getStatus() == RetrieveStatus.Succeeded) {      
+            // Print out any warning messages
+            StringBuilder buf = new StringBuilder();
+            if (result.getMessages() != null) {
+                for (RetrieveMessage rm : result.getMessages()) {
+                    buf.append(rm.getFileName() + " - " + rm.getProblem());
+                }
+            }
+            if (buf.length() > 0) {
+                System.out.println("Retrieve warnings:\n" + buf);
+            }
+    
+            // Write the zip to the file system
+            System.out.println("Writing results to zip file");
+            ByteArrayInputStream bais = new ByteArrayInputStream(result.getZipFile());
+            File resultsFile = new File("retrieveResults.zip");
+            FileOutputStream os = new FileOutputStream(resultsFile);
+            try {
+                ReadableByteChannel src = Channels.newChannel(bais);
+                FileChannel dest = os.getChannel();
+                copy(src, dest);
+                System.out.println("Results written to " + resultsFile.getAbsolutePath());
+            } finally {
+                os.close();
+            }
+        }
+  }
+
+  /**
+     * Helper method to copy from a readable channel to a writable channel,
+     * using an in-memory buffer.
+     */
+    private void copy(ReadableByteChannel src, WritableByteChannel dest)
+        throws IOException
+    {
+        // Use an in-memory byte buffer
+        ByteBuffer buffer = ByteBuffer.allocate(8092);
+        while (src.read(buffer) != -1) {
+            buffer.flip();
+            while(buffer.hasRemaining()) {
+                dest.write(buffer);
+            }
+            buffer.clear();
+        }
+    }
 
   public void showRecordTypeComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
