@@ -847,7 +847,14 @@ FileProperties[] lmr;
         showEmailFolderComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
         
 PackageTypeMembers pdi = new PackageTypeMembers();
-        
+
+        if (userCriterias != null && userCriterias.length() != 0){
+                    packageXMLString += "<types>\n" + userCriterias + "<name>UserCriteria</name>\n</types>\n";
+                    pdi = new PackageTypeMembers();
+                    pdi.setName("UserCriteria");
+                    pdi.setMembers(userCriterias.replace("<members>","").replace("<members>\n",",").split(","));
+                    pd.add(pdi);
+            }
             if (assignmentRules != null && assignmentRules.length() != 0){
                     packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
                     pdi = new PackageTypeMembers();
@@ -929,8 +936,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + pages + "<name>ApexPage</name>\n</types>\n";
         if (components != null && components.length() != 0)
           packageXMLString += "<types>\n" + components + "<name>ApexComponent</name>\n</types>\n";
-        if (classes != null && classes.length() != 0)
+        if (classes != null && classes.length() != 0){
           packageXMLString += "<types>\n" + classes + "<name>ApexClass</name>\n</types>\n";
+                    pdi = new PackageTypeMembers();
+                    pdi.setName("ApexClass");
+                    pdi.setMembers(classes.replace("<members>","").replace("<members>\n",",").split(","));
+                    pd.add(pdi);
+        }
         if (labels != null && labels.length() != 0)
           packageXMLString += "<types>\n" + labels + "<name>CustomLabel</name>\n</types>\n";
         if (profiles != null && profiles.length() != 0)
