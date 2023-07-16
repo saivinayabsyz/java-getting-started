@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.*;
+import java.nio.*;
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,9 @@ import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 import com.sforce.soap.metadata.PackageTypeMembers;
+import com.sforce.soap.metadata.MetadataConnection;
+import com.sforce.soap.metadata.RetrieveResult;
+import com.sforce.soap.metadata.RetrieveStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,6 +56,9 @@ import org.apache.http.util.EntityUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.sforce.soap.metadata.RetrieveRequest;
+import com.sforce.soap.metadata.RetrieveResult;
+import com.sforce.soap.metadata.MetadataConnection;
 
 @SpringBootApplication
 @Controller
@@ -141,7 +148,9 @@ public class GettingStartedApplication {
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
   public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
+  public static final double API_VERSION = 31.0; 
  
+  
 public static void main(String[] args) {
     SpringApplication.run(GettingStartedApplication.class, args);
   }
@@ -1115,19 +1124,19 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
             r.setVersion(API_VERSION + "");
-            request.setUnpackaged(p);
+            request.setUnpackaged(r);
             AsyncResult asyncResult = metadataConnection.retrieve(retrieveRequest);
         String asyncResultId = asyncResult.getId();
         
         // Wait for the retrieve to complete
         int poll = 0;
-        long waitTimeMilliSecs = ONE_SECOND;
+        long waitTimeMilliSecs = 1000;
         RetrieveResult result = null;
         do {
             Thread.sleep(waitTimeMilliSecs);
             // Double the wait time for the next iteration
             waitTimeMilliSecs *= 2;
-            if (poll++ > MAX_NUM_POLL_REQUESTS) {
+            if (poll++ > 50) {
                 throw new Exception("Request timed out.  If this is a large set " +
                 "of metadata components, check that the time allowed " +
                 "by MAX_NUM_POLL_REQUESTS is sufficient.");
