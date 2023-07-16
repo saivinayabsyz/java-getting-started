@@ -30,6 +30,7 @@ import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 import com.sforce.soap.metadata.PackageTypeMembers;
 import com.sforce.soap.metadata.MetadataConnection;
+import com.sforce.soap.metadata.RetrieveRequest;
 import com.sforce.soap.metadata.RetrieveResult;
 import com.sforce.soap.metadata.RetrieveStatus;
 
@@ -38,12 +39,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.io.FileReader;
 import java.io.IOException;
+// importing the File class
+import java.io.File;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.io.ByteArrayInputStream;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
