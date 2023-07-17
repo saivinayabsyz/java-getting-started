@@ -66,6 +66,11 @@
     <artifactId>com.sforce.soap.partner</artifactId>
     <version>1.0.2</version>
 </dependency>
+             <dependency>
+    <groupId>com.liferay</groupId>
+    <artifactId>com.sforce.soap.metadata</artifactId>
+    <version>1.0.2</version>
+</dependency>
 <!-- https://mvnrepository.com/artifact/com.force.api/force-wsc -->
 <dependency>
     <groupId>com.force.api</groupId>
