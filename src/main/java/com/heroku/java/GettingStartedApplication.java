@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.*;
 import java.nio.*;
+import java.io.FileOutputStream;  
 
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.nio.channels.FileChannel;
 
 import com.sforce.soap.metadata.*;
 import com.sforce.soap.partner.PartnerConnection;
@@ -1123,8 +1125,9 @@ PackageTypeMembers pdi = new PackageTypeMembers();
     }
   }
 
-  public void createChangeSet(){
+  public void createChangeSet( MetadataConnection metadataConnection){
     RetrieveRequest retrieveRequest = new RetrieveRequest();
+   
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
             r.setVersion(API_VERSION + "");
