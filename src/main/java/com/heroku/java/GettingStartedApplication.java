@@ -1154,7 +1154,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             System.out.println("Retrieve Status: " + result.getStatus());
         } while (!result.isDone());
 
-        (result.getStatus()) {      
+        if(result.getStatus()) {      
             // Print out any warning messages
             StringBuilder buf = new StringBuilder();
             if (result.getMessages() != null) {
