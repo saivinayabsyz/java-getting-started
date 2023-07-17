@@ -1165,11 +1165,12 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
-      catch (FileNotFoundException ce) {
+     
+      catch (IOException ce) {
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
-      catch (IOException ce) {
+       catch (Exception ce) {
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
