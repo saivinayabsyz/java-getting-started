@@ -1151,7 +1151,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             try {
                 ReadableByteChannel src = Channels.newChannel(bais);
                 FileChannel dest = os.getChannel();
-              //  copy(src, dest);
+                copy(src, dest);
                 System.out.println("Results written to " + resultsFile.getAbsolutePath());
             } finally {
                 os.close();
@@ -1176,7 +1176,19 @@ PackageTypeMembers pdi = new PackageTypeMembers();
       }
         }
   
-
+private void copy(ReadableByteChannel src, WritableByteChannel dest)
+        throws IOException
+    {
+        // Use an in-memory byte buffer
+        ByteBuffer buffer = ByteBuffer.allocate(8092);
+        while (src.read(buffer) != -1) {
+            buffer.flip();
+            while(buffer.hasRemaining()) {
+                dest.write(buffer);
+            }
+            buffer.clear();
+        }
+    }
  
   public void showRecordTypeComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
