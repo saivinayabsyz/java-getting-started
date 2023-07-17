@@ -29,9 +29,6 @@ import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 import com.sforce.soap.metadata.PackageTypeMembers;
-import com.sforce.soap.metadata.MetadataConnection;
-import com.sforce.soap.metadata.RetrieveRequest;
-import com.sforce.soap.metadata.RetrieveResult;
 import com.sforce.soap.metadata.RetrieveStatus;
 
 import java.sql.ResultSet;
