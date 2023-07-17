@@ -1134,38 +1134,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
             r.setVersion(API_VERSION + "");
             retrieveRequest.setUnpackaged(r);
-            AsyncResult asyncResult = metadataConnection.retrieve(retrieveRequest);
-        String asyncResultId = asyncResult.getId();
-        
-        // Wait for the retrieve to complete
-        int poll = 0;
-        long waitTimeMilliSecs = 1000;
-        RetrieveResult result = null;
-        do {
-            Thread.sleep(waitTimeMilliSecs);
-            // Double the wait time for the next iteration
-            waitTimeMilliSecs *= 2;
-            if (poll++ > 50) {
-                throw new Exception("Request timed out.  If this is a large set " +
-                "of metadata components, check that the time allowed " +
-                "by MAX_NUM_POLL_REQUESTS is sufficient.");
-            }
-            result = metadataConnection.checkRetrieveStatus(
-                    asyncResultId);
-            System.out.println("Retrieve Status: " + result.getStatus());
-        } while (!result.isDone());
-
-        if(result.getStatus()) {      
-            // Print out any warning messages
-            StringBuilder buf = new StringBuilder();
-            if (result.getMessages() != null) {
-                for (RetrieveMessage rm : result.getMessages()) {
-                    buf.append(rm.getFileName() + " - " + rm.getProblem());
-                }
-            }
-            if (buf.length() > 0) {
-                System.out.println("Retrieve warnings:\n" + buf);
-            }
+        AsyncResult response = metadataConnection.retrieve(retrieveRequest);
+		while(!response.isDone())
+		{
+		    Thread.sleep(1000);
+		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
+		}
+		RetrieveResult result = metadataConnection.checkRetrieveStatus(response.getId());
     
             // Write the zip to the file system
             System.out.println("Writing results to zip file");
