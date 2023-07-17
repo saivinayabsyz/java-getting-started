@@ -26,6 +26,7 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.nio.channels.FileChannel;
+import java.nio.channels.*;
 
 import com.sforce.soap.metadata.*;
 import com.sforce.soap.partner.PartnerConnection;
