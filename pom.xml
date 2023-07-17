@@ -47,12 +47,7 @@
     <artifactId>force-partner-api</artifactId>
     <version>57.0.0</version>
 </dependency>
-<!-- https://mvnrepository.com/artifact/com.force.api/force-metadata-api -->
-<dependency>
-    <groupId>com.force.api</groupId>
-    <artifactId>force-metadata-api</artifactId>
-    <version>23.0.0</version>
-</dependency>
+
 <!-- https://mvnrepository.com/artifact/com.liferay/com.sforce.soap.partner -->
              
              <dependency>
