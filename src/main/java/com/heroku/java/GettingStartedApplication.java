@@ -1151,7 +1151,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                 "by MAX_NUM_POLL_REQUESTS is sufficient.");
             }
             result = metadataConnection.checkRetrieveStatus(
-                    asyncResultId, true);
+                    asyncResultId);
             System.out.println("Retrieve Status: " + result.getStatus());
         } while (!result.isDone());
 
