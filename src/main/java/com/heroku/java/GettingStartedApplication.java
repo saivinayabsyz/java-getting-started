@@ -15,6 +15,7 @@ import java.nio.*;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
+import java.nio.channels.ReadableByteChannel;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -29,7 +30,7 @@ import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 import com.sforce.soap.metadata.PackageTypeMembers;
-import com.sforce.soap.metadata.RetrieveStatus;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -60,6 +61,7 @@ import org.json.JSONObject;
 import com.sforce.soap.metadata.RetrieveRequest;
 import com.sforce.soap.metadata.RetrieveResult;
 import com.sforce.soap.metadata.MetadataConnection;
+import com.sforce.soap.metadata.RetrieveStatus;
 
 @SpringBootApplication
 @Controller
@@ -1122,10 +1124,11 @@ PackageTypeMembers pdi = new PackageTypeMembers();
   }
 
   public void createChangeSet(){
+    RetrieveRequest retrieveRequest = new RetrieveRequest();
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
             r.setVersion(API_VERSION + "");
-            request.setUnpackaged(r);
+            retrieveRequest.setUnpackaged(r);
             AsyncResult asyncResult = metadataConnection.retrieve(retrieveRequest);
         String asyncResultId = asyncResult.getId();
         
