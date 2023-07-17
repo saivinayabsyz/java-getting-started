@@ -1128,6 +1128,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
   }
 
   public void createChangeSet( MetadataConnection metadataConnection){
+      try{
     RetrieveRequest retrieveRequest = new RetrieveRequest();
    
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
@@ -1155,6 +1156,15 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             } finally {
                 os.close();
             }
+      }
+       catch (ConnectionException ce) {
+        ce.printStackTrace();
+        System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
+      }
+       catch (InterruptedException ce) {
+        ce.printStackTrace();
+        System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
+      }
         }
   
 
