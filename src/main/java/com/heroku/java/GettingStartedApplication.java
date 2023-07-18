@@ -1151,14 +1151,25 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 
   public void createChangeSet( MetadataConnection metadataConnection){
       try{
-    RetrieveRequest retrieveRequest = new RetrieveRequest();
+  /*  RetrieveRequest retrieveRequest = new RetrieveRequest();
     System.out.println("pd   "+pd+ pd.toArray(new PackageTypeMembers[pd.size()]));
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
            r.setVersion(API_VERSION + "");
 	 retrieveRequest.setApiVersion(API_VERSION);
             retrieveRequest.setUnpackaged(r);
-	       System.out.println("retrieveRequest "+retrieveRequest);
+	       System.out.println("retrieveRequest "+retrieveRequest);*/
+	      RetrieveRequest retrieveRequest = new RetrieveRequest();
+		retrieveRequest.setSinglePackage(true);
+		com.sforce.soap.metadata.Package packageManifest = new com.sforce.soap.metadata.Package();
+		ArrayList<PackageTypeMembers> types = new ArrayList<PackageTypeMembers>();
+		PackageTypeMembers packageTypeMember = new PackageTypeMembers();
+		packageTypeMember.setName("CustomObject");
+		packageTypeMember.setMembers(new String[] { "Account" });
+		types.add(packageTypeMember);
+		packageManifest.setTypes((PackageTypeMembers[]) types.toArray(new PackageTypeMembers[] {}));
+		retrieveRequest.setUnpackaged(packageManifest);
+	      System.out.println("retrieveRequest "+retrieveRequest);
       AsyncResult response = metadataConnection.retrieve(retrieveRequest);
 		while(!response.isDone())
 		{
