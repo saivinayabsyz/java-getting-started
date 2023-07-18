@@ -1034,8 +1034,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         }
         if (workflowSetString != null && workflowSetString.length() != 0)
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
-            
-        
+            try{
+        createChangeSet(metadataConnection);
+	    }
+	      Catch(Exception ex){
+		      System.out.println("\n Error: \n" + ex.getMessage());
+                       System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
+	      }
         insertPakageXML(userID, fromDate, toDate, packageXMLAccessToken);
         packageXMLString = "";
         csvRows = "";
