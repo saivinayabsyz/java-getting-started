@@ -890,7 +890,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		members.add("Set_Case_Type_By_Case_Owner_Queue");
 		String [] hk = members.toArray(new String[members.size()]);
                     pdi.setMembers(hk);
-                    pd.add(pdi);
+                 //   pd.add(pdi);
 	}
         if (flowDefinitions != null && flowDefinitions.length() != 0)
           packageXMLString += "<types>\n" + flowDefinitions + "<name>FlowDefinition</name>\n</types>\n";
@@ -965,7 +965,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                     pdi = new PackageTypeMembers();
                     pdi.setName("ApexClass");
                     pdi.setMembers(classes.replace("<members>","").replace("<members>\n",",").split(","));
-                    pd.add(pdi);
+                //    pd.add(pdi);
         }
         if (labels != null && labels.length() != 0)
           packageXMLString += "<types>\n" + labels + "<name>CustomLabel</name>\n</types>\n";
@@ -979,8 +979,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + aura + "<name>AuraDefinitionBundle</name>\n</types>\n";
         if (dataSources != null && dataSources.length() != 0)
           packageXMLString += "<types>\n" + dataSources + "<name>ExternalDataSource</name>\n</types>\n";
-        if (lwc != null && lwc.length() != 0)
+        if (lwc != null && lwc.length() != 0){
           packageXMLString += "<types>\n" + lwc + "<name>LightningComponentBundle</name>\n</types>\n";
+		 pdi = new PackageTypeMembers();
+                    pdi.setName("LightningComponentBundle");
+                    pdi.setMembers(classes.replace("<members>","").split(""<\members>\n"));
+                  pd.add(pdi);
+	}
         if (restrictionRules != null && restrictionRules.length() != 0)
           packageXMLString += "<types>\n" + restrictionRules + "<name>RestrictionRule</name>\n</types>\n";
         if (permissionsetgroups != null && permissionsetgroups.length() != 0)
@@ -1044,11 +1049,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
             try{
         createChangeSet(metadataConnection);
+		    pd=null;
 	    }
 	      catch(Exception ex){
 		      System.out.println("\n Error: \n" + ex.getMessage());
                        System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
 	      }
+	      pd=null;
         insertPakageXML(userID, fromDate, toDate, packageXMLAccessToken);
         packageXMLString = "";
         csvRows = "";
