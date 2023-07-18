@@ -155,7 +155,7 @@ public class GettingStartedApplication {
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
   public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
-  public static final double API_VERSION = 31.0; 
+  public static final double API_VERSION = 30.0; 
  
   
 public static void main(String[] args) {
@@ -1155,6 +1155,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    Thread.sleep(1000);
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
+	       System.out.println("response 1158"+response);
 		RetrieveResult result = metadataConnection.checkRetrieveStatus(response.getId());
     
             // Write the zip to the file system
