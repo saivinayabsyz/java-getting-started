@@ -882,8 +882,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + emailservices + "<name>EmailServicesFunction</name>\n</types>\n";
         if (audience != null && audience.length() != 0)
           packageXMLString += "<types>\n" + audience + "<name>Audience</name>\n</types>\n";
-        if (flows != null && flows.length() != 0)
+        if (flows != null && flows.length() != 0){
           packageXMLString += "<types>\n" + flows + "<name>Flow</name>\n</types>\n";
+		  pdi = new PackageTypeMembers();
+                    pdi.setName("Flow");
+                    pdi.setMembers(flows.replace("<members>","").replace("<members>\n",",").split(","));
+                    pd.add(pdi);
+	}
         if (flowDefinitions != null && flowDefinitions.length() != 0)
           packageXMLString += "<types>\n" + flowDefinitions + "<name>FlowDefinition</name>\n</types>\n";
         if (queues != null && queues.length() != 0)
@@ -1135,11 +1140,12 @@ PackageTypeMembers pdi = new PackageTypeMembers();
   public void createChangeSet( MetadataConnection metadataConnection){
       try{
     RetrieveRequest retrieveRequest = new RetrieveRequest();
-   
+    System.out.println("pd   "+pd+ pd.toArray(new PackageTypeMembers[pd.size()]));
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
             r.setVersion(API_VERSION + "");
             retrieveRequest.setUnpackaged(r);
+	       System.out.println("retrieveRequest "+retrieveRequest);
         AsyncResult response = metadataConnection.retrieve(retrieveRequest);
 		while(!response.isDone())
 		{
