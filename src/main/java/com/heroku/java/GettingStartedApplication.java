@@ -886,7 +886,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + flows + "<name>Flow</name>\n</types>\n";
 		  pdi = new PackageTypeMembers();
                     pdi.setName("Flow");
-                    pdi.setMembers(flows.replace("<members>","").replace("</members>","").replace("\n","").split(","));
+                    pdi.setMembers(flows.replace("<members>","").replace("</members>","").replace("\n",""));
                     pd.add(pdi);
 	}
         if (flowDefinitions != null && flowDefinitions.length() != 0)
@@ -1148,8 +1148,10 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             retrieveRequest.setUnpackaged(r);
 	       System.out.println("retrieveRequest "+retrieveRequest);
         AsyncResult response = metadataConnection.retrieve(retrieveRequest);
+	      System.out.println("response "+response);
 		while(!response.isDone())
 		{
+	            System.out.println("response "+response);
 		    Thread.sleep(1000);
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
