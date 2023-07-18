@@ -886,7 +886,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + flows + "<name>Flow</name>\n</types>\n";
 		  pdi = new PackageTypeMembers();
                     pdi.setName("Flow");
-                    pdi.setMembers(flows.replace("<members>","").replace("</members>","").split("\n"));
+                    pdi.setMembers("Set_Case_Type_By_Case_Owner_Queue");
                     pd.add(pdi);
 	}
         if (flowDefinitions != null && flowDefinitions.length() != 0)
