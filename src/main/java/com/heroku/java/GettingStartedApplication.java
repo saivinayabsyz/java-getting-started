@@ -1144,6 +1144,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
             r.setVersion(API_VERSION + "");
+	      retrieveRequest.setApiVersion(API_VERSION);
             retrieveRequest.setUnpackaged(r);
 	       System.out.println("retrieveRequest "+retrieveRequest);
         AsyncResult response = metadataConnection.retrieve(retrieveRequest);
