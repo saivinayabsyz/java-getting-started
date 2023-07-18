@@ -888,7 +888,8 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                     pdi.setName("Flow");
 		List<String> members = new ArrayList<String>();
 		members.add("Set_Case_Type_By_Case_Owner_Queue");
-                    pdi.setMembers(members.toArray(new String[members.size()]));
+		String [] hk = members.toArray(new String[members.size()]);
+                    pdi.setMembers(hk);
                     pd.add(pdi);
 	}
         if (flowDefinitions != null && flowDefinitions.length() != 0)
