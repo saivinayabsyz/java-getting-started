@@ -1156,7 +1156,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
 	       System.out.println("response 1158"+response);
-		RetrieveResult result = metadataConnection.checkRetrieveStatus(response.getId(),true);
+		RetrieveResult result = metadataConnection.checkRetrieveStatus(response.getId(),"true");
     
             // Write the zip to the file system
             System.out.println("Writing results to zip file");
