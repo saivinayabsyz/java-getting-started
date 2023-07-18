@@ -983,7 +983,9 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + lwc + "<name>LightningComponentBundle</name>\n</types>\n";
 		 pdi = new PackageTypeMembers();
                     pdi.setName("LightningComponentBundle");
-                    pdi.setMembers(classes.replace("<members>","").split("<\members>\n"));
+		List<String> members = new ArrayList<String>();
+		 members.add("cpmQuickAction");
+                    pdi.setMembers(members.toArray(new String[members.size()]));
                   pd.add(pdi);
 	}
         if (restrictionRules != null && restrictionRules.length() != 0)
