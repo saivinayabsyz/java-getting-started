@@ -155,7 +155,7 @@ public class GettingStartedApplication {
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
   public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
-  public static final double API_VERSION = 31.0; 
+  public static final double API_VERSION = 30.0; 
  
   
 public static void main(String[] args) {
@@ -1143,8 +1143,8 @@ PackageTypeMembers pdi = new PackageTypeMembers();
     System.out.println("pd   "+pd+ pd.toArray(new PackageTypeMembers[pd.size()]));
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
-           // r.setVersion(API_VERSION + "");
-	     // retrieveRequest.setApiVersion(API_VERSION);
+           r.setVersion(API_VERSION + "");
+	 retrieveRequest.setApiVersion(API_VERSION);
             retrieveRequest.setUnpackaged(r);
 	       System.out.println("retrieveRequest "+retrieveRequest);
       AsyncResult response = metadataConnection.retrieve(retrieveRequest);
