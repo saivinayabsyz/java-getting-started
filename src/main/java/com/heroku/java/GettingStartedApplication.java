@@ -1153,6 +1153,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    Thread.sleep(1000);
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
+	        System.out.println("Retrieve Status 1155 " +response.getId());
 	       System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
 		RetrieveResult retrieveResult = metadataConnection.checkRetrieveStatus(response.getId());
 
