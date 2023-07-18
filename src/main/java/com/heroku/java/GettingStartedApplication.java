@@ -155,7 +155,7 @@ public class GettingStartedApplication {
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
   public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
-  public static final double API_VERSION = 30.0; 
+  public static final double API_VERSION = 31.0; 
  
   
 public static void main(String[] args) {
@@ -1147,32 +1147,18 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 	      retrieveRequest.setApiVersion(API_VERSION);
             retrieveRequest.setUnpackaged(r);
 	       System.out.println("retrieveRequest "+retrieveRequest);
-        AsyncResult response = metadataConnection.retrieve(retrieveRequest);
-	      String asyncResultId = response.getId();
-	      System.out.println("response "+response);
+      AsyncResult response = metadataConnection.retrieve(retrieveRequest);
+		while(!response.isDone())
+		{
+		    Thread.sleep(1000);
+		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
+		}
+		RetrieveResult retrieveResult = metadataConnection.checkRetrieveStatus(response.getId());
 
-	       // Wait for the retrieve to complete
-        int poll = 0;
-        long waitTimeMilliSecs = 1000;
-        RetrieveResult result = null;
-        do {
-            Thread.sleep(waitTimeMilliSecs);
-            // Double the wait time for the next iteration
-            waitTimeMilliSecs *= 2;
-            if (poll++ > 50) {
-                throw new Exception("Request timed out.  If this is a large set " +
-                "of metadata components, check that the time allowed " +
-                "by MAX_NUM_POLL_REQUESTS is sufficient.");
-            }
-            result = metadataConnection.checkRetrieveStatus(
-                    asyncResultId);
-            System.out.println("Retrieve Status: " + result.getStatus());
-        } while (!result.isDone());
-
-     System.out.println("Retrieve Status 1172 " + result.getStatus());
+     System.out.println("Retrieve Status 1172 " + retrieveResult.getStatus());
             // Write the zip to the file system
             System.out.println("Writing results to zip file");
-            ByteArrayInputStream bais = new ByteArrayInputStream(result.getZipFile());
+            ByteArrayInputStream bais = new ByteArrayInputStream(retrieveResult.getZipFile());
             File resultsFile = new File("retrieveResults.zip");
             FileOutputStream os = new FileOutputStream(resultsFile);
             try {
