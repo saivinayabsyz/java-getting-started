@@ -1037,7 +1037,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             try{
         createChangeSet(metadataConnection);
 	    }
-	      Catch(Exception ex){
+	      catch(Exception ex){
 		      System.out.println("\n Error: \n" + ex.getMessage());
                        System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
 	      }
