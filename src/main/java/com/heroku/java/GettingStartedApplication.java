@@ -863,7 +863,7 @@ FileProperties[] lmr;
         showEmailFolderComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
         
 PackageTypeMembers pdi = new PackageTypeMembers();
-
+ pd = new ArrayList<PackageTypeMembers>();
         if (userCriterias != null && userCriterias.length() != 0){
                     packageXMLString += "<types>\n" + userCriterias + "<name>UserCriteria</name>\n</types>\n";
             }
@@ -1032,7 +1032,6 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
             try{
         createChangeSet(metadataConnection);
-		    pd=null;
 	    }
 	      catch(Exception ex){
 		      System.out.println("\n Error: \n" + ex.getMessage());
