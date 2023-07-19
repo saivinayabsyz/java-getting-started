@@ -866,32 +866,17 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 
         if (userCriterias != null && userCriterias.length() != 0){
                     packageXMLString += "<types>\n" + userCriterias + "<name>UserCriteria</name>\n</types>\n";
-                    pdi = new PackageTypeMembers();
-                    pdi.setName("UserCriteria");
-                    pdi.setMembers(userCriterias.replace("<members>","").replace("<members>\n",",").split(","));
-                    pd.add(pdi);
             }
             if (assignmentRules != null && assignmentRules.length() != 0){
                     packageXMLString += "<types>\n" + assignmentRules + "<name>AssignmentRule</name>\n</types>\n";
-                    pdi = new PackageTypeMembers();
-                    pdi.setName("AssignmentRule");
-                    pdi.setMembers(assignmentRules.replace("<members>","").replace("<members>\n",",").split(","));
-                    pd.add(pdi);
-            }
+                }
         if (emailservices != null && emailservices.length() != 0)
           packageXMLString += "<types>\n" + emailservices + "<name>EmailServicesFunction</name>\n</types>\n";
         if (audience != null && audience.length() != 0)
           packageXMLString += "<types>\n" + audience + "<name>Audience</name>\n</types>\n";
         if (flows != null && flows.length() != 0){
           packageXMLString += "<types>\n" + flows + "<name>Flow</name>\n</types>\n";
-		  pdi = new PackageTypeMembers();
-                    pdi.setName("Flow");
-		List<String> members = new ArrayList<String>();
-		members.add("Set_Case_Type_By_Case_Owner_Queue");
-		String [] hk = members.toArray(new String[members.size()]);
-                    pdi.setMembers(hk);
-                 //   pd.add(pdi);
-	}
+		}
         if (flowDefinitions != null && flowDefinitions.length() != 0)
           packageXMLString += "<types>\n" + flowDefinitions + "<name>FlowDefinition</name>\n</types>\n";
         if (queues != null && queues.length() != 0)
@@ -962,11 +947,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + components + "<name>ApexComponent</name>\n</types>\n";
         if (classes != null && classes.length() != 0){
           packageXMLString += "<types>\n" + classes + "<name>ApexClass</name>\n</types>\n";
-                    pdi = new PackageTypeMembers();
-                    pdi.setName("ApexClass");
-                    pdi.setMembers(classes.replace("<members>","").replace("<members>\n",",").split(","));
-                //    pd.add(pdi);
-        }
+                       }
         if (labels != null && labels.length() != 0)
           packageXMLString += "<types>\n" + labels + "<name>CustomLabel</name>\n</types>\n";
         if (profiles != null && profiles.length() != 0)
