@@ -155,7 +155,7 @@ public class GettingStartedApplication {
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
   public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
-  public static final double API_VERSION = 28.0; 
+  public static final double API_VERSION = 42.0; 
  
   
 public static void main(String[] args) {
@@ -1157,7 +1157,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
 	        System.out.println("Retrieve Status 1155 " +response.getId());
-	       System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
+	    /*   System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
 		RetrieveResult retrieveResult = metadataConnection.checkRetrieveStatus(response.getId());
 
      System.out.println("Retrieve Status 1172 " + retrieveResult);
@@ -1173,7 +1173,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                 System.out.println("Results written to " + resultsFile.getAbsolutePath());
             } finally {
                 os.close();
-            }
+            }*/
       }
        catch (ConnectionException ce) {
         ce.printStackTrace();
