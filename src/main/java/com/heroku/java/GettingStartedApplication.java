@@ -1148,7 +1148,9 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		packageTypeMember.setMembers(new String[] { "Account" });
 		types.add(packageTypeMember);
 		packageManifest.setTypes((PackageTypeMembers[]) types.toArray(new PackageTypeMembers[] {}));
+	      
 		retrieveRequest.setUnpackaged(packageManifest);
+	      retrieveRequest.setApiVersion(API_VERSION);
 	      System.out.println("retrieveRequest "+retrieveRequest);
       AsyncResult response = metadataConnection.retrieve(retrieveRequest);
 		while(!response.isDone())
@@ -1159,8 +1161,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 	        System.out.println("Retrieve Status 1155 " +response.getId());
 	     System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
 		 /* RetrieveResult retrieveResult = metadataConnection.checkRetrieveStatus(response.getId());
-
-     System.out.println("Retrieve Status 1172 " + retrieveResult);
+             System.out.println("Retrieve Status 1172 " + retrieveResult);
             // Write the zip to the file system
             System.out.println("Writing results to zip file");
             ByteArrayInputStream bais = new ByteArrayInputStream(retrieveResult.getZipFile());
