@@ -155,7 +155,7 @@ public class GettingStartedApplication {
   public Set<String> workflowSet = new HashSet<String>();
   public Boolean includePackaged=false;
   public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
-  public static final double API_VERSION = 33.0; 
+  public static final double API_VERSION = 28.0; 
  
   
 public static void main(String[] args) {
