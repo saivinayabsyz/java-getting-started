@@ -1164,7 +1164,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
 	        System.out.println("Retrieve Status 1155 " +response.getId());
-	      retrieveRequestID= +response.getId();
+	      retrieveRequestID= response.getId();
 	     }
        catch (ConnectionException ce) {
         ce.printStackTrace();
