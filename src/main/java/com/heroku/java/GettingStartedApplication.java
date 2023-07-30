@@ -1033,7 +1033,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         }
         if (workflowSetString != null && workflowSetString.length() != 0)
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
-	      String retrieveRequestID;
+	      String retrieveRequestID="";
             try{
       retrieveRequestID =  createChangeSet(metadataConnection);
 	    }
@@ -1163,6 +1163,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
 	        System.out.println("Retrieve Status 1155 " +response.getId());
+	      return response.getId();
 	    // System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
 		 /* RetrieveResult retrieveResult = metadataConnection.checkRetrieveStatus(response.getId());
            //  System.out.println("Retrieve Status 1172 " + retrieveResult);
