@@ -1131,15 +1131,15 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 
   public void createChangeSet( MetadataConnection metadataConnection){
       try{
-  /*  RetrieveRequest retrieveRequest = new RetrieveRequest();
+    RetrieveRequest retrieveRequest = new RetrieveRequest();
     System.out.println("pd   "+pd+ pd.toArray(new PackageTypeMembers[pd.size()]));
           com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
             r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
            r.setVersion(API_VERSION + "");
 	 retrieveRequest.setApiVersion(API_VERSION);
             retrieveRequest.setUnpackaged(r);
-	       System.out.println("retrieveRequest "+retrieveRequest);*/
-	      RetrieveRequest retrieveRequest = new RetrieveRequest();
+	       System.out.println("retrieveRequest "+retrieveRequest);
+	    /*  RetrieveRequest retrieveRequest = new RetrieveRequest();
 		retrieveRequest.setSinglePackage(true);
 		com.sforce.soap.metadata.Package packageManifest = new com.sforce.soap.metadata.Package();
 		ArrayList<PackageTypeMembers> types = new ArrayList<PackageTypeMembers>();
@@ -1151,7 +1151,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 	      
 		retrieveRequest.setUnpackaged(packageManifest);
 	      retrieveRequest.setApiVersion(API_VERSION);
-	      System.out.println("retrieveRequest "+retrieveRequest);
+	      System.out.println("retrieveRequest "+retrieveRequest);*/
       AsyncResult response = metadataConnection.retrieve(retrieveRequest);
 		while(!response.isDone())
 		{
@@ -1159,12 +1159,12 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
 	        System.out.println("Retrieve Status 1155 " +response.getId());
-	     System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
+	    // System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
 		 /* RetrieveResult retrieveResult = metadataConnection.checkRetrieveStatus(response.getId());
-             System.out.println("Retrieve Status 1172 " + retrieveResult);
+           //  System.out.println("Retrieve Status 1172 " + retrieveResult);
             // Write the zip to the file system
             System.out.println("Writing results to zip file");
-            ByteArrayInputStream bais = new ByteArrayInputStream(retrieveResult.getZipFile());
+          /*  ByteArrayInputStream bais = new ByteArrayInputStream(retrieveResult.getZipFile());
             File resultsFile = new File("retrieveResults.zip");
             FileOutputStream os = new FileOutputStream(resultsFile);
             try {
@@ -1195,20 +1195,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
       }
         }
   
-private void copy(ReadableByteChannel src, WritableByteChannel dest)
-        throws IOException
-    {
-        // Use an in-memory byte buffer
-        ByteBuffer buffer = ByteBuffer.allocate(8092);
-        while (src.read(buffer) != -1) {
-            buffer.flip();
-            while(buffer.hasRemaining()) {
-                dest.write(buffer);
-            }
-            buffer.clear();
-        }
-    }
- 
+
   public void showRecordTypeComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
     if (lmr != null) {
       for (FileProperties n: lmr) {
