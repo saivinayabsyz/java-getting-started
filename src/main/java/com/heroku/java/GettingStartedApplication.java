@@ -950,8 +950,9 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		 pdi = new PackageTypeMembers();
                     pdi.setName("ApexClass");
 		List<String> members = new ArrayList<String>();
-		 for (int i = 0; i <classes.length() ; i++)
-		 members.add(classes[i]);
+		String[] arrOfStr = classes.split(":");
+		 for (String a : arrOfStr)
+		 members.add(a);
                     pdi.setMembers(members.toArray(new String[members.size()]));
                   pd.add(pdi);
                        }
