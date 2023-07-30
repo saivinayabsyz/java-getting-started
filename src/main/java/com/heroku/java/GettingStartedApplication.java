@@ -1163,24 +1163,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
 	        System.out.println("Retrieve Status 1155 " +response.getId());
-	      return response.getId();
-	    // System.out.println("Retrieve Status 1156 " + metadataConnection.checkRetrieveStatus(response.getId()));
-		 /* RetrieveResult retrieveResult = metadataConnection.checkRetrieveStatus(response.getId());
-           //  System.out.println("Retrieve Status 1172 " + retrieveResult);
-            // Write the zip to the file system
-            System.out.println("Writing results to zip file");
-          /*  ByteArrayInputStream bais = new ByteArrayInputStream(retrieveResult.getZipFile());
-            File resultsFile = new File("retrieveResults.zip");
-            FileOutputStream os = new FileOutputStream(resultsFile);
-            try {
-                ReadableByteChannel src = Channels.newChannel(bais);
-                FileChannel dest = os.getChannel();
-                copy(src, dest);
-                System.out.println("Results written to " + resultsFile.getAbsolutePath());
-            } finally {
-                os.close();
-            }*/
-      }
+	     }
        catch (ConnectionException ce) {
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
@@ -1189,15 +1172,11 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
-     
-     /* catch (IOException ce) {
-        ce.printStackTrace();
-        System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
-      }*/
        catch (Exception ce) {
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
+	  return response.getId();
         }
   
 
