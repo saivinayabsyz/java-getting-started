@@ -1032,8 +1032,9 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         }
         if (workflowSetString != null && workflowSetString.length() != 0)
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
+	      String retrieveRequestID;
             try{
-      String retrieveRequestID =  createChangeSet(metadataConnection);
+      retrieveRequestID =  createChangeSet(metadataConnection);
 	    }
 	      catch(Exception ex){
 		      System.out.println("\n Error: \n" + ex.getMessage());
