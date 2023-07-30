@@ -947,6 +947,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + components + "<name>ApexComponent</name>\n</types>\n";
         if (classes != null && classes.length() != 0){
           packageXMLString += "<types>\n" + classes + "<name>ApexClass</name>\n</types>\n";
+		 pdi = new PackageTypeMembers();
+                    pdi.setName("ApexClass");
+		List<String> members = new ArrayList<String>();
+		 for (int i = 0; i <classes.length() ; i++)
+		 members.add(classes[i]);
+                    pdi.setMembers(members.toArray(new String[members.size()]));
+                  pd.add(pdi);
                        }
         if (labels != null && labels.length() != 0)
           packageXMLString += "<types>\n" + labels + "<name>CustomLabel</name>\n</types>\n";
@@ -962,12 +969,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + dataSources + "<name>ExternalDataSource</name>\n</types>\n";
         if (lwc != null && lwc.length() != 0){
           packageXMLString += "<types>\n" + lwc + "<name>LightningComponentBundle</name>\n</types>\n";
-		 pdi = new PackageTypeMembers();
-                    pdi.setName("LightningComponentBundle");
-		List<String> members = new ArrayList<String>();
-		 members.add("cpmQuickAction");
-                    pdi.setMembers(members.toArray(new String[members.size()]));
-                  pd.add(pdi);
+		
 	}
         if (restrictionRules != null && restrictionRules.length() != 0)
           packageXMLString += "<types>\n" + restrictionRules + "<name>RestrictionRule</name>\n</types>\n";
@@ -1031,14 +1033,14 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         if (workflowSetString != null && workflowSetString.length() != 0)
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
             try{
-        createChangeSet(metadataConnection);
+      String retrieveRequestID =  createChangeSet(metadataConnection);
 	    }
 	      catch(Exception ex){
 		      System.out.println("\n Error: \n" + ex.getMessage());
                        System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
 	      }
 	      pd=null;
-        insertPakageXML(userID, fromDate, toDate, packageXMLAccessToken);
+        insertPakageXML(userID, fromDate, toDate, packageXMLAccessToken,retrieveRequestID);
         packageXMLString = "";
         csvRows = "";
         customTab = "";
@@ -1129,7 +1131,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
     }
   }
 
-  public void createChangeSet( MetadataConnection metadataConnection){
+  public string createChangeSet( MetadataConnection metadataConnection){
       try{
     RetrieveRequest retrieveRequest = new RetrieveRequest();
     System.out.println("pd   "+pd+ pd.toArray(new PackageTypeMembers[pd.size()]));
@@ -1876,7 +1878,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
     }
   }
   /* Method to insert package xml */
-  public void insertPakageXML(String userID, String fromDate, String toDate, String access_token) {
+  public void insertPakageXML(String userID, String fromDate, String toDate, String access_token,String retrieveRequestID) {
     String uri = "https://vinay9-dev-ed.my.salesforce.com/services/data/v56.0/sobjects/Package_XML__c/";
     try {
       System.out.println("access_token "+access_token);
@@ -1887,6 +1889,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
       packageXMLRecord.put("userid__c", userID);
       packageXMLRecord.put("from_date__c", fromDate);
       packageXMLRecord.put("to_date__c", toDate);
+	      packageXMLRecord.put("Retrieve_Request_ID__c", retrieveRequestID);
       DefaultHttpClient httpClient = new DefaultHttpClient();
       HttpPost httpPost = new HttpPost(uri);
       httpPost.addHeader(oauthHeader);
