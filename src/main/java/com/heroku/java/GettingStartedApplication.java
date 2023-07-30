@@ -1134,6 +1134,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
   }
 
   public String createChangeSet( MetadataConnection metadataConnection){
+	  String retrieveRequestID = "";
       try{
     RetrieveRequest retrieveRequest = new RetrieveRequest();
     System.out.println("pd   "+pd+ pd.toArray(new PackageTypeMembers[pd.size()]));
@@ -1163,6 +1164,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
 		}
 	        System.out.println("Retrieve Status 1155 " +response.getId());
+	      retrieveRequestID= +response.getId();
 	     }
        catch (ConnectionException ce) {
         ce.printStackTrace();
@@ -1176,7 +1178,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
-	  return response.getId();
+	  return retrieveRequestID;
         }
   
 
