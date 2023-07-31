@@ -947,14 +947,14 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           packageXMLString += "<types>\n" + components + "<name>ApexComponent</name>\n</types>\n";
         if (classes != null && classes.length() != 0){
           packageXMLString += "<types>\n" + classes + "<name>ApexClass</name>\n</types>\n";
-		 pdi = new PackageTypeMembers();
+		/* pdi = new PackageTypeMembers();
                     pdi.setName("ApexClass");
 		List<String> members = new ArrayList<String>();
 		String[] arrOfStr = classes.split(":");
 		 for (String a : arrOfStr)
 		 members.add(a);
                     pdi.setMembers(members.toArray(new String[members.size()]));
-                  pd.add(pdi);
+                  pd.add(pdi);*/
                        }
         if (labels != null && labels.length() != 0)
           packageXMLString += "<types>\n" + labels + "<name>CustomLabel</name>\n</types>\n";
@@ -1034,13 +1034,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         if (workflowSetString != null && workflowSetString.length() != 0)
           packageXMLString += "<types>\n" + workflowSetString + "<name>Workflow</name>\n</types>\n";
 	      String retrieveRequestID="";
-            try{
+        /*    try{
       retrieveRequestID =  createChangeSet(metadataConnection);
 	    }
 	      catch(Exception ex){
 		      System.out.println("\n Error: \n" + ex.getMessage());
                        System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
-	      }
+	      }*/
 	      pd=null;
         insertPakageXML(userID, fromDate, toDate, packageXMLAccessToken,retrieveRequestID);
         packageXMLString = "";
