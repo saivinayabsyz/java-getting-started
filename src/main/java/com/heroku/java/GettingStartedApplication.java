@@ -192,6 +192,7 @@ public static void main(String[] args) {
 
   public void fetchMetadata(String sessionId, String endpoint, String userID, String fromDate, String toDate, String packageXMLAccessToken) {
     ConnectorConfig metadataConfig = new ConnectorConfig();
+	    endpoint ="";
     metadataConfig.setServiceEndpoint(endpoint);
     // shove the partner's session id into the metadata configuration then connect
     metadataConfig.setSessionId(sessionId);
@@ -199,7 +200,7 @@ public static void main(String[] args) {
     String[] arrOfToDate = toDate.split("-");
     Date fromDateValue = new Date();
     Date toDateValue = new Date();
-	  endpoint ="";
+	
     try {
       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
       fromDateValue = formatter.parse(arrOfFromDate[1] + "/" + arrOfFromDate[2] + "/" + arrOfFromDate[0]);
