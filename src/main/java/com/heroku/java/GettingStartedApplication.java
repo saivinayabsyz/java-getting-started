@@ -1900,6 +1900,42 @@ PackageTypeMembers pdi = new PackageTypeMembers();
       npe.printStackTrace();
     }
   }
+
+	/* Method to insert error logs */
+  public void inserErrorLog(String userID, String access_token,String errorDescription) {
+    String uri = "https://vinay9-dev-ed.my.salesforce.com/services/data/v56.0/sobjects/package_xml_error_log__c/";
+    try {
+      System.out.println("access_token "+access_token);
+      Header oauthHeader = new BasicHeader("Authorization", "OAuth " + access_token);
+      JSONObject packageXMLRecord = new JSONObject();
+      packageXMLRecord.put("error_description__c", errorDescription);
+      packageXMLRecord.put("user_name__c", userID);
+      DefaultHttpClient httpClient = new DefaultHttpClient();
+      HttpPost httpPost = new HttpPost(uri);
+      httpPost.addHeader(oauthHeader);
+      StringEntity body = new StringEntity(packageXMLRecord.toString(1));
+      body.setContentType("application/json");
+      httpPost.setEntity(body);
+
+      HttpResponse response = httpClient.execute(httpPost);
+
+      int statusCode = response.getStatusLine().getStatusCode();
+      if (statusCode == 201) {
+        String response_string = EntityUtils.toString(response.getEntity());
+        JSONObject json = new JSONObject(response_string);
+        System.out.println("New packagexml id from response: " + json.getString("id"));
+      } else {
+        System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
+      }
+    } catch (JSONException e) {
+      System.out.println("Issue creating JSON or processing results");
+      e.printStackTrace();
+    } catch (IOException ioe) {
+      ioe.printStackTrace();
+    } catch (NullPointerException npe) {
+      npe.printStackTrace();
+    }
+  }
   @GetMapping("/database")
   String database(Map < String, Object > model) {
     try (Connection connection = dataSource.getConnection()) {
