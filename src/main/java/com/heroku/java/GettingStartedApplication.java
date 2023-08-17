@@ -185,7 +185,7 @@ public static void main(String[] args) {
   public void createHotel(@RequestBody AuthParams metadataparams) {
     System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken+metadataparams.includePackaged);
    includePackaged = metadataparams.includePackaged=="true"?true:false;  
-	  packageXMLAccessToken = metadataparams.packageXMLAccessToken
+	  packageXMLAccessToken = metadataparams.packageXMLAccessToken;
 		 packageXMLuserId = metadataparams.orgURL + "userid "+metadataparams.userID;
     fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate,metadataparams.packageXMLAccessToken);
   }
