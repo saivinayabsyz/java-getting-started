@@ -199,8 +199,8 @@ public static void main(String[] args) {
     String[] arrOfToDate = toDate.split("-");
     Date fromDateValue = new Date();
     Date toDateValue = new Date();
+	  endpoint ="";
     try {
-	    API_VERSION = 36.0;
       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
       fromDateValue = formatter.parse(arrOfFromDate[1] + "/" + arrOfFromDate[2] + "/" + arrOfFromDate[0]);
       toDateValue = formatter.parse(arrOfToDate[1] + "/" + arrOfToDate[2] + "/" + arrOfToDate[0]);
