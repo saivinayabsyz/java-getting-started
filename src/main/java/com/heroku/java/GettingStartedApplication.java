@@ -1154,13 +1154,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
   cspTrustedSites = "";
      
       } catch (ConnectionException ce) {
-	      inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
+	      inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+ce.getStackTrace()[0].getLineNumber()+" description :"+ce.getMessage());
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
 
     } catch (Exception ex) {
-	    inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
+	    inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+ex.getStackTrace()[0].getLineNumber()+" description :"+ex.getMessage());
       System.out.println("\n Error: \n" + ex.getMessage());
       System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
     }
