@@ -201,7 +201,7 @@ public static void main(String[] args) {
       fromDateValue = formatter.parse(arrOfFromDate[1] + "/" + arrOfFromDate[2] + "/" + arrOfFromDate[0]);
       toDateValue = formatter.parse(arrOfToDate[1] + "/" + arrOfToDate[2] + "/" + arrOfToDate[0]);
     } catch (ParseException e) {
-      inserErrorLog( userID,sessionId,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.printStackTrace()); 	    
+      inserErrorLog( userID,sessionId,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"); 	    
       e.printStackTrace();
       System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
     }
