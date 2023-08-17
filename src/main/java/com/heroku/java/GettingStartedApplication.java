@@ -201,8 +201,6 @@ public static void main(String[] args) {
     Date toDateValue = new Date();
 	
     try {
-	    Integer kl=null;
-	    kl=kl+3;
       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
       fromDateValue = formatter.parse(arrOfFromDate[1] + "/" + arrOfFromDate[2] + "/" + arrOfFromDate[0]);
       toDateValue = formatter.parse(arrOfToDate[1] + "/" + arrOfToDate[2] + "/" + arrOfToDate[0]);
