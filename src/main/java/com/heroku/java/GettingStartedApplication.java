@@ -156,7 +156,8 @@ public class GettingStartedApplication {
   public Boolean includePackaged=false;
   public List<PackageTypeMembers> pd = new ArrayList<PackageTypeMembers>();
   public static final double API_VERSION = 42.0; 
- 
+ public String packageXMLAccessToken="";
+	public String packageXMLuserId="";
   
 public static void main(String[] args) {
     SpringApplication.run(GettingStartedApplication.class, args);
@@ -184,6 +185,8 @@ public static void main(String[] args) {
   public void createHotel(@RequestBody AuthParams metadataparams) {
     System.out.println("metadataparams "+metadataparams+metadataparams.orgURL+metadataparams.accessToken+metadataparams.packageXMLAccessToken+metadataparams.includePackaged);
    includePackaged = metadataparams.includePackaged=="true"?true:false;  
+	  packageXMLAccessToken = metadataparams.packageXMLAccessToken
+		 packageXMLuserId = metadataparams.orgURL + "userid "+metadataparams.userID;
     fetchMetadata(metadataparams.accessToken, metadataparams.orgURL, metadataparams.userID, metadataparams.fromDate, metadataparams.toDate,metadataparams.packageXMLAccessToken);
   }
 
@@ -201,7 +204,7 @@ public static void main(String[] args) {
       fromDateValue = formatter.parse(arrOfFromDate[1] + "/" + arrOfFromDate[2] + "/" + arrOfFromDate[0]);
       toDateValue = formatter.parse(arrOfToDate[1] + "/" + arrOfToDate[2] + "/" + arrOfToDate[0]);
     } catch (ParseException e) {
-	inserErrorLog( userID,sessionId,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	    
+	inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	    
       e.printStackTrace();
       System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
     }
@@ -234,6 +237,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -260,6 +264,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -286,6 +291,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -312,6 +318,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -338,6 +345,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -363,6 +371,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -387,6 +396,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -411,6 +421,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -436,6 +447,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -461,6 +473,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -482,6 +495,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -505,6 +519,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -529,6 +544,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -554,6 +570,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -579,6 +596,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -603,6 +621,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -626,7 +645,8 @@ FileProperties[] lmr;
             System.out.println("restrictionRules "+restrictionRules);    
 }
            catch(Exception e)  
-        {  
+        { 
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -651,6 +671,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -676,6 +697,7 @@ FileProperties[] lmr;
 }
            catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -700,7 +722,8 @@ FileProperties[] lmr;
            System.out.println("SharingCriteriaRule "+sharingCriteriaRules); 
         }
           catch(Exception e)  
-        { 
+        {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -725,6 +748,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -746,6 +770,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -768,6 +793,7 @@ FileProperties[] lmr;
 }
           catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         } 
@@ -790,6 +816,7 @@ FileProperties[] lmr;
 }
           catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         } 
@@ -810,6 +837,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -828,6 +856,7 @@ FileProperties[] lmr;
         }
           catch(Exception e)  
         {  
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         }  
@@ -846,7 +875,8 @@ FileProperties[] lmr;
         showDocumentComponents(lmr, userID, fromDateValue, toDateValue, metadataConnection);
 }
           catch(Exception e)  
-        {  
+        { 
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
             System.out.println(e);  
         } 
@@ -1124,11 +1154,13 @@ PackageTypeMembers pdi = new PackageTypeMembers();
   cspTrustedSites = "";
      
       } catch (ConnectionException ce) {
+	      inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
 
     } catch (Exception ex) {
+	    inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
       System.out.println("\n Error: \n" + ex.getMessage());
       System.out.println("line number "+ex.getStackTrace()[0].getLineNumber());
     }
@@ -1168,6 +1200,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 	      retrieveRequestID= response.getId();
 	     }
        catch (ConnectionException ce) {
+	       
         ce.printStackTrace();
         System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
       }
@@ -1213,6 +1246,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage());
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
