@@ -1166,54 +1166,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
     }
   }
 
-  public String createChangeSet( MetadataConnection metadataConnection){
-	  String retrieveRequestID = "";
-      try{
-    RetrieveRequest retrieveRequest = new RetrieveRequest();
-    System.out.println("pd   "+pd+ pd.toArray(new PackageTypeMembers[pd.size()]));
-          com.sforce.soap.metadata.Package r = new com.sforce.soap.metadata.Package();
-            r.setTypes(pd.toArray(new PackageTypeMembers[pd.size()]));
-           r.setVersion(API_VERSION + "");
-	 retrieveRequest.setApiVersion(API_VERSION);
-            retrieveRequest.setUnpackaged(r);
-	       System.out.println("retrieveRequest "+retrieveRequest);
-	    /*  RetrieveRequest retrieveRequest = new RetrieveRequest();
-		retrieveRequest.setSinglePackage(true);
-		com.sforce.soap.metadata.Package packageManifest = new com.sforce.soap.metadata.Package();
-		ArrayList<PackageTypeMembers> types = new ArrayList<PackageTypeMembers>();
-		PackageTypeMembers packageTypeMember = new PackageTypeMembers();
-		packageTypeMember.setName("CustomObject");
-		packageTypeMember.setMembers(new String[] { "Account" });
-		types.add(packageTypeMember);
-		packageManifest.setTypes((PackageTypeMembers[]) types.toArray(new PackageTypeMembers[] {}));
-	      
-		retrieveRequest.setUnpackaged(packageManifest);
-	      retrieveRequest.setApiVersion(API_VERSION);
-	      System.out.println("retrieveRequest "+retrieveRequest);*/
-      AsyncResult response = metadataConnection.retrieve(retrieveRequest);
-		while(!response.isDone())
-		{
-		    Thread.sleep(1000);
-		    response = metadataConnection.checkStatus(new String[] { response.getId()} )[0];
-		}
-	        System.out.println("Retrieve Status 1155 " +response.getId());
-	      retrieveRequestID= response.getId();
-	     }
-       catch (ConnectionException ce) {
-	       
-        ce.printStackTrace();
-        System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
-      }
-       catch (InterruptedException ce) {
-        ce.printStackTrace();
-        System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
-      }
-       catch (Exception ce) {
-        ce.printStackTrace();
-        System.out.println("line number "+ce.getStackTrace()[0].getLineNumber());
-      }
-	  return retrieveRequestID;
-        }
+
   
 
   public void showRecordTypeComponents(FileProperties[] lmr, String userID, Date fromDateValue, Date toDateValue) {
@@ -1284,6 +1237,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
             }
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1347,15 +1301,18 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                     }
                   }
                 } catch (ParseException e) {
+			inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
                   e.printStackTrace();
                   System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
           } catch (ConnectionException ce) {
+		  inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+ce.getStackTrace()[0].getLineNumber()+" description :"+ce.getMessage()); 	
             ce.printStackTrace();
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1396,6 +1353,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1459,15 +1417,18 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                     }
                   }
                 } catch (ParseException e) {
+			inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
                   e.printStackTrace();
                   System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
           } catch (ConnectionException ce) {
+		  inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+ce.getStackTrace()[0].getLineNumber()+" description :"+ce.getMessage()); 	
             ce.printStackTrace();
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1510,6 +1471,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1548,6 +1510,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
 
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1611,15 +1574,18 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                     }
                   }
                 } catch (ParseException e) {
+			inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
                   e.printStackTrace();
                   System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
           } catch (ConnectionException ce) {
+		  inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+ce.getStackTrace()[0].getLineNumber()+" description :"+ce.getMessage()); 	
             ce.printStackTrace();
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1685,15 +1651,18 @@ PackageTypeMembers pdi = new PackageTypeMembers();
                     }
                   }
                 } catch (ParseException e) {
+			inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
                   e.printStackTrace();
                   System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
                 }
               }
             }
           } catch (ConnectionException ce) {
+		  inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+ce.getStackTrace()[0].getLineNumber()+" description :"+ce.getMessage()); 	
             ce.printStackTrace();
           }
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1888,6 +1857,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
           }
 
         } catch (ParseException e) {
+		inserErrorLog( packageXMLuserId,packageXMLAccessToken,"line number "+e.getStackTrace()[0].getLineNumber()+" description :"+e.getMessage()); 	
           e.printStackTrace();
           System.out.println("line number "+e.getStackTrace()[0].getLineNumber());
         }
@@ -1927,6 +1897,7 @@ PackageTypeMembers pdi = new PackageTypeMembers();
         System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
       }
     } catch (JSONException e) {
+	    
       System.out.println("Issue creating JSON or processing results");
       e.printStackTrace();
     } catch (IOException ioe) {
