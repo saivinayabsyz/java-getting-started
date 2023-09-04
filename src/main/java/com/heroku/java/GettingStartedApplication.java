@@ -171,6 +171,10 @@ public static void main(String[] args) {
   public String index() {
     return "index";
   }
+	@GetMapping("/Privacy-Information")
+  public String PrivacyInformation() {
+    return "PrivacyInformation";
+  }
   @RequestMapping(value = "/triggerxmlgeneration",
     method = RequestMethod.POST,
     consumes = {
